@@ -60,25 +60,11 @@ public class Producto {
 	 * @param i
 	 * @param listaProductosPrecio
 	 */
-	public void buscarPrecio3(int i, ArrayList<Producto> listaProductosPrecio) {
+	public void buscarPrecio3(ArrayList<Producto> listaProductosPrecio) {
 		double valor = 2000000;
-		if (precio > valor) {
+		if (precio < valor) {
 			listaProductosPrecio.add(this);
 		}
 	}
-
-	/**
-	 * metodo que compara el color con la cadena "rojo"
-	 * @param i
-	 * @param listaProductosColor
-	 */
-	public void buscarColor(int i, ArrayList<Producto> listaProductosColor) {
-		String valorColor = "rojo";
-		if (color.equalsIgnoreCase(valorColor)) {
-			listaProductosColor.add(this);
-		}
-	}
-
-
 
 }

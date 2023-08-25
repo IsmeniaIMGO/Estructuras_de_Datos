@@ -53,38 +53,15 @@ public class Tienda {
 	 */
 	public ArrayList<Producto> buscarPrecio1(int i, ArrayList<Producto> listaProductosPrecio){
 		//caso base
-		if (i == listaCategorias.size()){	
+		if (i == listaCategorias.size()){
 			return listaProductosPrecio;
 		}
 		//caso recursivo
-		else {	
-			listaCategorias.get(i).buscarPrecio2(i,listaProductosPrecio);	
-			buscarPrecio1(i+1, listaProductosPrecio);	
-			
-		}		
-		return listaProductosPrecio;
-					
-	}
-
-	/**
-	 * Metodo que retorna los productos de color: rojo
-	 * @param i
-	 * @param listaProductosColor
-	 * @return listaProductosColor
-	 */
-	public  ArrayList<Producto> verificarColor(int i, ArrayList<Producto> listaProductosColor){
-		//caso base
-		if (i == listaCategorias.size()){	
-			return listaProductosColor;
+		else {
+			listaCategorias.get(i).buscarPrecio2(0, listaProductosPrecio);
+			buscarPrecio1(i + 1, listaProductosPrecio);
+			return listaProductosPrecio;
 		}
-		//caso recursivo
-		else {	
-			listaCategorias.get(i).verificarColor(i, listaProductosColor);	
-			verificarColor(i+1, listaProductosColor);		
-		}
-		return listaProductosColor;
 	}
-	
-	
 	
 }

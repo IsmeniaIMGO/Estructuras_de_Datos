@@ -11,83 +11,76 @@ public class TiendaPrueba {
 		//crear lista vacia para punto1 precio
 		ArrayList<Producto> listaProductoPrecio = new ArrayList<Producto>();
 		
-		//crear lista vacia para punto2 precio
-		ArrayList<Producto> listaProductosColor = new ArrayList<Producto>();
-		
-		
-		//crear lista vacia para punto1 precio
-		//ArrayList<Producto> listaProductoColor = new ArrayList<Producto>();
-		
 		//crear listaCategorias para la tienda
 		ArrayList<Categoria> listaCategorias = new ArrayList<Categoria>();
 		
 		//crear la tienda
 		Tienda tienda = new Tienda("tienda1", listaCategorias);
 		
-		//crear listaProductos y ListaSubCategorias para Categoria
-		ArrayList<Producto> listaProductos1 = new ArrayList<Producto>();
-		ArrayList<Categoria> subCategoria1 = new ArrayList<Categoria>();
+		ArrayList<Producto> c1_1 = new ArrayList<Producto>();
+		ArrayList<Categoria> c1_2 = new ArrayList<Categoria>();
 		
-		//crear categoria para listaCategorias en Tienda
-		Categoria tecnologia = new Categoria("Tecnologia", listaProductos1, subCategoria1);
+		Categoria c1 = new Categoria("Tecnologia", c1_1, c1_2);
 		
-		//crear producto para listaProductos1 en Categoria: Tecnologia
-		Producto televisor = new Producto("Televisor", 12000000 , "negro");
-		Producto impresora = new Producto("Impresora", 1000, "rojo");
+		Producto c1_1_1 = new Producto("Televisor", 12000000 , "negro");
+		Producto c1_1_2 = new Producto("Impresora", 13000000, "rojo");
+
+		ArrayList<Producto> c1_2_1_1 = new ArrayList<Producto>();
+
+		Categoria c1_2_1 = new Categoria("Camaras",c1_2_1_1);
+
+		Producto c1_2_1_1_1 = new Producto("Camara reflexiva", 10000, "rojo");
+		Producto c1_2_1_1_2 = new Producto("Camara digital", 1500000, "rojo");
+
+		//_______________________________________
+		ArrayList<Producto> c2_1 = new ArrayList<Producto>();
+		ArrayList<Categoria> c2_2 = new ArrayList<Categoria>();
 		
-		//crear listaProductos2 y subCategoria2 para Categoria: Computadores de listaSubcategoria1 
-		ArrayList<Producto> listaProductos2 = new ArrayList<Producto>();
-		ArrayList<Categoria> subCategoria2 = new ArrayList<Categoria>();
+		Categoria c2 = new Categoria("Ollas",  c2_1, c2_2);
 		
-		//crear categoria para listaSubcategoria1 en Categoria: Tecnologia
-		Categoria computadores = new Categoria("Computadores", listaProductos2, subCategoria2);
-		
-		//crear producto para listaProductos2 en Categoria: Computadores
-		Producto asus = new Producto("Asus", 9000, "rojo");
-		Producto acer = new Producto("Acer", 13000000, "negro");
-		
-		//crear listaProductos3 y subCategoria3 para Categoria: Camaras de listaSubcategoria2 
-		ArrayList<Producto> listaProductos3 = new ArrayList<Producto>();
-		ArrayList<Categoria> subCategoria3 = new ArrayList<Categoria>();
-		
-		//crear categoria para listaSubcategoria2 en categoria: computadores
-		Categoria camaras = new Categoria("Camaras", listaProductos3, subCategoria3);
-		
-		//crear producto para listaPorductos3 en categoria: camaras
-		Producto camara1 = new Producto("Camara reflexiva", 11100000, "rojo");
-		Producto camara2 = new Producto("Camara digital", 15000000, "rojo");
+		Producto c2_1_1 = new Producto("Arrocera", 9000, "rojo");
+		Producto c2_1_2 = new Producto("Freidora", 13000000, "negro");
+
+		ArrayList<Producto> c2_2_1_1 = new ArrayList<Producto>();
+
+		Categoria c2_2_1 = new Categoria("Papel",c2_2_1_1);
+
+		Producto c2_2_1_1_1 = new Producto("Carton", 11100000, "rojo");
+		Producto c2_2_1_1_2 = new Producto("Periodico", 1500000, "rojo");
 		
 		
+		//___________________________________________
+		
+		listaCategorias.add(c1);
+		listaCategorias.add(c2);
 
 		
-		listaCategorias.add(tecnologia);	
-		listaCategorias.add(camaras);
+		//añadir productos a lista de productos en categoria c1
+		c1_1.add(c1_1_1);
+		c1_1.add(c1_1_2);
+
+		//añadir categoria a lista de categorias en categoria c1
+		c1_2.add(c1_2_1);
+
+		//añadir productos a lista de categorias dentro
+		c1_2_1_1.add(c1_2_1_1_1);
+		c1_2_1_1.add(c1_2_1_1_2);
+
+
+		//añadir productos a lista de productos en categoria c2
+		c2_1.add(c2_1_1);
+		c2_1.add(c2_1_2);
 		
-		//Categoria: Tecnologia
-		listaProductos1.add(televisor);
-		listaProductos1.add(impresora);
-		
-		subCategoria1.add(computadores);
-		
-		//Categoria: Computadores
-		listaProductos2.add(asus);
-		listaProductos2.add(acer);
-		
-		//subCategoria2.add(camaras);
-		
-		//Categoria: Camaras
-		listaProductos3.add(camara1);
-		listaProductos3.add(camara2);
+		//añadir categoria a lista de categorias en categoria c2
+		c2_2.add(c2_2_1);
+
+		//añadir productos a lista de productos en categoria c2
+		c2_2_1_1.add(c2_2_1_1_1);
+		c2_2_1_1.add(c2_2_1_1_2);
 		
 		//llamar metod que pide los productos con valor mayor a 10.000
 		tienda.buscarPrecio1(0, listaProductoPrecio);
 		System.out.println("PUNTO1: "+listaProductoPrecio +"\n");
-			
-		
-		//llamar metod que pide los productos con color igual a rojo
-		//tienda.verificarColor(0, listaProductosColor);	
-		//	System.out.println("PUNTO 2: "+listaProductosColor);
-
 		
 		}
 		

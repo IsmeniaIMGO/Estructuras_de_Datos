@@ -15,7 +15,7 @@ public class Categoria {
 	 * Constructor
 	 * @param nombre
 	 * @param listaProductos
-	 * @param subcategoria
+	 * @param subCategoria
 	 */
 	public Categoria(String nombre, ArrayList<Producto> listaProductos, ArrayList<Categoria> subCategoria) {
 		super();
@@ -84,7 +84,7 @@ public class Categoria {
 			return listaProductosPrecio;
 		//caso recursivo
 		}else{
-			listaProductos.get(i).buscarPrecio3(i+1, listaProductosPrecio);	
+			listaProductos.get(i).buscarPrecio3(listaProductosPrecio);
 			buscarPrecio2(i+1, listaProductosPrecio);
 		}
 		return listaProductosPrecio;
@@ -94,45 +94,24 @@ public class Categoria {
 	
 	private ArrayList<Producto> buscarEnSubcategoria(int i, ArrayList<Producto> listaProductosPrecio) {
 
+		//como verifico que un arraylist no es nulo?
+		if (subCategoria == null ){
+			return listaProductosPrecio;
+		}else {
 		//caso base
-				if (i == subCategoria.size()){	
+				if (i == subCategoria.size()){
 					return listaProductosPrecio;
 				}
 				//caso recursivo
 				else {	
-					subCategoria.get(i).buscarPrecio2(i,listaProductosPrecio);	
+					subCategoria.get(i).buscarPrecio2(0,listaProductosPrecio);
 					buscarEnSubcategoria(i+1, listaProductosPrecio);	
 				}		
 				return listaProductosPrecio;
-							
+
+		}
 	}
 
-
-
-	/**
-	 * metodo que usa recursividad para encontrar los productos con un color: rojo
-	 * @param i
-	 * @param listaProductosColor
-	 * @return 
-	 */
-	public ArrayList<Producto> verificarColor(int i, ArrayList<Producto> listaProductosColor) {
-		//caso base
-		if (i == listaProductos.size()) {
-			return listaProductosColor;
-		//caso recursivo
-		}else{
-			listaProductos.get(i).buscarColor(i+1, listaProductosColor);	
-			//caso base
-			if (i == subCategoria.size()) {
-				return listaProductosColor;
-			//caso recursivo
-			}else{			
-				subCategoria.get(i).verificarColor(i, listaProductosColor);
-				verificarColor(i+1, listaProductosColor);	
-			}	
-			return listaProductosColor;
-		}	
-	}
 
 	
 	
