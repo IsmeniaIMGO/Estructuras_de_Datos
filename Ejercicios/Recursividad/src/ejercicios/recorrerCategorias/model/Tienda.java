@@ -1,7 +1,4 @@
-package recorrerCategorias.model;
-
-import recorrerCategorias.model.Categoria;
-import recorrerCategorias.model.Producto;
+package ejercicios.recorrerCategorias.model;
 
 import java.util.ArrayList;
 public class Tienda {

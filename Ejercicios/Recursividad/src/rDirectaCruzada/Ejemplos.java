@@ -1,4 +1,4 @@
-package RDirectaCruzada;
+package rDirectaCruzada;
 
 public class Ejemplos {
 

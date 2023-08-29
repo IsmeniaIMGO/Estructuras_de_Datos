@@ -1,4 +1,4 @@
-package recorrerCategorias.model;
+package ejercicios.recorrerCategorias.model;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
-package recorrerCategorias.test;
+package ejercicios.recorrerCategorias.test;
 
-import recorrerCategorias.model.*;
+import ejercicios.recorrerCategorias.model.*;
 
 import java.util.ArrayList;
 
