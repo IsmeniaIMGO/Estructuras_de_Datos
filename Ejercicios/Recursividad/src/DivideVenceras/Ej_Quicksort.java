@@ -4,19 +4,9 @@ public class Ej_Quicksort {
 
     public static void main(String[] args) {
         /*
-        Divide: Divide el problema original en subproblemas más pequeños y más sencillos.
-        Esta división puede llevarse a cabo de manera recursiva hasta que los subproblemas
-        sean lo suficientemente simples para ser resueltos de manera directa.
-
-        Vence: Resuelve los subproblemas de manera recursiva. Cada subproblema se trata como
-        una instancia más pequeña del problema original y se resuelve utilizando la misma
-        estrategia de "divide y vencerás". Esto puede implicar la subdivisión adicional
-        de los subproblemas si es necesario.
-
-        Combina: Combina las soluciones de los subproblemas para obtener la solución del
-        problema original. Esta combinación puede ser tan simple como sumar, promediar u
-        operar las soluciones de los subproblemas de acuerdo con la naturaleza del
-        problema en cuestión.
+        Selecciona un elemento como pivote y divide el arreglo en dos sub-arreglos:
+        uno con elementos menores que el pivote y otro con elementos mayores.
+        Luego, ordena recursivamente ambos sub-arreglos.
          */
 
         int[] numbers = { 6, 2, 8, 4, 1, 7, 3, 5 };
