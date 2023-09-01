@@ -1,22 +1,37 @@
 package divideVenceras;
 
-public class Ej_BusquedaBinaria {
+import java.util.Arrays;
+
+public class Ej_BusquedaBinaria{
 
     public static void main(String[] args) {
         /*
         La búsqueda binaria es un algoritmo de búsqueda eficiente utilizado
         para encontrar la posición de un elemento en una lista ordenada.
-
       */
 
-        int[] sortedArray = { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19 };
-        int target = 11;
-        int index = binarySearch(sortedArray, target);
-        if (index != -1) {
-            System.out.println("El elemento " + target + " se encuentra en la posición " + index);
+        int[] arreglo = { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19 };
+        int numero = 11;
+
+        //Metodo de busqueda binaria de forma manual
+        System.out.println("Metodo de busqueda binaria de forma manual: ");
+        int posicion1 = binarySearch(arreglo, numero);
+        if (posicion1 != -1) {
+            System.out.println("El elemento " + numero + " se encuentra en la posición " + posicion1);
         } else {
-            System.out.println("El elemento " + target + " no se encuentra en la lista.");
+            System.out.println("El elemento " + numero + " no se encuentra en la lista.");
         }
+
+        //Metodo propio Array.binarysearch();
+        System.out.println("\n");
+        System.out.println("Metodo propio: binarySearch()");
+        int posicion2 = Arrays.binarySearch(arreglo, numero);
+        if (posicion2 != -1) {
+            System.out.println("El elemento " + numero + " se encuentra en la posición " + posicion2);
+        } else {
+            System.out.println("El elemento " + numero + " no se encuentra en la lista.");
+        }
+
 
     }
 
