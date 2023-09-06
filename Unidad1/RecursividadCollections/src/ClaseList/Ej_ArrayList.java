@@ -1,15 +1,16 @@
 package ClaseList;
 
-import java.util.Arrays;
 
-public class ArrayList {
+import java.util.*;
+
+public class Ej_ArrayList {
     public static void main(String[] args) {
 
         /*
          Este método toma un arreglo y lo ordena utilizando un algoritmo de ordenamiento: TimSort
          solo sirve para arreglos
          */
-        java.util.ArrayList numbersList = new java.util.ArrayList<>();
+        ArrayList numbersList = new ArrayList<>();
         numbersList.add(5);
         numbersList.add(2);
         numbersList.add(9);
