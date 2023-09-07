@@ -75,9 +75,10 @@ public class Prision {
                 '}';
     }
 
-    public String crearUsuario(String id, String nombre) throws Exception{
+    //---------------------------------------PRISIONERO----------------------------------------------
+    public String crearPrisionero(String id, String nombre) throws Exception{
         if (id == null || id.equals(""))
-            throw new NuloVacioException("el id del cliente es nulo o vacio");
+            throw new NuloVacioException("el id del prisioner es nulo o vacio");
 
         if(existePrisionero(String.valueOf(id)))
             throw new IdYaExisteException("Este ID ya se encuentra registrado");
@@ -100,6 +101,15 @@ public class Prision {
         return false;
     }
 
+    private Prisionero buscarPrisionero(String id) {
+        for (Prisionero p : listaPrisioneros) {
+            if(p.getId().equals(id)) return p;
+
+        }
+        return null;
+    }
+
+    //---------------------------------------PISO----------------------------------------------
     public String crearPiso(int numeroPiso) throws Exception{
         if (numeroPiso <= 0)
             throw new NuloVacioException("el numero del piso debe ser mayor a 0");
@@ -121,4 +131,65 @@ public class Prision {
         return false;
     }
 
+    //---------------------------------------ESPACIO----------------------------------------------
+    public String crearEspacio(int numeroPiso, int fila, int columna, TipoEspacio tipoEspacio) throws Exception{
+        if (numeroPiso <= 0)
+            throw new NuloVacioException("el numero del piso debe ser mayor a 0");
+
+        if (fila < 0 || fila > 5)
+            throw new NuloVacioException("el numero de fila debe ser mayor a 0 y menor a 5");
+
+        if (columna < 0 || columna > 6)
+            throw new NuloVacioException("el numero de columna debe ser mayor a 0 y menor a 6");
+
+        if (tipoEspacio == null)
+            throw new NuloVacioException("el tipo de espacio no puede ser nulo");
+
+        if(existeEspacio(numeroPiso, fila, columna))
+            throw new IdYaExisteException("Este espacio ya se encuentra registrado");
+
+        Espacio espacio = new Espacio(false, null, tipoEspacio);
+        this.listaPisos.get(numeroPiso).agregarEspacio(espacio, fila, columna);
+
+        return "El espacio ha sido creado exitosamente";
+    }
+
+    private boolean existeEspacio(int numeroPiso, int fila, int columna) {
+        if(listaPisos.get(numeroPiso).getMatrizEspacios()[fila][columna] != null) return true;
+        return false;
+    }
+
+    //-------------------------METODOS------------------------------------------------------------
+    public String asignarEspacioAPrisionero(String id, int numeroPiso, int fila, int columna) throws Exception{
+        if (numeroPiso <= 0)
+            throw new NuloVacioException("el numero del piso debe ser mayor a 0");
+
+        if (fila < 0 || fila > 5)
+            throw new NuloVacioException("el numero de fila debe ser mayor a 0 y menor a 5");
+
+        if (columna < 0 || columna > 6)
+            throw new NuloVacioException("el numero de columna debe ser mayor a 0 y menor a 6");
+
+        if (id == null || id.equals(""))
+            throw new NuloVacioException("el id del prisionero es nulo o vacio");
+
+        if(!existePrisionero(id))
+            throw new IdNoExisteException("Este ID no se encuentra registrado");
+
+        if (espacioOcupado(numeroPiso, fila, columna))
+            throw new EspacioOcupadoException("El espacio ya se encuentra ocupado por otro prisionero");
+
+        Espacio espacio = new Espacio(true, buscarPrisionero(id), TipoEspacio.CELDA);
+        this.listaPisos.get(numeroPiso).agregarEspacio(espacio, fila, columna);
+
+        return "El espacio ha sido asignado a un prisionero exitosamente";
+    }
+
+    private boolean espacioOcupado(int numeroPiso, int fila, int columna) {
+        if(listaPisos.get(numeroPiso).getMatrizEspacios()[fila][columna].isEstado()) return true;
+        return false;
+    }
+
+
 }
+
