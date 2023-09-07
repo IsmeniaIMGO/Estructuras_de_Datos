@@ -3,24 +3,29 @@ package Laboratorio1.model;
 import java.util.Objects;
 
 public class Prisionero {
-    private int id;
+    private String id;
     private String nombre;
     private Espacio espacio;
 
     public Prisionero() {
     }
 
-    public Prisionero(int id, String nombre, Espacio espacio) {
+    public Prisionero(String id, String nombre, Espacio espacio) {
         this.id = id;
         this.nombre = nombre;
         this.espacio = espacio;
     }
 
-    public int getId() {
+    public Prisionero(String id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

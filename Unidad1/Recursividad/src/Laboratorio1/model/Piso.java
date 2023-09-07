@@ -51,6 +51,10 @@ public class Piso {
                 '}';
     }
 
+    public void agregarEspacio(Espacio espacio, int fila, int columna) {
+        matrizEspacios[fila][columna] = espacio;
+    }
+
 
 
 
