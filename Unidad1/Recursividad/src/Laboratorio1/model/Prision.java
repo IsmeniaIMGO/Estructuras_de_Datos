@@ -69,10 +69,7 @@ public class Prision {
     public String toString() {
         return "Prision{" +
                 "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", listaPrisioneros=" + listaPrisioneros +
-                ", listaPisos=" + listaPisos +
-                '}';
+                ", nombre='" + nombre;
     }
 
     //---------------------------------------PRISIONERO----------------------------------------------
@@ -92,6 +89,25 @@ public class Prision {
         return "El prisionero ha sido creado exitosamente";
     }
 
+    public void actualizarPrisionero(String id, Espacio espacio) throws Exception{
+        if(!id.equals("")){
+
+            for(Prisionero p : listaPrisioneros){
+                if(p != null && p.getId() != null && p.getId().equals(id)){
+                    if(espacio != null) p.setEspacio(espacio);
+                }
+            }
+        }
+    }
+
+    public void eliminarPrisionero(int piso, int x, int y) throws Exception{
+
+        this.listaPisos.get(piso-1).eliminarPrisionero( x, y);
+
+    }
+
+
+
     public boolean existePrisionero(String id) throws NullPointerException {
 
         for (Prisionero u : listaPrisioneros) {
@@ -108,6 +124,8 @@ public class Prision {
         }
         return null;
     }
+
+
 
     //---------------------------------------PISO----------------------------------------------
     public String crearPiso(int numeroPiso) throws Exception{
@@ -182,13 +200,43 @@ public class Prision {
         Espacio espacio = new Espacio(true, buscarPrisionero(id), TipoEspacio.CELDA);
         this.listaPisos.get(numeroPiso-1).agregarEspacio(espacio, fila, columna);
 
+        actualizarPrisionero(id, espacio);
+
         return "El espacio ha sido asignado a un prisionero exitosamente";
     }
+
+
 
     private boolean espacioOcupado(int numeroPiso, int fila, int columna) {
         if(listaPisos.get(numeroPiso-1).getMatrizEspacios()[fila][columna].isEstado()) return true;
         return false;
     }
+
+    public void contarPrisioneros(int piso) {
+        this.listaPisos.get(piso-1).contarPrisioneros();
+    }
+
+    public void verificarCeldaSinPrisionero(int piso, int fila, int columna, ArrayList<String> celdasVacias) {
+
+        for (int i = 0; i < listaPisos.size() ; i++) {
+            listaPisos.get(piso-1).verificarCeldaSinPrisionero(fila, columna, celdasVacias);
+        }
+
+    }
+
+
+    public String imprimirPiso(int i) { // imprimiremos nuestra solucion. Debido a que la clase Arrays no tiene implementado
+        Espacio [][] copiaMatriz =  listaPisos.get(i-1).getMatrizEspacios().clone(); //hacer una copia de la matriz original
+        String salida = "";    // un metodo toString para arrays bidimensionales, lo programamos a mano
+        for (int x=0; x<copiaMatriz.length; x++) { // recorremos filas
+            for (int y=0; y<copiaMatriz[x].length; y++) { // recorremos columnas
+                salida += copiaMatriz[x][y] + " "; // output es nuestra variable que va almacenando los valores a imprimir
+            }
+            salida += "\n"; // devolvemos esta variable con un salto de l�nea
+        }
+        return salida;
+    }
+
 
 
 }

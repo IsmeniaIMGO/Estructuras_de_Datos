@@ -18,9 +18,6 @@ public class PrisionPrueba {
 
         prision.crearPiso(1);
 
-        prision.crearPrisionero("1", "Juan");
-
-
         prision.crearEspacio(1, 0, 0, TipoEspacio.CELDA);
         prision.crearEspacio(1, 1, 0, TipoEspacio.CELDA);
         prision.crearEspacio(1, 2, 0, TipoEspacio.CELDA);
@@ -53,16 +50,52 @@ public class PrisionPrueba {
         prision.crearEspacio(1, 1, 5, TipoEspacio.PASILLO);
         prision.crearEspacio(1, 0, 5, TipoEspacio.SALIDA);
 
+
+        prision.crearPrisionero("1", "Juan");
+        prision.crearPrisionero("2", "Roberto");
+        prision.crearPrisionero("3", "Pedro");
+        prision.crearPrisionero("4", "Carlos");
+        prision.crearPrisionero("5", "Jose");
+        prision.crearPrisionero("6", "Luis");
+        prision.crearPrisionero("7", "Jorge");
+        prision.crearPrisionero("8", "Mario");
+        prision.crearPrisionero("9", "Miguel");
+        prision.crearPrisionero("10", "Raul");
+        prision.crearPrisionero("11", "Ricardo");
+        prision.crearPrisionero("12", "Rodrigo");
+        prision.crearPrisionero("13", "Ramon");
+        prision.crearPrisionero("14", "Raul");
+
         prision.asignarEspacioAPrisionero("1", 1, 0, 0);
+        prision.asignarEspacioAPrisionero("2", 1, 1, 0);
+        prision.asignarEspacioAPrisionero("3", 1, 2, 0);
+        prision.asignarEspacioAPrisionero("4", 1, 3, 0);
+        prision.asignarEspacioAPrisionero("5", 1, 0, 1);
+        prision.asignarEspacioAPrisionero("6", 1, 0, 2);
+        prision.asignarEspacioAPrisionero("7", 1, 0, 3);
+        prision.asignarEspacioAPrisionero("8", 1, 0, 4);
+        prision.asignarEspacioAPrisionero("9", 1, 1, 4);
+        prision.asignarEspacioAPrisionero("10", 1, 2, 4);
+        prision.asignarEspacioAPrisionero("11", 1, 2, 2);
+        prision.asignarEspacioAPrisionero("12", 1, 3, 2);
+        prision.asignarEspacioAPrisionero("13", 1, 4, 2);
+        prision.asignarEspacioAPrisionero("14", 1, 4, 3);
+
+        System.out.println(prision.imprimirPiso(1)+"\n");
+
+        prision.contarPrisioneros(1);
+
+        prision.eliminarPrisionero(1,0, 0);
+
+        ArrayList<String> celdasVacias = new ArrayList<>();
+        prision.verificarCeldaSinPrisionero(1,4,0, celdasVacias);
+
+        System.out.println("Las celdas sin prisioneros son: "+ celdasVacias);
 
 
-        //imprimir matriz del piso
-        for (int i = 0; i < prision.getListaPisos().get(0).getMatrizEspacios().length; i++) {
-            for (int j = 0; j < prision.getListaPisos().get(0).getMatrizEspacios()[i].length; j++) {
-                System.out.print(prision.getListaPisos().get(0).getMatrizEspacios()[i][j] + " ");
-            }
-            System.out.println();
-        }
+
+
+
 
 
 
