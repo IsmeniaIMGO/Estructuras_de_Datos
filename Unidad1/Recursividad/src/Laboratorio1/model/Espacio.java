@@ -1,21 +1,33 @@
 package Laboratorio1.model;
 
 public class Espacio {
+    /*
+    atributos
+     */
     private boolean estado;
-
     private Prisionero prisionero;
     private TipoEspacio tipoEspacio;
 
 
+    /*
+    constructor vacio
+     */
     public Espacio() {
     }
 
+    /*
+    constructor con atributos
+     */
     public Espacio(boolean estado, Prisionero prisionero, TipoEspacio tipoEspacio) {
         this.estado = estado;
         this.prisionero = prisionero;
         this.tipoEspacio = tipoEspacio;
     }
 
+
+    /*
+    metodos set y get
+     */
     public boolean isEstado() {
         return estado;
     }
@@ -40,6 +52,10 @@ public class Espacio {
         this.prisionero = prisionero;
     }
 
+
+    /*
+    metodo toString
+     */
     @Override
     public String toString() {
         return " "+tipoEspacio + " " ;

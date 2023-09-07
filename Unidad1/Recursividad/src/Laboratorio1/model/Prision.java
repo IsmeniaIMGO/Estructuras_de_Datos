@@ -4,15 +4,24 @@ import java.util.*;
 import Laboratorio1.exceptions.*;
 
 public class Prision {
+    /*
+    atributos
+     */
     private String id;
     private String nombre;
     private ArrayList<Prisionero>  listaPrisioneros;
     private ArrayList<Piso> listaPisos;
 
+    /*
+    constructor vacio
+     */
 
     public Prision() {
     }
 
+    /*
+    constructor con atributos
+     */
     public Prision(String id, String nombre, ArrayList<Prisionero> listaPrisioneros, ArrayList<Piso> listaPisos) {
         this.id = id;
         this.nombre = nombre;
@@ -20,6 +29,9 @@ public class Prision {
         this.listaPisos = listaPisos;
     }
 
+    /*
+    metodos set y get
+     */
     public String getId() {
         return id;
     }
@@ -52,6 +64,10 @@ public class Prision {
         this.listaPisos = listaPisos;
     }
 
+    /*
+    metodo equals y hashcode
+     */
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,6 +81,9 @@ public class Prision {
         return Objects.hash(id);
     }
 
+    /*
+        metodo to string
+         */
     @Override
     public String toString() {
         return "Prision{" +
@@ -72,7 +91,7 @@ public class Prision {
                 ", nombre='" + nombre;
     }
 
-    //---------------------------------------PRISIONERO----------------------------------------------
+    //---------------------------------------Crud PRISIONERO----------------------------------------------
     public String crearPrisionero(String id, String nombre) throws Exception{
         if (id == null || id.equals(""))
             throw new NuloVacioException("el id del prisioner es nulo o vacio");
@@ -105,8 +124,6 @@ public class Prision {
         this.listaPisos.get(piso-1).eliminarPrisionero( x, y);
 
     }
-
-
 
     public boolean existePrisionero(String id) throws NullPointerException {
 
@@ -172,12 +189,26 @@ public class Prision {
         return "El espacio ha sido creado exitosamente";
     }
 
+    public void actualizarEspacio(int numeroPiso, int fila, int columna, Prisionero prisionero, boolean estado) {
+        this.listaPisos.get(numeroPiso-1).actualizarEspacio(fila, columna, prisionero, estado);
+    }
+
     private boolean existeEspacio(int numeroPiso, int fila, int columna) {
         if(listaPisos.get(numeroPiso-1).getMatrizEspacios()[fila][columna] != null) return true;
         return false;
     }
 
     //-------------------------METODOS------------------------------------------------------------
+
+    /**
+     * Metodo que asigna un prisionero a una celda, y le asigna una celda a un prisionero
+     * @param id
+     * @param numeroPiso
+     * @param fila
+     * @param columna
+     * @return
+     * @throws Exception
+     */
     public String asignarEspacioAPrisionero(String id, int numeroPiso, int fila, int columna) throws Exception{
         if (numeroPiso <= 0)
             throw new NuloVacioException("el numero del piso debe ser mayor a 0");
@@ -198,24 +229,43 @@ public class Prision {
             throw new EspacioOcupadoException("El espacio ya se encuentra ocupado por otro prisionero");
 
         Espacio espacio = new Espacio(true, buscarPrisionero(id), TipoEspacio.C);
-        this.listaPisos.get(numeroPiso-1).agregarEspacio(espacio, fila, columna);
 
+        //sobreescribe  el espacio que ya esta creado
+        actualizarEspacio(numeroPiso, fila, columna, buscarPrisionero(id), true);
         actualizarPrisionero(id, espacio);
 
         return "El espacio ha sido asignado a un prisionero exitosamente";
     }
 
 
-
+    /**
+     * metodo que verifica que esa celda tiene un estado en true = ocupado o false= descocupado,
+     * solo puede haber una celda para un prisionero
+     * @param numeroPiso
+     * @param fila
+     * @param columna
+     * @return
+     */
     private boolean espacioOcupado(int numeroPiso, int fila, int columna) {
         if(listaPisos.get(numeroPiso-1).getMatrizEspacios()[fila][columna].isEstado()) return true;
         return false;
     }
 
+    /**
+     * metodo que cuenta el numero de prisioneros en la prision
+     * @param piso
+     */
     public void contarPrisioneros(int piso) {
         this.listaPisos.get(piso-1).contarPrisioneros();
     }
 
+    /**
+     * metddo que me ubica en la entrada y sigue los pasillos
+     * @param piso
+     * @param fila
+     * @param columna
+     * @param celdasVacias
+     */
     public void recorrerPasillos(int piso, int fila, int columna, ArrayList<String> celdasVacias) {
 
         for (int i = 0; i < listaPisos.size() ; i++) {
@@ -224,7 +274,12 @@ public class Prision {
     }
 
 
-    public String imprimirPiso(int i) { // imprimiremos nuestra solucion. Debido a que la clase Arrays no tiene implementado
+    /**
+     * metodo que me imprime la matriz inicial
+     * @param i
+     * @return
+     */
+    public String imprimirPiso(int i) {
         Espacio [][] copiaMatriz =  listaPisos.get(i-1).getMatrizEspacios().clone(); //hacer una copia de la matriz original
         String salida = "";    // un metodo toString para arrays bidimensionales, lo programamos a mano
         for (int x=0; x<copiaMatriz.length; x++) { // recorremos filas

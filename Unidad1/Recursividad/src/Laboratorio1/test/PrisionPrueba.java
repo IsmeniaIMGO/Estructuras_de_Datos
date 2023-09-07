@@ -9,8 +9,9 @@ public class PrisionPrueba {
 
     public static void main(String[] args) throws Exception {
 
-        //quema datos con una nueva prision, con un piso, llenar la matriz con espacios de ese piso y crear prisioners y asignarlos a espacios
-        //crear un prisionero y asignarlo a un espacio
+        //quema datos con una nueva prision, con un piso, llenar la matriz con espacios de ese piso
+        // y crear prisioners y asignarlos a espacios
+
         ArrayList< Prisionero> listaPrisioneros = new ArrayList<>();
         ArrayList<Piso> listaPisos = new ArrayList<>();
 
@@ -81,16 +82,17 @@ public class PrisionPrueba {
         prision.asignarEspacioAPrisionero("13", 1, 4, 2);
         prision.asignarEspacioAPrisionero("14", 1, 4, 3);
 
-        System.out.println(prision.imprimirPiso(1)+"\n");
-
         prision.contarPrisioneros(1);
+        System.out.println("Matriz inicial \n"+prision.imprimirPiso(1)+"\n");
 
-        prision.eliminarPrisionero(1,0, 0);
+        prision.eliminarPrisionero(1,2, 0);
 
+        System.out.println("\n Matriz con el camino que recorrio");
         ArrayList<String> celdasVacias = new ArrayList<>();
         prision.recorrerPasillos(1,4,0, celdasVacias);
 
-        System.out.println("Las celdas sin prisioneros son: "+ celdasVacias);
+        System.out.println("\n Las celdas sin prisioneros son: "+ celdasVacias);
+        //es posible que muestre las coordenadas varias veces por que se verifico la celda desde distintos puntos
 
 
 
