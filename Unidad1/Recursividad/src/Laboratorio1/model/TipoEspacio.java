@@ -2,7 +2,7 @@ package Laboratorio1.model;
 
 public enum TipoEspacio {
 
-    ENTRADA(0), SALIDA(1), CELDA(2), PASILLO(3), X(4);
+    E(0), S(1), C(2), P(3), X(4);
 
     /**
      * atributos

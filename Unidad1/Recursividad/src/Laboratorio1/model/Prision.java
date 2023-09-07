@@ -197,7 +197,7 @@ public class Prision {
         if (espacioOcupado(numeroPiso, fila, columna))
             throw new EspacioOcupadoException("El espacio ya se encuentra ocupado por otro prisionero");
 
-        Espacio espacio = new Espacio(true, buscarPrisionero(id), TipoEspacio.CELDA);
+        Espacio espacio = new Espacio(true, buscarPrisionero(id), TipoEspacio.C);
         this.listaPisos.get(numeroPiso-1).agregarEspacio(espacio, fila, columna);
 
         actualizarPrisionero(id, espacio);
@@ -216,12 +216,11 @@ public class Prision {
         this.listaPisos.get(piso-1).contarPrisioneros();
     }
 
-    public void verificarCeldaSinPrisionero(int piso, int fila, int columna, ArrayList<String> celdasVacias) {
+    public void recorrerPasillos(int piso, int fila, int columna, ArrayList<String> celdasVacias) {
 
         for (int i = 0; i < listaPisos.size() ; i++) {
-            listaPisos.get(piso-1).verificarCeldaSinPrisionero(fila, columna, celdasVacias);
+            listaPisos.get(piso-1).recorrerPasillos(fila, columna, celdasVacias);
         }
-
     }
 
 

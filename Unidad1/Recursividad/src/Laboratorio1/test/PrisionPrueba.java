@@ -18,37 +18,37 @@ public class PrisionPrueba {
 
         prision.crearPiso(1);
 
-        prision.crearEspacio(1, 0, 0, TipoEspacio.CELDA);
-        prision.crearEspacio(1, 1, 0, TipoEspacio.CELDA);
-        prision.crearEspacio(1, 2, 0, TipoEspacio.CELDA);
-        prision.crearEspacio(1, 3, 0, TipoEspacio.CELDA);
-        prision.crearEspacio(1, 0, 1, TipoEspacio.CELDA);
-        prision.crearEspacio(1, 0, 2, TipoEspacio.CELDA);
-        prision.crearEspacio(1, 0, 3, TipoEspacio.CELDA);
-        prision.crearEspacio(1, 0, 4, TipoEspacio.CELDA);
-        prision.crearEspacio(1, 1, 4, TipoEspacio.CELDA);
-        prision.crearEspacio(1, 2, 4, TipoEspacio.CELDA);
-        prision.crearEspacio(1, 2, 2, TipoEspacio.CELDA);
-        prision.crearEspacio(1, 3, 2, TipoEspacio.CELDA);
-        prision.crearEspacio(1, 4, 2, TipoEspacio.CELDA);
-        prision.crearEspacio(1, 4, 3, TipoEspacio.CELDA);
+        prision.crearEspacio(1, 0, 0, TipoEspacio.C);
+        prision.crearEspacio(1, 1, 0, TipoEspacio.C);
+        prision.crearEspacio(1, 2, 0, TipoEspacio.C);
+        prision.crearEspacio(1, 3, 0, TipoEspacio.C);
+        prision.crearEspacio(1, 0, 1, TipoEspacio.C);
+        prision.crearEspacio(1, 0, 2, TipoEspacio.C);
+        prision.crearEspacio(1, 0, 3, TipoEspacio.C);
+        prision.crearEspacio(1, 0, 4, TipoEspacio.C);
+        prision.crearEspacio(1, 1, 4, TipoEspacio.C);
+        prision.crearEspacio(1, 2, 4, TipoEspacio.C);
+        prision.crearEspacio(1, 2, 2, TipoEspacio.C);
+        prision.crearEspacio(1, 3, 2, TipoEspacio.C);
+        prision.crearEspacio(1, 4, 2, TipoEspacio.C);
+        prision.crearEspacio(1, 4, 3, TipoEspacio.C);
 
-        prision.crearEspacio(1, 4, 0, TipoEspacio.ENTRADA);
-        prision.crearEspacio(1, 4, 1, TipoEspacio.PASILLO);
-        prision.crearEspacio(1, 3, 1, TipoEspacio.PASILLO);
-        prision.crearEspacio(1, 2, 1, TipoEspacio.PASILLO);
-        prision.crearEspacio(1, 1, 1, TipoEspacio.PASILLO);
-        prision.crearEspacio(1, 1, 2, TipoEspacio.PASILLO);
-        prision.crearEspacio(1, 1, 3, TipoEspacio.PASILLO);
-        prision.crearEspacio(1, 2, 3, TipoEspacio.PASILLO);
-        prision.crearEspacio(1, 3, 3, TipoEspacio.PASILLO);
-        prision.crearEspacio(1, 3, 4, TipoEspacio.PASILLO);
-        prision.crearEspacio(1, 4, 4, TipoEspacio.PASILLO);
-        prision.crearEspacio(1, 4, 5, TipoEspacio.PASILLO);
-        prision.crearEspacio(1, 3, 5, TipoEspacio.PASILLO);
-        prision.crearEspacio(1, 2, 5, TipoEspacio.PASILLO);
-        prision.crearEspacio(1, 1, 5, TipoEspacio.PASILLO);
-        prision.crearEspacio(1, 0, 5, TipoEspacio.SALIDA);
+        prision.crearEspacio(1, 4, 0, TipoEspacio.E);
+        prision.crearEspacio(1, 4, 1, TipoEspacio.P);
+        prision.crearEspacio(1, 3, 1, TipoEspacio.P);
+        prision.crearEspacio(1, 2, 1, TipoEspacio.P);
+        prision.crearEspacio(1, 1, 1, TipoEspacio.P);
+        prision.crearEspacio(1, 1, 2, TipoEspacio.P);
+        prision.crearEspacio(1, 1, 3, TipoEspacio.P);
+        prision.crearEspacio(1, 2, 3, TipoEspacio.P);
+        prision.crearEspacio(1, 3, 3, TipoEspacio.P);
+        prision.crearEspacio(1, 3, 4, TipoEspacio.P);
+        prision.crearEspacio(1, 4, 4, TipoEspacio.P);
+        prision.crearEspacio(1, 4, 5, TipoEspacio.P);
+        prision.crearEspacio(1, 3, 5, TipoEspacio.P);
+        prision.crearEspacio(1, 2, 5, TipoEspacio.P);
+        prision.crearEspacio(1, 1, 5, TipoEspacio.P);
+        prision.crearEspacio(1, 0, 5, TipoEspacio.S);
 
 
         prision.crearPrisionero("1", "Juan");
@@ -88,7 +88,7 @@ public class PrisionPrueba {
         prision.eliminarPrisionero(1,0, 0);
 
         ArrayList<String> celdasVacias = new ArrayList<>();
-        prision.verificarCeldaSinPrisionero(1,4,0, celdasVacias);
+        prision.recorrerPasillos(1,4,0, celdasVacias);
 
         System.out.println("Las celdas sin prisioneros son: "+ celdasVacias);
 

@@ -74,28 +74,30 @@ public class Piso {
     }
 
 
-    public boolean verificarCeldaSinPrisionero(int x, int y, ArrayList<String> celdasVacias) {
+    public boolean recorrerPasillos(int x, int y, ArrayList<String> celdasVacias) {
         Espacio copiaMatriz[][] = matrizEspacios.clone();
+
         if (x < 0 || x >= copiaMatriz.length || y < 0 || y >= copiaMatriz[x].length) {
             return false; // Si estamos fuera de los límites de la matriz, retornamos false
         }
 
         TipoEspacio tipoEspacio = copiaMatriz[x][y].getTipoEspacio(); // Obtén el tipo de espacio en esta posición
 
-        if (tipoEspacio == TipoEspacio.ENTRADA) {
-            verificarCeldaSinPrisionero(x-1, y, celdasVacias); //arriba
-            verificarCeldaSinPrisionero(x, y + 1, celdasVacias);//derecha
-            verificarCeldaSinPrisionero(x+1, y, celdasVacias);//abajo
-            verificarCeldaSinPrisionero(x, y - 1, celdasVacias);//izquierda
+        if (tipoEspacio == TipoEspacio.E) {
+            recorrerPasillos(x-1, y, celdasVacias); //arriba
+            recorrerPasillos(x, y + 1, celdasVacias);//derecha
+            recorrerPasillos(x+1, y, celdasVacias);//abajo
+            recorrerPasillos(x, y - 1, celdasVacias);//izquierda
            return true;
         }
 
         // Verifica si hemos llegado a la salida
-        if (tipoEspacio == TipoEspacio.SALIDA) {
+        if (tipoEspacio == TipoEspacio.S) {
+            imprimirMatriz(copiaMatriz);
             return true;
         }
 
-        if (tipoEspacio == TipoEspacio.PASILLO) {
+        if (tipoEspacio == TipoEspacio.P) {
             copiaMatriz[x][y].setTipoEspacio(TipoEspacio.X);
 
             verificarCelda(x - 1, y, celdasVacias);//arrriba
@@ -110,14 +112,23 @@ public class Piso {
             verificarCelda(x + 1, y-1, celdasVacias);//diagonal inferior izquierda
 
 
-            verificarCeldaSinPrisionero(x-1, y, celdasVacias);//arrriba
-            verificarCeldaSinPrisionero(x, y + 1, celdasVacias);//derecha
-            verificarCeldaSinPrisionero(x+1, y, celdasVacias);//abajo
-            verificarCeldaSinPrisionero(x, y - 1, celdasVacias);//izquierda
+            recorrerPasillos(x-1, y, celdasVacias);//arrriba
+            recorrerPasillos(x, y + 1, celdasVacias);//derecha
+            recorrerPasillos(x+1, y, celdasVacias);//abajo
+            recorrerPasillos(x, y - 1, celdasVacias);//izquierda
 
         }
 
         return false;
+    }
+
+    private void imprimirMatriz(Espacio[][] copiaMatriz) {
+        for (int i = 0; i < copiaMatriz.length; i++) {
+            for (int j = 0; j < copiaMatriz[i].length; j++) {
+                System.out.print(copiaMatriz[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 
     private void verificarCelda(int x, int y, ArrayList<String> celdasVacias) {
@@ -126,12 +137,14 @@ public class Piso {
         }
         TipoEspacio tipoEspacio = matrizEspacios[x][y].getTipoEspacio(); // Obtén el tipo de espacio en esta posición
 
-        if (tipoEspacio == TipoEspacio.CELDA) {
+        if (tipoEspacio == TipoEspacio.C) {
             if (matrizEspacios[x][y].getPrisionero() == null) {
                 celdasVacias.add(x + "," + y);
             }
         }
     }
+
+
 
 
 }
