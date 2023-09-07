@@ -42,11 +42,6 @@ public class Espacio {
 
     @Override
     public String toString() {
-        return "Espacio{" +
-                "estado=" + estado +
-                ", tipoEspacio=" + tipoEspacio +
-                '}';
+        return " "+tipoEspacio + " " ;
     }
-
-
 }

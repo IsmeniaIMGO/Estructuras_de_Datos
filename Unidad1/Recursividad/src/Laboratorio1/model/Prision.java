@@ -149,13 +149,13 @@ public class Prision {
             throw new IdYaExisteException("Este espacio ya se encuentra registrado");
 
         Espacio espacio = new Espacio(false, null, tipoEspacio);
-        this.listaPisos.get(numeroPiso).agregarEspacio(espacio, fila, columna);
+        this.listaPisos.get(numeroPiso-1).agregarEspacio(espacio, fila, columna);
 
         return "El espacio ha sido creado exitosamente";
     }
 
     private boolean existeEspacio(int numeroPiso, int fila, int columna) {
-        if(listaPisos.get(numeroPiso).getMatrizEspacios()[fila][columna] != null) return true;
+        if(listaPisos.get(numeroPiso-1).getMatrizEspacios()[fila][columna] != null) return true;
         return false;
     }
 
@@ -180,13 +180,13 @@ public class Prision {
             throw new EspacioOcupadoException("El espacio ya se encuentra ocupado por otro prisionero");
 
         Espacio espacio = new Espacio(true, buscarPrisionero(id), TipoEspacio.CELDA);
-        this.listaPisos.get(numeroPiso).agregarEspacio(espacio, fila, columna);
+        this.listaPisos.get(numeroPiso-1).agregarEspacio(espacio, fila, columna);
 
         return "El espacio ha sido asignado a un prisionero exitosamente";
     }
 
     private boolean espacioOcupado(int numeroPiso, int fila, int columna) {
-        if(listaPisos.get(numeroPiso).getMatrizEspacios()[fila][columna].isEstado()) return true;
+        if(listaPisos.get(numeroPiso-1).getMatrizEspacios()[fila][columna].isEstado()) return true;
         return false;
     }
 
