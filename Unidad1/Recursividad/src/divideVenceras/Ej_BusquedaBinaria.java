@@ -2,7 +2,6 @@ package divideVenceras;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Ej_BusquedaBinaria{
 
@@ -55,7 +54,40 @@ public class Ej_BusquedaBinaria{
         System.out.println("Cantidad de ceros: " + cantidadCeros + "\n");
 
 
+        //----------------------------------------------------------------------------------------------
 
+        Character [][] matriz = {
+                {'A', 'B', 'C', 'D', 'E'},
+                {'F', 'G', 'H', 'I', 'J'},
+                {'D', 'L', 'M', 'N', 'O'},
+                {'P', 'Q', 'D', 'S', 'T'},
+                {'U', 'V', 'W', 'X', 'Y'}
+        };
+
+        ArrayList <Character> listaa = new ArrayList<>();
+
+        ArrayList<Character> habitacionesDisponibles = retornarListaHabitacionesDisponibles(matriz, listaa, 0, matriz.length - 1);
+        System.out.println("Habitaciones disponibles: " + habitacionesDisponibles + "\n");
+
+    }
+
+    public static ArrayList<Character> retornarListaHabitacionesDisponibles(Character[][] matriz, ArrayList<Character> habitacionesDisponibles, int inicio, int fin) {
+        if (inicio == fin) {
+            //Habitacion habitacion = matriz[inicio][fin];
+            for (inicio=0; inicio < matriz.length; inicio++) {
+                for (fin = 0; fin < matriz[inicio].length ; fin++) {
+                    if (matriz[inicio][fin] == 'D') {
+                        habitacionesDisponibles.add(matriz[inicio][fin]);
+                        matriz[inicio][fin] = 'X';
+                    }
+                }
+            }
+        } else {
+            int mitad = (inicio + fin) / 2;
+            retornarListaHabitacionesDisponibles(matriz, habitacionesDisponibles, inicio, mitad);
+            retornarListaHabitacionesDisponibles(matriz, habitacionesDisponibles, mitad + 1, fin);
+        }
+        return habitacionesDisponibles;
     }
 
 
