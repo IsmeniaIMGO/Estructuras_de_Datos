@@ -247,27 +247,92 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
 
 
     @Override
-    public void crearLibro(String id, String nombre, String autor, int fechaPublicacion) {
+    public void crearLibro(String id, String nombre, String autor, int fechaPublicacion) throws Exception {
+        if (id == null || id.equals(""))
+            throw new NuloVacioException("el id del libro es nulo o vacio");
+
+        if(existeLibro(id))
+            throw new IdYaExisteException("Este id ya se encuentra registrado");
+
+        if(nombre.equals("") || autor.equals("") || fechaPublicacion == 0)
+            throw new ParametroVacioException("Alguno de los parámetros indicados es está vacío");
+
+        Libro libro = new Libro(id, nombre, autor, fechaPublicacion);
+
+        this.ListaLibros.add(libro);
+        this.librosPorAutor.add(libro);
+        this.librosPorFecha.add(libro);
 
     }
 
     @Override
     public Libro buscarLibro(String id) {
+        for (Libro libro : ListaLibros) {
+            if(libro.getId().equals(id)){
+                return libro;
+            }
+        }
         return null;
     }
 
     @Override
     public void eliminarLibro(String id) {
+        for (Libro libro : ListaLibros) {
+            if(libro.getId().equals(id)){
+                ListaLibros.remove(libro);
+            }
+        }
 
+        for (Libro libro : librosPorAutor) {
+            if(libro.getId().equals(id)){
+                librosPorAutor.remove(libro);
+            }
+        }
+
+        for (Libro libro : librosPorFecha) {
+            if(libro.getId().equals(id)){
+                librosPorFecha.remove(libro);
+            }
+        }
     }
 
     @Override
     public void actualizarLibro(String id, String nombre, String autor, int fechaPublicacion) {
+        if(!id.equals("")){
 
+            for(Libro l : ListaLibros){
+                if(l != null && l.getId() != null && l.getId().equals(id)){
+                    if(!nombre.equals("")) l.setNombre(nombre);
+                    if(!autor.equals("")) l.setAutor(autor);
+                    if(fechaPublicacion != 0) l.setFechaPublicacion(fechaPublicacion);
+                }
+            }
+            for(Libro l : librosPorAutor){
+                if(l != null && l.getId() != null && l.getId().equals(id)){
+                    if(!nombre.equals("")) l.setNombre(nombre);
+                    if(!autor.equals("")) l.setAutor(autor);
+                    if(fechaPublicacion != 0) l.setFechaPublicacion(fechaPublicacion);
+                }
+            }
+
+            for(Libro l : librosPorFecha){
+                if(l != null && l.getId() != null && l.getId().equals(id)){
+                    if(!nombre.equals("")) l.setNombre(nombre);
+                    if(!autor.equals("")) l.setAutor(autor);
+                    if(fechaPublicacion != 0) l.setFechaPublicacion(fechaPublicacion);
+                }
+            }
+
+        }
     }
 
     @Override
     public boolean existeLibro(String id) {
+        for (Libro libro : ListaLibros) {
+            if(libro.getId().equals(id)){
+                return true;
+            }
+        }
         return false;
     }
 
