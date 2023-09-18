@@ -1,4 +1,4 @@
-package Laboratorio2.Model;
+package Model;
 
 public class Prestamo {
 }

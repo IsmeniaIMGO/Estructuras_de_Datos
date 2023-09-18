@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5d730c84-a4c0-48d6-b661-8cec45ca6f8a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Colecciones.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Model/Biblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Model/Biblioteca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Model/DetallePrestamo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Model/DetallePrestamo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Model/Libro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Model/Libro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Model/Prestamo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Model/Prestamo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Model/TipoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Model/TipoUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Model/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Services/ICrudLibro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Services/ICrudLibro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Services/ICrudUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Services/ICrudUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Services/ILogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Services/ILogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Services/ITransaccionPrestamo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/View/CrudUsuario.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/View/CrudUsuario.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/View/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/View/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Biblioteca.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DetallePrestamo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Libro.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Prestamo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/TipoUsuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Usuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/ICrudLibro.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/ICrudUsuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/ILogin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/CrudUsuario.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/Login.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/colecciones/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/colecciones/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/colecciones/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/colecciones/hello-view.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2VYEdcNzMsYF8VEHtMPAOvl1sRl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\marce\OneDrive\Documents\MARCELA\Ing. Sistemas\7mo semestre\Estructura de Datos\Unidad1\Colecciones\src" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5d730c84-a4c0-48d6-b661-8cec45ca6f8a" name="Changes" comment="" />
+      <created>1695004705597</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1695004705597</updated>
+      <workItem from="1695004705600" duration="437000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
