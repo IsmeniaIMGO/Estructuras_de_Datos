@@ -4,7 +4,7 @@ import java.util.*;
 import Laboratorio2.Services.*;
 public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccionPrestamo{
 
-    // Atributos
+    // Atributos a
     private String nit;
     private String nombre;
     private Set<Libro> ListaLibrosSinOrdenar = new HashSet<>();
