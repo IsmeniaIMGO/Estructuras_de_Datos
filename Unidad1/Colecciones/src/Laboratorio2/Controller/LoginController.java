@@ -36,7 +36,7 @@ public class LoginController {
     private Button btnIngresar;
 
     @FXML
-    private TextField txtPassword;
+    private PasswordField txtPassword;
 
     @FXML
     void ingresarUsuario(ActionEvent event) {
@@ -45,7 +45,7 @@ public class LoginController {
 
     @FXML
     void crearUsuario(ActionEvent event) {
-
+        singleton.mostrarCrudUsuario("/Laboratorio2/View/CrudUsuario.fxml");
     }
 
     @FXML

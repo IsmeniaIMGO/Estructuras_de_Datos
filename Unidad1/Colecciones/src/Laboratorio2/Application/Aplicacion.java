@@ -1,5 +1,6 @@
 package Laboratorio2.Application;
 
+import Laboratorio2.Controller.CrudUsuarioController;
 import Laboratorio2.Controller.LoginController;
 import Laboratorio2.Controller.Singleton;
 import javafx.application.Application;
@@ -10,13 +11,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 
-
-
 public class Aplicacion extends Application {
     //atributos propios
     private Singleton singleton = Singleton.getInstance();
     private Stage Escena = new Stage();
-
 
     public static void main(String[] args) {
         launch(args);
@@ -54,5 +52,24 @@ public class Aplicacion extends Application {
             e.printStackTrace();
         }
 
+    }
+
+    public void mostrarCrudUsuario(String ruta) {
+        try {
+            FXMLLoader ventana = new FXMLLoader();
+            ventana.setLocation(Aplicacion.class.getResource(ruta));
+
+            AnchorPane diseño = (AnchorPane)ventana.load();
+            CrudUsuarioController crudUsuarioController = ventana.getController();
+            crudUsuarioController.setAplicacion(this);
+
+            Scene lugar = new Scene(diseño);
+            Escena.setScene(lugar);
+            Escena.show();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

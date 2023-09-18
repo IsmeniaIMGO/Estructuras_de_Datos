@@ -11,6 +11,8 @@ public class Singleton {
     private Aplicacion aplicacion;
 
 
+
+
     private static class SingletonHolder{
         private final static Singleton eInstance = new Singleton();
     }
@@ -44,6 +46,15 @@ public class Singleton {
     public void mostrarLogin(String ruta){
         aplicacion.mostrarLogin(ruta);
 
+    }
+
+    /**
+     * metodo que envia una ruta a aplicacion para que muestre la vista: CrudUsuario
+     * @param ruta
+     */
+
+    public void mostrarCrudUsuario(String ruta) {
+        aplicacion.mostrarCrudUsuario(ruta);
     }
 
 }

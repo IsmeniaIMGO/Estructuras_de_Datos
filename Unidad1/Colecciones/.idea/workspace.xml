@@ -6,23 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="5d730c84-a4c0-48d6-b661-8cec45ca6f8a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ejemplos/ClaseList/Ej_ArrayList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ejemplos/ClaseList/Ej_CopyOnWriteArrayList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ejemplos/ClaseList/Ej_LinkedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ejemplos/ClaseList/Ej_ListIterator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ejemplos/ClaseList/Set.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ejemplos/ClaseList/Vector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ejemplos/ejComparator/ComparatorEdad.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ejemplos/ejComparator/ComparatorNombre.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ejemplos/ejComparator/Estudiante.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ejemplos/ejComparator/test.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Application/Aplicacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Application/Aplicacion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Controller/Singleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Controller/Singleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/View/CrudUsuario.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/View/CrudUsuario.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Laboratorio2/View/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/View/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/colecciones/HelloApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/colecciones/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/colecciones/hello-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
