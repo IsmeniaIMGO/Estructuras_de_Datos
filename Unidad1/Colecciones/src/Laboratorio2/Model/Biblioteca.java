@@ -8,33 +8,40 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
     //te amo git :v
     private String nit;
     private String nombre;
-    private Set<Libro> ListaLibrosSinOrdenar = new HashSet<>();
-    private TreeSet<Libro> librosOrdenados = new TreeSet<>();
-    private TreeSet<Usuario> listaEstudiantes = new TreeSet<>();
-    private TreeSet<Usuario> listaBibliotecarios = new TreeSet<>();
+    private Set<Libro> ListaLibros = new HashSet<>();
+    private Set<Libro> librosPorAutor = new TreeSet<>(Comparator.comparing(Libro::getAutor));
+    private Set<Libro> librosPorFecha = new TreeSet<>(Comparator.comparingInt(Libro::getFechaPublicacion));
+    private Set<Usuario> listaEstudiantes = new TreeSet<>();
+    private Set<Usuario> listaBibliotecarios = new HashSet<>();
     private HashMap<String, Prestamo> listaPrestamos = new HashMap<>();
+
 
     // Constructor sin atributos
     public Biblioteca() {
     }
 
     // Constructor con atributos
+
+
     public Biblioteca(String nit, String nombre,
-                      Set<Libro> listaLibrosSinOrdenar,
-                      TreeSet<Libro> librosOrdenados,
-                      TreeSet<Usuario> listaEstudiantes,
-                      TreeSet<Usuario> listaBibliotecarios,
+                      Set<Libro> listaLibros,
+                      Set<Libro> librosPorAutor,
+                      Set<Libro> librosPorFecha,
+                      Set<Usuario> listaEstudiantes,
+                      Set<Usuario> listaBibliotecarios,
                       HashMap<String, Prestamo> listaPrestamos) {
         this.nit = nit;
         this.nombre = nombre;
-        ListaLibrosSinOrdenar = listaLibrosSinOrdenar;
-        this.librosOrdenados = librosOrdenados;
+        ListaLibros = listaLibros;
+        this.librosPorAutor = librosPorAutor;
+        this.librosPorFecha = librosPorFecha;
         this.listaEstudiantes = listaEstudiantes;
         this.listaBibliotecarios = listaBibliotecarios;
         this.listaPrestamos = listaPrestamos;
     }
 
     // Getters y Setters
+
     public String getNit() {
         return nit;
     }
@@ -51,35 +58,43 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
         this.nombre = nombre;
     }
 
-    public Set<Libro> getListaLibrosSinOrdenar() {
-        return ListaLibrosSinOrdenar;
+    public Set<Libro> getListaLibros() {
+        return ListaLibros;
     }
 
-    public void setListaLibrosSinOrdenar(Set<Libro> listaLibrosSinOrdenar) {
-        ListaLibrosSinOrdenar = listaLibrosSinOrdenar;
+    public void setListaLibros(Set<Libro> listaLibros) {
+        ListaLibros = listaLibros;
     }
 
-    public TreeSet<Libro> getLibrosOrdenados() {
-        return librosOrdenados;
+    public Set<Libro> getLibrosPorAutor() {
+        return librosPorAutor;
     }
 
-    public void setLibrosOrdenados(TreeSet<Libro> librosOrdenados) {
-        this.librosOrdenados = librosOrdenados;
+    public void setLibrosPorAutor(Set<Libro> librosPorAutor) {
+        this.librosPorAutor = librosPorAutor;
     }
 
-    public TreeSet<Usuario> getListaEstudiantes() {
+    public Set<Libro> getLibrosPorFecha() {
+        return librosPorFecha;
+    }
+
+    public void setLibrosPorFecha(Set<Libro> librosPorFecha) {
+        this.librosPorFecha = librosPorFecha;
+    }
+
+    public Set<Usuario> getListaEstudiantes() {
         return listaEstudiantes;
     }
 
-    public void setListaEstudiantes(TreeSet<Usuario> listaEstudiantes) {
+    public void setListaEstudiantes(Set<Usuario> listaEstudiantes) {
         this.listaEstudiantes = listaEstudiantes;
     }
 
-    public TreeSet<Usuario> getListaBibliotecarios() {
+    public Set<Usuario> getListaBibliotecarios() {
         return listaBibliotecarios;
     }
 
-    public void setListaBibliotecarios(TreeSet<Usuario> listaBibliotecarios) {
+    public void setListaBibliotecarios(Set<Usuario> listaBibliotecarios) {
         this.listaBibliotecarios = listaBibliotecarios;
     }
 
@@ -124,6 +139,7 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
     @Override
     public void crearUsuario(String usser, String password, String nombre, String cedula, String tipoUsuario) {
 
+        //aqui verifico que sea bibliotecario y lo agrego a a la lista de bibliotecarios o de estudiantes
     }
 
     @Override

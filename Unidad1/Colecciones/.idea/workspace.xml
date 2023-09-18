@@ -5,38 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d730c84-a4c0-48d6-b661-8cec45ca6f8a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Colecciones.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Model/Biblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Model/Biblioteca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Model/DetallePrestamo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Model/DetallePrestamo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Model/Libro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Model/Libro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Model/Prestamo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Model/Prestamo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Model/TipoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Model/TipoUsuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Model/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Services/ICrudLibro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Services/ICrudLibro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Services/ICrudUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Services/ICrudUsuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Services/ILogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Services/ILogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Services/ITransaccionPrestamo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/View/CrudUsuario.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/View/CrudUsuario.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/View/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/View/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Biblioteca.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DetallePrestamo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Libro.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Prestamo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/TipoUsuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Usuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/ICrudLibro.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/ICrudUsuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/ILogin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/CrudUsuario.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/Login.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/colecciones/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/colecciones/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/colecciones/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/colecciones/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,20 +23,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\marce\OneDrive\Documents\MARCELA\Ing. Sistemas\7mo semestre\Estructura de Datos\Unidad1\Colecciones\src" />
