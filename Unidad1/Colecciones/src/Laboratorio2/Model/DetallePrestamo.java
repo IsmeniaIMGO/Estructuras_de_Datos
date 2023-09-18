@@ -2,7 +2,7 @@ package Laboratorio2.Model;
 
 import java.util.Objects;
 
-public class DetallePrestamo {
+public class DetallePrestamo implements Comparable<DetallePrestamo>{
 
     private String id;
     private Libro libro;
@@ -57,5 +57,10 @@ public class DetallePrestamo {
                 "id='" + id + '\'' +
                 ", libro=" + libro +
                 '}';
+    }
+
+    @Override
+    public int compareTo(DetallePrestamo o) {
+        return this.id.compareTo(o.id);
     }
 }

@@ -1,6 +1,8 @@
 package Laboratorio2.Model;
 
 import java.util.*;
+
+import Laboratorio2.Exceptions.*;
 import Laboratorio2.Services.*;
 public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccionPrestamo{
 
@@ -11,6 +13,7 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
     private Set<Libro> ListaLibros = new HashSet<>();
     private Set<Libro> librosPorAutor = new TreeSet<>(Comparator.comparing(Libro::getAutor));
     private Set<Libro> librosPorFecha = new TreeSet<>(Comparator.comparingInt(Libro::getFechaPublicacion));
+    private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
     private Set<Usuario> listaEstudiantes = new TreeSet<>();
     private Set<Usuario> listaBibliotecarios = new HashSet<>();
     private HashMap<String, Prestamo> listaPrestamos = new HashMap<>();
@@ -21,12 +24,11 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
     }
 
     // Constructor con atributos
-
-
     public Biblioteca(String nit, String nombre,
                       Set<Libro> listaLibros,
                       Set<Libro> librosPorAutor,
                       Set<Libro> librosPorFecha,
+                      ArrayList<Usuario> listaUsuarios,
                       Set<Usuario> listaEstudiantes,
                       Set<Usuario> listaBibliotecarios,
                       HashMap<String, Prestamo> listaPrestamos) {
@@ -35,13 +37,13 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
         ListaLibros = listaLibros;
         this.librosPorAutor = librosPorAutor;
         this.librosPorFecha = librosPorFecha;
+        this.listaUsuarios = listaUsuarios;
         this.listaEstudiantes = listaEstudiantes;
         this.listaBibliotecarios = listaBibliotecarios;
         this.listaPrestamos = listaPrestamos;
     }
 
     // Getters y Setters
-
     public String getNit() {
         return nit;
     }
@@ -80,6 +82,14 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
 
     public void setLibrosPorFecha(Set<Libro> librosPorFecha) {
         this.librosPorFecha = librosPorFecha;
+    }
+
+    public ArrayList<Usuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
     }
 
     public Set<Usuario> getListaEstudiantes() {
@@ -137,28 +147,101 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
 
 
     @Override
-    public void crearUsuario(String usser, String password, String nombre, String cedula, String tipoUsuario) {
+    public void crearUsuario(String usser, String password, String nombre, String cedula, TipoUsuario tipoUsuario) throws Exception {
 
         //aqui verifico que sea bibliotecario y lo agrego a a la lista de bibliotecarios o de estudiantes
+        if (cedula == null || cedula.equals(""))
+            throw new NuloVacioException("el id del cliente es nulo o vacio");
+
+        if(existeUsuario(cedula))
+            throw new CedulaYaExisteException("Esta cedula ya se encuentra registrada");
+
+        if(existeUsser(usser))
+            throw new UsserYaExisteException("Este usuario ya se encuentra registrado");
+
+        if(nombre.equals("") || tipoUsuario.equals("") || usser.equals("") || password.equals(""))
+            throw new ParametroVacioException("Alguno de los parámetros indicados es está vacío");
+
+        Usuario usuario = new Usuario(nombre, cedula, usser, password, tipoUsuario);
+
+        this.listaUsuarios.add(usuario);
+
+        if(tipoUsuario.equals(TipoUsuario.BIBLIOTECARIO)){
+            this.listaBibliotecarios.add(usuario);
+        }else{
+            this.listaEstudiantes.add(usuario);
+        }
+
+
+    }
+    @Override
+    public boolean existeUsser(String usser) throws Exception{
+        for (Usuario usuario : listaUsuarios) {
+            if(usuario.getUsser().equals(usser)){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public Usuario buscarUsuario(String cedula) {
+        for (Usuario usuario : listaUsuarios) {
+            if(usuario.getCedula().equals(cedula)){
+                return usuario;
+            }
+        }
         return null;
-    }
-
-    @Override
-    public void eliminarUsuario(String cedula) {
 
     }
 
     @Override
-    public void actualizarUsuario(String usser, String password, String nombre, String cedula, String tipoUsuario) {
+    public void eliminarUsuario(String cedula, TipoUsuario tipoUsuario) {
+        for (Usuario usuario : listaUsuarios) {
+            if(usuario.getCedula().equals(cedula)){
+                listaUsuarios.remove(usuario);
+            }
+        }
 
+        if (tipoUsuario.equals(TipoUsuario.BIBLIOTECARIO){
+            for (Usuario usuario : listaBibliotecarios) {
+                if(usuario.getCedula().equals(cedula)){
+                    listaBibliotecarios.remove(usuario);
+                }
+            }
+        }else{
+            for (Usuario usuario : listaEstudiantes) {
+                if(usuario.getCedula().equals(cedula)){
+                    listaEstudiantes.remove(usuario);
+                }
+            }
+        }
+
+    }
+
+    @Override
+    public void actualizarUsuario(String nuevoUsser, String nuevaPassword, String nuevoNombre, String cedula, TipoUsuario nuevoTipo) {
+        if(!cedula.equals("")){
+
+            for(Usuario u : listaUsuarios){
+                if(u != null && u.getCedula() != null && u.getCedula().equals(cedula)){
+                    if(!nuevoUsser.equals("")) u.setUsser(nuevoUsser);
+                    if(!nuevaPassword.equals("")) u.setPassword(nuevaPassword);
+                    if(!nuevoNombre.equals("")) u.setNombre(nuevoNombre);
+                    if(nuevoTipo != null) u.setTipoUsuario(nuevoTipo);
+                }
+            }
+
+        }
     }
 
     @Override
     public boolean existeUsuario(String cedula) {
+        for (Usuario usuario : listaUsuarios) {
+            if(usuario.getCedula().equals(cedula)){
+                return true;
+            }
+        }
         return false;
     }
 

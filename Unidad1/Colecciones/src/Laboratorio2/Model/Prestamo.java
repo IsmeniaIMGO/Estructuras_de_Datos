@@ -3,7 +3,7 @@ package Laboratorio2.Model;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Prestamo {
+public class Prestamo implements Comparable<Prestamo>{
     //Atributos
     private String id;
     private Usuario usuario;
@@ -92,5 +92,8 @@ public class Prestamo {
     }
 
 
-
+    @Override
+    public int compareTo(Prestamo o) {
+        return this.id.compareTo(o.id);
+    }
 }
