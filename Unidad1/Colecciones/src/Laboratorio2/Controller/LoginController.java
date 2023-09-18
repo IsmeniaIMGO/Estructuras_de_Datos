@@ -26,36 +26,34 @@ public class LoginController {
     }
 
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
-
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
-
-    @FXML // fx:id="btnCrearCuenta"
-    private Button btnCrearCuenta; // Value injected by FXMLLoader
-
-    @FXML // fx:id="txtUsser"
-    private TextField txtUsser; // Value injected by FXMLLoader
-
-    @FXML // fx:id="btnIngresar"
-    private Button btnIngresar; // Value injected by FXMLLoader
-
-    @FXML // fx:id="txtPassword"
-    private TextField txtPassword; // Value injected by FXMLLoader
+    @FXML
+    private Button btnCrearCuenta;
 
     @FXML
-    void ingresarUsuario(ActionEvent event){
-        //verificarInicioSesion();
+    private TextField txtUsser;
+
+    @FXML
+    private Button btnIngresar;
+
+    @FXML
+    private TextField txtPassword;
+
+    @FXML
+    void ingresarUsuario(ActionEvent event) {
+
     }
 
     @FXML
     void crearUsuario(ActionEvent event) {
-       // singleton.mostrarCrudUsuario("/co/uniquindio/edu/Empresa/views/CrudUsuario.fxml");
+
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
     void initialize() {
+        assert btnCrearCuenta != null : "fx:id=\"btnCrearCuenta\" was not injected: check your FXML file 'Login.fxml'.";
+        assert txtUsser != null : "fx:id=\"txtUsser\" was not injected: check your FXML file 'Login.fxml'.";
+        assert btnIngresar != null : "fx:id=\"btnIngresar\" was not injected: check your FXML file 'Login.fxml'.";
+        assert txtPassword != null : "fx:id=\"txtPassword\" was not injected: check your FXML file 'Login.fxml'.";
 
     }
 

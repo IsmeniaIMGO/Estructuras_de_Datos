@@ -4,9 +4,13 @@ import Laboratorio2.Controller.LoginController;
 import Laboratorio2.Controller.Singleton;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+
+
 
 public class Aplicacion extends Application {
     //atributos propios
@@ -22,7 +26,7 @@ public class Aplicacion extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.Escena = primaryStage;
         this.Escena.setTitle("BIBLIOTECA");
-        mostrarLogin("Laboratorio2/View/Login.fxml");
+        mostrarLogin("/Laboratorio2/View/Login.fxml");
     }
 
 
@@ -35,6 +39,8 @@ public class Aplicacion extends Application {
             FXMLLoader ventana = new FXMLLoader();
             ventana.setLocation(Aplicacion.class.getResource(ruta));
 
+            ventana.setRoot(new AnchorPane());
+
             AnchorPane diseño = (AnchorPane)ventana.load();
             LoginController loginController = ventana.getController();
             loginController.setAplicacion(this);
@@ -42,6 +48,7 @@ public class Aplicacion extends Application {
             Scene lugar = new Scene(diseño);
             Escena.setScene(lugar);
             Escena.show();
+
 
         } catch (Exception e) {
             e.printStackTrace();
