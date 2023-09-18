@@ -27,6 +27,12 @@ public class LoginController {
 
 
     @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
     private Button btnCrearCuenta;
 
     @FXML
@@ -42,6 +48,7 @@ public class LoginController {
     void ingresarUsuario(ActionEvent event) {
 
     }
+
 
     @FXML
     void crearUsuario(ActionEvent event) {

@@ -31,16 +31,7 @@ public class CrudUsuarioController {
     }
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private Button btnEliminarUsuario;
-
-    @FXML
-    private TableColumn<?, ?> col_IdUsuario;
 
     @FXML
     private TableView<?> tblUsuarios;
@@ -55,13 +46,13 @@ public class CrudUsuarioController {
     private TextField txtNombreUsuario;
 
     @FXML
-    private TableColumn<?, ?> col_EdadUsuario;
-
-    @FXML
-    private Button limpiarCampos;
+    private Button btnBuscarUsuario;
 
     @FXML
     private TextField txtEdadUsuario;
+
+    @FXML
+    private TableColumn<?, ?> col_CedulaUsuario;
 
     @FXML
     private Button btnActualizarUsuario;
@@ -97,7 +88,7 @@ public class CrudUsuarioController {
     }
 
     @FXML
-    void limpiarCampos(ActionEvent event) {
+    void buscarUsuario(ActionEvent event) {
 
     }
 
@@ -108,21 +99,6 @@ public class CrudUsuarioController {
 
     @FXML
     void initialize() {
-        assert btnEliminarUsuario != null : "fx:id=\"btnEliminarUsuario\" was not injected: check your FXML file 'CrudUsuario.fxml'.";
-        assert col_IdUsuario != null : "fx:id=\"col_IdUsuario\" was not injected: check your FXML file 'CrudUsuario.fxml'.";
-        assert tblUsuarios != null : "fx:id=\"tblUsuarios\" was not injected: check your FXML file 'CrudUsuario.fxml'.";
-        assert txtIdUsuario != null : "fx:id=\"txtIdUsuario\" was not injected: check your FXML file 'CrudUsuario.fxml'.";
-        assert cbkComprador != null : "fx:id=\"cbkComprador\" was not injected: check your FXML file 'CrudUsuario.fxml'.";
-        assert txtNombreUsuario != null : "fx:id=\"txtNombreUsuario\" was not injected: check your FXML file 'CrudUsuario.fxml'.";
-        assert col_EdadUsuario != null : "fx:id=\"col_EdadUsuario\" was not injected: check your FXML file 'CrudUsuario.fxml'.";
-        assert limpiarCampos != null : "fx:id=\"limpiarCampos\" was not injected: check your FXML file 'CrudUsuario.fxml'.";
-        assert txtEdadUsuario != null : "fx:id=\"txtEdadUsuario\" was not injected: check your FXML file 'CrudUsuario.fxml'.";
-        assert btnActualizarUsuario != null : "fx:id=\"btnActualizarUsuario\" was not injected: check your FXML file 'CrudUsuario.fxml'.";
-        assert btnIrLogin != null : "fx:id=\"btnIrLogin\" was not injected: check your FXML file 'CrudUsuario.fxml'.";
-        assert btnCrearUsuario != null : "fx:id=\"btnCrearUsuario\" was not injected: check your FXML file 'CrudUsuario.fxml'.";
-        assert col_TipoUsuario != null : "fx:id=\"col_TipoUsuario\" was not injected: check your FXML file 'CrudUsuario.fxml'.";
-        assert col_NombreUsuario != null : "fx:id=\"col_NombreUsuario\" was not injected: check your FXML file 'CrudUsuario.fxml'.";
-        assert cbkAnunciante != null : "fx:id=\"cbkAnunciante\" was not injected: check your FXML file 'CrudUsuario.fxml'.";
 
     }
 }
