@@ -203,15 +203,15 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
             }
         }
 
-        if (tipoUsuario.equals(TipoUsuario.BIBLIOTECARIO){
+        if (tipoUsuario.equals(TipoUsuario.BIBLIOTECARIO)) {
             for (Usuario usuario : listaBibliotecarios) {
-                if(usuario.getCedula().equals(cedula)){
+                if (usuario.getCedula().equals(cedula)) {
                     listaBibliotecarios.remove(usuario);
                 }
             }
-        }else{
+        }else {
             for (Usuario usuario : listaEstudiantes) {
-                if(usuario.getCedula().equals(cedula)){
+                if (usuario.getCedula().equals(cedula)) {
                     listaEstudiantes.remove(usuario);
                 }
             }
@@ -335,7 +335,25 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
         }
         return false;
     }
+    @Override
+    public boolean verificarBibliotecario(String usser, String password) {
+        Usuario usuario = buscarUsuario(usser);
 
+        if ((usuario != null) && (usuario.getNombre().equals(password)) && (usuario.getTipoUsuario() == TipoUsuario.BIBLIOTECARIO)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean verificarEstudiante(String usser, String password) {
+        Usuario usuario = buscarUsuario(usser);
+
+        if ((usuario != null) && (usuario.getNombre().equals(password)) && (usuario.getTipoUsuario() == TipoUsuario.ESTUDIANTE)) {
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public void prestarLibro(String idPrestamo, String cedulaUsuario) {
@@ -346,18 +364,6 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
     public void devolverLibro(String idprestamo, String cedulaUsuario) {
 
     }
-
-    @Override
-    public boolean verificarBibliotecario(String usuario, String password) {
-        return false;
-    }
-
-    @Override
-    public boolean verificarEstudiante(String usuario, String password) {
-        return false;
-    }
-
-
 
 
 
