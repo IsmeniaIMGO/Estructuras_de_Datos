@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Usuario implements Comparable<Usuario>{
+    // Atributos
     private String nombre;
     private String cedula;
     private String usser;
@@ -11,11 +12,11 @@ public class Usuario implements Comparable<Usuario>{
     private TipoUsuario tipoUsuario;
     private ArrayList<Prestamo> listaPrestamos = new ArrayList<>();
 
-
+    // Constructor sin atributos
     public Usuario() {
     }
 
-
+    // Constructor con atributos
     public Usuario(String nombre, String cedula, String usser, String password, TipoUsuario tipoUsuario) {
         this.nombre = nombre;
         this.cedula = cedula;
@@ -24,6 +25,7 @@ public class Usuario implements Comparable<Usuario>{
         this.tipoUsuario = tipoUsuario;
     }
 
+    // Getters y Setters
     public String getNombre() {
         return nombre;
     }
@@ -72,7 +74,7 @@ public class Usuario implements Comparable<Usuario>{
         this.listaPrestamos = listaPrestamos;
     }
 
-    // Metodos hashCode y equals
+    // Metodos equals
 
     @Override
     public boolean equals(Object o) {
@@ -82,11 +84,14 @@ public class Usuario implements Comparable<Usuario>{
         return Objects.equals(cedula, usuario.cedula);
     }
 
+
+    // Metodos hashCode
     @Override
     public int hashCode() {
         return Objects.hash(cedula);
     }
 
+    // Metodo toString
     @Override
     public String toString() {
         return "Usuario{" +
@@ -96,14 +101,11 @@ public class Usuario implements Comparable<Usuario>{
                 '}';
     }
 
-
+    // Metodo compareTo
     @Override
     public int compareTo(Usuario o) {
         return this.cedula.compareTo(o.cedula);
     }
-
-
-
 
 
 
