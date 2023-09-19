@@ -2,6 +2,12 @@ package Laboratorio2.Controller;
 
 import Laboratorio2.Application.*;
 import Laboratorio2.Model.Biblioteca;
+import Laboratorio2.Model.TipoUsuario;
+import Laboratorio2.Model.Usuario;
+import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
+import java.util.Set;
 
 public class Singleton {
     /**
@@ -24,6 +30,30 @@ public class Singleton {
 
     public void mostrarCrudLibroBibliotecaB(String ruta) {
         aplicacion.mostrarCrudLibroBibliotecaB(ruta);
+    }
+
+    public void crearUsuario(String usser, String password, String nombre, String cedula, TipoUsuario tipoUsuario) throws Exception {
+        biblioteca.crearUsuario(usser, password, nombre, cedula, tipoUsuario);
+    }
+
+    public void actualizarUsuario(String usser, String password, String nombre, String cedula, TipoUsuario tipoUsuario) {
+        biblioteca.actualizarUsuario(usser, password, nombre, cedula, tipoUsuario);
+    }
+
+    public void eliminarUsuario(String cedula, TipoUsuario tipoUsuario) {
+        biblioteca.eliminarUsuario(cedula, tipoUsuario);
+    }
+
+    public Usuario buscarUsuario(String cedula) {
+        return biblioteca.buscarUsuario(cedula);
+    }
+
+    public Set<Usuario> obtenerListaUsuariosEstudiantes() {
+        return biblioteca.getListaEstudiantes();
+    }
+
+    public Set<Usuario> obtenerListaUsuariosBibliotecarios() {
+        return biblioteca.getListaBibliotecarios();
     }
 
 

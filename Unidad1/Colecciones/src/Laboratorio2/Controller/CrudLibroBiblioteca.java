@@ -6,6 +6,8 @@ package Laboratorio2.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Laboratorio2.Application.Aplicacion;
+import Laboratorio2.Model.Biblioteca;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,6 +20,22 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class CrudLibroBiblioteca {
+
+    Biblioteca biblioteca = Singleton.getInstance().getBiblioteca();
+
+    Singleton singleton = Singleton.getInstance();
+    Aplicacion aplicacion;
+
+    //Metodo set de aplicacion
+    public void setAplicacion(Aplicacion aplicacion){
+        this.aplicacion = aplicacion;
+        singleton.setAplicacion(aplicacion);
+    }
+
+
+
+
+
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
