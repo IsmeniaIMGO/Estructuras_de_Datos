@@ -228,5 +228,15 @@ public class CrudLibroBiblioteca {
 
     }
 
+    public TabPane getTabCrudLibro() {
+        return tabCrudLibro;
+    }
 
+    public Button getBtnDevolverLibro() {
+        return btnDevolverLibro;
+    }
+
+    public Button getBtnSolicitarPrestamo() {
+        return btnSolicitarPrestamo;
+    }
 }

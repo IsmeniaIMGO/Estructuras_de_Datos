@@ -123,12 +123,12 @@ public class Singleton {
 
 
     ///---------------------------Metodos que llaman a la biblioteca--------------//
-    public boolean verificarEstudiante(String usser, String contrasena) {
-        return biblioteca.verificarEstudiante(usser, contrasena);
+    public boolean verificarEstudiante(String usser, String password) {
+        return biblioteca.verificarEstudiante(usser, password);
     }
 
-    public boolean verificarBibliotecario(String usser, String contrasena) {
-        return biblioteca.verificarBibliotecario(usser, contrasena);
+    public boolean verificarBibliotecario(String usser, String password) {
+        return biblioteca.verificarBibliotecario(usser, password);
     }
 
     public void crearUsuario(String usser, String password, String nombre, String cedula, TipoUsuario tipoUsuario) throws Exception {

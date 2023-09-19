@@ -47,8 +47,8 @@ public class LoginController {
 
     @FXML
     void ingresarUsuario(ActionEvent event) throws ParametroVacioException {
-        singleton.mostrarCrudLibroBibliotecaE("/Laboratorio2/View/CrudLibroBiblioteca.fxml");
-            //verificarInicioSesion();
+        //singleton.mostrarCrudLibroBibliotecaE("/Laboratorio2/View/CrudLibroBiblioteca.fxml");
+        verificarInicioSesion();
     }
 
 
@@ -73,20 +73,20 @@ public class LoginController {
      */
     private void verificarInicioSesion() throws ParametroVacioException {
         String usser = txtUsser.getText();
-        String contrasena = txtPassword.getText();
+        String password = txtPassword.getText();
 
-        if (!usser.equals("") && !contrasena.equals("")){
-            //si el tipo de usuario es anunciante entonces me abre una ventana especial para anunciantes
-            if (singleton.verificarEstudiante(usser, contrasena)) {
+        if (!usser.equals("") && !password.equals("")){
+            //si el tipo de usuario es estudiante entonces me abre una ventana especial para estudiantes
+            if (singleton.verificarEstudiante(usser, password)) {
                 singleton.mostrarCrudLibroBibliotecaE("/Laboratorio2/View/CrudLibroBiblioteca.fxml");
 
                 //si el tipo de usuario es comprador entonces me abre una ventana especial para anunciantes
-            }else if (singleton.verificarBibliotecario(usser, contrasena)) {
+            }else if (singleton.verificarBibliotecario(usser, password)) {
                 singleton.mostrarCrudLibroBibliotecaB("/Laboratorio2/View/CrudLibroBiblioteca.fxml");
 
             }else {
                 //si no cumple las anteriores opciones entonces ingreso algo mal
-                System.out.println("La informacion digitada no es correcta");
+                System.out.println("La informacion digitada no es correcta "+ password+usser);
             }
         }else {
             //si intenta iniciar sesion pero los campos estan vacios

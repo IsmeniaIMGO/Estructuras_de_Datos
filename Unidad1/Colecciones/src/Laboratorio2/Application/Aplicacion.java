@@ -84,8 +84,11 @@ public class Aplicacion extends Application {
             CrudLibroBiblioteca crudLibroBiblioteca = ventana.getController();
             crudLibroBiblioteca.setAplicacion(this);
 
+            crudLibroBiblioteca.getTabCrudLibro().getTabs().remove(0);
+
             Scene lugar = new Scene(diseño);
             Escena.setScene(lugar);
+            Escena.setY(-4);
             Escena.show();
 
         } catch (Exception e) {
@@ -103,8 +106,12 @@ public class Aplicacion extends Application {
             CrudLibroBiblioteca crudLibroBiblioteca = ventana.getController();
             crudLibroBiblioteca.setAplicacion(this);
 
+            crudLibroBiblioteca.getBtnSolicitarPrestamo().setDisable(true);
+            crudLibroBiblioteca.getBtnDevolverLibro().setDisable(true);
+
             Scene lugar = new Scene(diseño);
             Escena.setScene(lugar);
+            Escena.setY(-4);
             Escena.show();
 
         } catch (Exception e) {

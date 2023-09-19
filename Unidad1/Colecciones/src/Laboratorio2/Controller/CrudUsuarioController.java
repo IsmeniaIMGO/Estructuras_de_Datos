@@ -192,6 +192,7 @@ public class CrudUsuarioController {
         Usuario usuario = singleton.buscarUsuario(cedula);
         if (usuario != null) {
             txtUsser.setText(usuario.getUsser());
+            txtPassword.setText(usuario.getPassword());
             txtCedula.setText(usuario.getCedula());
             txtNombreUsuario.setText(usuario.getNombre());
             if (usuario.getTipoUsuario() == TipoUsuario.ESTUDIANTE) {

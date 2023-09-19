@@ -342,19 +342,28 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
     }
     @Override
     public boolean verificarBibliotecario(String usser, String password) {
-        Usuario usuario = buscarUsuario(usser);
+        Usuario usuario = buscarUsser(usser);
 
-        if ((usuario != null) && (usuario.getNombre().equals(password)) && (usuario.getTipoUsuario() == TipoUsuario.BIBLIOTECARIO)) {
+        if ((usuario != null) && (usuario.getPassword().equals(password)) && (usuario.getTipoUsuario() == TipoUsuario.BIBLIOTECARIO)) {
             return true;
         }
         return false;
     }
 
+    private Usuario buscarUsser(String usser) {
+        for (Usuario usuario : listaUsuarios) {
+            if(usuario.getUsser().equals(usser)){
+                return usuario;
+            }
+        }
+        return null;
+    }
+
     @Override
     public boolean verificarEstudiante(String usser, String password) {
-        Usuario usuario = buscarUsuario(usser);
+        Usuario usuario = buscarUsser(usser);
 
-        if ((usuario != null) && (usuario.getNombre().equals(password)) && (usuario.getTipoUsuario() == TipoUsuario.ESTUDIANTE)) {
+        if ((usuario != null) && (usuario.getPassword().equals(password)) && (usuario.getTipoUsuario() == TipoUsuario.ESTUDIANTE)) {
             return true;
         }
         return false;
