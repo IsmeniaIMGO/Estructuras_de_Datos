@@ -1,6 +1,7 @@
 package Laboratorio2.Services;
 
 import Laboratorio2.Exceptions.NuloVacioException;
+import Laboratorio2.Exceptions.UsuarioException;
 import Laboratorio2.Model.TipoUsuario;
 import Laboratorio2.Model.Usuario;
 
@@ -9,7 +10,7 @@ public interface ICrudUsuario {
 
     public Usuario buscarUsuario(String cedula);
 
-    public void eliminarUsuario(String cedula, TipoUsuario tipoUsuario);
+    public void eliminarUsuario(String cedula) throws Exception;
 
     public void actualizarUsuario(String nuevoUsser, String nuevaPassword, String nuevoNombre, String cedula, TipoUsuario nuevoTipo);
 

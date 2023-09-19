@@ -141,7 +141,13 @@ public class CrudUsuarioController {
 
     @FXML
     void Ordenar(ActionEvent event) {
-        observarDatos();
+        if (cboxTipoUsuario.getValue() == TipoUsuario.ESTUDIANTE) {
+            observarDatosEstudiantes();
+        }else {
+            if (cboxTipoUsuario.getValue() == TipoUsuario.BIBLIOTECARIO) {
+                observarDatosBibliotecarios();
+            }
+        }
 
     }
 
@@ -151,6 +157,8 @@ public class CrudUsuarioController {
         limpiarCampos();
         seleccionarElemento();
         observarDatos();
+        vistaListaTipoUsuario.setAll(TipoUsuario.ESTUDIANTE, TipoUsuario.BIBLIOTECARIO);
+        cboxTipoUsuario.setItems(vistaListaTipoUsuario);
     }
 
 
@@ -219,17 +227,9 @@ public class CrudUsuarioController {
 
     private void eliminarUsuario() throws Exception {
         String cedula = txtCedula.getText();
-        TipoUsuario tipoUsuario = null;
 
-        if (cbkEstudiante.isSelected()) {
-            tipoUsuario = tipoUsuario.ESTUDIANTE;
-        } else {
-            if (cbkBibliotecario.isSelected()) {
-                tipoUsuario = tipoUsuario.BIBLIOTECARIO;
-            }
-        }
 
-        singleton.eliminarUsuario(cedula, tipoUsuario);
+        singleton.eliminarUsuario(cedula);
     }
 
     private void observarDatos(){
@@ -237,24 +237,31 @@ public class CrudUsuarioController {
         col_NombreUsuario.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         col_TipoUsuario.setCellValueFactory(new PropertyValueFactory<>("tipoUsuario"));
 
-        vistaListaTipoUsuario.setAll(TipoUsuario.ESTUDIANTE, TipoUsuario.BIBLIOTECARIO);
-        cboxTipoUsuario.setItems(vistaListaTipoUsuario);
+        listaUsuarios.setAll(singleton.listaUsuarios());
+        tblUsuarios.setItems(listaUsuarios);
 
-        if (cboxTipoUsuario.getValue() == TipoUsuario.ESTUDIANTE) {
-            Set<Usuario> listaEstudiantes = singleton.obtenerListaUsuariosEstudiantes();
-            listaUsuarios.setAll(listaEstudiantes);
-            tblUsuarios.setItems(listaUsuarios);
-        }
-        if (cboxTipoUsuario.getValue() == TipoUsuario.BIBLIOTECARIO) {
-            Set<Usuario> listaBibliotecarios = singleton.obtenerListaUsuariosBibliotecarios();
-            listaUsuarios.setAll(listaBibliotecarios);
-            tblUsuarios.setItems(listaUsuarios);
-        }
 
+    }
+
+    private void observarDatosEstudiantes(){
+        col_CedulaUsuario.setCellValueFactory(new PropertyValueFactory<>("cedula"));
+        col_NombreUsuario.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        col_TipoUsuario.setCellValueFactory(new PropertyValueFactory<>("tipoUsuario"));
+
+        listaUsuarios.setAll(singleton.obtenerListaUsuariosEstudiantes());
         tblUsuarios.setItems(listaUsuarios);
 
     }
 
+    private void observarDatosBibliotecarios(){
+        col_CedulaUsuario.setCellValueFactory(new PropertyValueFactory<>("cedula"));
+        col_NombreUsuario.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        col_TipoUsuario.setCellValueFactory(new PropertyValueFactory<>("tipoUsuario"));
+
+        listaUsuarios.setAll(singleton.obtenerListaUsuariosBibliotecarios());
+        tblUsuarios.setItems(listaUsuarios);
+
+    }
 
     private void seleccionarElemento(){
         tblUsuarios.getSelectionModel().selectedItemProperty().addListener(
@@ -262,6 +269,8 @@ public class CrudUsuarioController {
                     @Override
                     public void changed(ObservableValue<? extends Usuario> arg0, Usuario oldValue, Usuario usuarioSeleccionado ){
                         if (usuarioSeleccionado != null) {
+                            txtUsser.setText(usuarioSeleccionado.getUsser());
+                            txtPassword.setText(usuarioSeleccionado.getPassword());
                             txtCedula.setText(usuarioSeleccionado.getCedula());
                             txtNombreUsuario.setText(usuarioSeleccionado.getNombre());
                             if (usuarioSeleccionado.getTipoUsuario() == TipoUsuario.ESTUDIANTE) {

@@ -196,24 +196,29 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
     }
 
     @Override
-    public void eliminarUsuario(String cedula, TipoUsuario tipoUsuario) {
-        for (Usuario usuario : listaUsuarios) {
-            if(usuario.getCedula().equals(cedula)){
-                listaUsuarios.remove(usuario);
+    public void eliminarUsuario(String cedula) throws Exception {
+
+        if (!existeUsuario(cedula))
+            throw new UsuarioException("El usuario con ID " + cedula + " no se encuentra registrado dentro de la empresa");
+
+        for (Usuario u : listaUsuarios) {
+            if (u.getCedula().equals(cedula)) {
+                listaUsuarios.remove(u);
+                break;
             }
         }
 
-        if (tipoUsuario.equals(TipoUsuario.BIBLIOTECARIO)) {
-            for (Usuario usuario : listaBibliotecarios) {
-                if (usuario.getCedula().equals(cedula)) {
-                    listaBibliotecarios.remove(usuario);
-                }
+        for (Usuario u : listaEstudiantes) {
+            if (u.getCedula().equals(cedula)) {
+                listaEstudiantes.remove(u);
+                break;
             }
-        }else {
-            for (Usuario usuario : listaEstudiantes) {
-                if (usuario.getCedula().equals(cedula)) {
-                    listaEstudiantes.remove(usuario);
-                }
+        }
+
+        for (Usuario u : listaBibliotecarios) {
+            if (u.getCedula().equals(cedula)) {
+                listaBibliotecarios.remove(u);
+                break;
             }
         }
 
