@@ -7,10 +7,8 @@
     <list default="true" id="5d730c84-a4c0-48d6-b661-8cec45ca6f8a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Application/Aplicacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Application/Aplicacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Controller/CrudUsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Controller/CrudUsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Controller/Singleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Controller/Singleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/View/CrudArticuloAnuncio.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/View/CrudLibroBiblioteca.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Controller/CrudLibroBiblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Controller/CrudLibroBiblioteca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/View/CrudLibroBiblioteca.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/View/CrudLibroBiblioteca.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +90,8 @@
       <workItem from="1695004705600" duration="437000" />
       <workItem from="1695048406959" duration="42000" />
       <workItem from="1695068421630" duration="5179000" />
-      <workItem from="1695081527965" duration="5310000" />
+      <workItem from="1695081527965" duration="5482000" />
+      <workItem from="1695090058247" duration="2690000" />
     </task>
     <servers />
   </component>

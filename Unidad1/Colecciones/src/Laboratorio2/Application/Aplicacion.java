@@ -84,7 +84,6 @@ public class Aplicacion extends Application {
             CrudLibroBiblioteca crudLibroBiblioteca = ventana.getController();
             crudLibroBiblioteca.setAplicacion(this);
 
-            crudLibroBiblioteca.getTabCrudLibro().getTabs().remove(0);
             Scene lugar = new Scene(diseño);
             Escena.setScene(lugar);
             Escena.show();
@@ -104,7 +103,6 @@ public class Aplicacion extends Application {
             CrudLibroBiblioteca crudLibroBiblioteca = ventana.getController();
             crudLibroBiblioteca.setAplicacion(this);
 
-            crudLibroBiblioteca.getTabCrudLibro().getTabs().remove(1);
             Scene lugar = new Scene(diseño);
             Escena.setScene(lugar);
             Escena.show();

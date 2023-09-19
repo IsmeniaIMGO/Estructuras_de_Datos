@@ -1,302 +1,214 @@
+/**
+ * Sample Skeleton for 'CrudLibroBiblioteca.fxml' Controller Class
+ */
 package Laboratorio2.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Laboratorio2.Application.Aplicacion;
-import Laboratorio2.Model.Biblioteca;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 
 public class CrudLibroBiblioteca {
-    Biblioteca biblioteca = Singleton.getInstance().getBiblioteca();
 
-    Singleton singleton = Singleton.getInstance();
-    Aplicacion aplicacion;
-
-    //Metodo set de aplicacion
-    public void setAplicacion(Aplicacion aplicacion){
-        this.aplicacion = aplicacion;
-        singleton.setAplicacion(aplicacion);
-    }
-
-
-
-    @FXML
+    @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
-    @FXML
+    @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
 
-    @FXML
-    private TableColumn<?, ?> col_UsuarioVista;
+    @FXML // fx:id="col_IdLibroP"
+    private TableColumn<?, ?> col_IdLibroP; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tblLibrosPrestados"
+    private TableView<?> tblLibrosPrestados; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colNombreLibroC"
+    private TableColumn<?, ?> colNombreLibroC; // Value injected by FXMLLoader
+
+    @FXML // fx:id="btnActualizarLibro"
+    private Button btnActualizarLibro; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colNombreLibroD"
+    private TableColumn<?, ?> colNombreLibroD; // Value injected by FXMLLoader
+
+    @FXML // fx:id="btnDevolverLibro"
+    private Button btnDevolverLibro; // Value injected by FXMLLoader
+
+    @FXML // fx:id="dateFechaLibro"
+    private DatePicker dateFechaLibro; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tblLibrosCreados"
+    private TableView<?> tblLibrosCreados; // Value injected by FXMLLoader
+
+    @FXML // fx:id="btnBuscarLibro"
+    private Button btnBuscarLibro; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colAutorLibroP"
+    private TableColumn<?, ?> colAutorLibroP; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colFechaLibroP"
+    private TableColumn<?, ?> colFechaLibroP; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tabCrearLibro"
+    private Tab tabCrearLibro; // Value injected by FXMLLoader
+
+    @FXML // fx:id="txtIdLibro"
+    private TextField txtIdLibro; // Value injected by FXMLLoader
+
+    @FXML // fx:id="btnSolicitarPrestamo"
+    private Button btnSolicitarPrestamo; // Value injected by FXMLLoader
+
+    @FXML // fx:id="txtAutorLibro"
+    private TextField txtAutorLibro; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colNombreLibroP"
+    private TableColumn<?, ?> colNombreLibroP; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colFechaInicioAnuncio"
+    private TableColumn<?, ?> colFechaInicioAnuncio; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colAutorLibroC"
+    private TableColumn<?, ?> colAutorLibroC; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colAutorLibroD"
+    private TableColumn<?, ?> colAutorLibroD; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colFechaLibroC"
+    private TableColumn<?, ?> colFechaLibroC; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colFechaLibroD"
+    private TableColumn<?, ?> colFechaLibroD; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tblLibrosDisponibles"
+    private TableView<?> tblLibrosDisponibles; // Value injected by FXMLLoader
+
+    @FXML // fx:id="btnCrearLibro"
+    private Button btnCrearLibro; // Value injected by FXMLLoader
+
+    @FXML // fx:id="txtNombreLibro"
+    private TextField txtNombreLibro; // Value injected by FXMLLoader
+
+    @FXML // fx:id="btnCerrarSesionP"
+    private Button btnCerrarSesionP; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tabPrestamos"
+    private Tab tabPrestamos; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cboxEstudiantes"
+    private ComboBox<?> cboxEstudiantes; // Value injected by FXMLLoader
+
+    @FXML // fx:id="col_idLibroD"
+    private TableColumn<?, ?> col_idLibroD; // Value injected by FXMLLoader
+
+    @FXML // fx:id="col_IdLibroC"
+    private TableColumn<?, ?> col_IdLibroC; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cboxOrden"
+    private ComboBox<?> cboxOrden; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tabBiblioteca"
+    private Tab tabBiblioteca; // Value injected by FXMLLoader
+
+    @FXML // fx:id="btnEliminarLibro"
+    private Button btnEliminarLibro; // Value injected by FXMLLoader
+
+    @FXML // fx:id="colFechaFinAnuncio"
+    private TableColumn<?, ?> colFechaFinAnuncio; // Value injected by FXMLLoader
+
+    @FXML // fx:id="btnCerrarSesionD"
+    private Button btnCerrarSesionD; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tabCrudLibro"
+    private TabPane tabCrudLibro; // Value injected by FXMLLoader
 
     @FXML
-    private TableColumn<?, ?> colTipoArticulo;
-
-    @FXML
-    private TableColumn<?, ?> col_idVista;
-
-    @FXML
-    private ChoiceBox<?> cboxArticulo;
-
-    @FXML
-    private DatePicker dtpFechaFinal;
-
-    @FXML
-    private TableColumn<?, ?> col_ValorInicialVista;
-
-    @FXML
-    private Button btnExportarAnuncios;
-
-    @FXML
-    private TableView<?> tblArticulos;
-
-    @FXML
-    private Button btnVerPujas;
-
-    @FXML
-    private TableColumn<?, ?> col_FechaFinVista;
-
-    @FXML
-    private Button btnIrAPuja;
-
-    @FXML
-    private Tab tabMisLibros;
-
-    @FXML
-    private Button btnEliminarAnuncio;
-
-    @FXML
-    private TableColumn<?, ?> col_FechaInicioVista;
-
-    @FXML
-    private TextField txtIdAnuncio;
-
-    @FXML
-    private TableColumn<?, ?> colUsuarioAnuncio;
-
-    @FXML
-    private TextField txtDescripcionArticulo;
-
-    @FXML
-    private TableColumn<?, ?> colFechaInicioAnuncio;
-
-    @FXML
-    private TableColumn<?, ?> col_ArticuloVista;
-
-    @FXML
-    private Button btnCrearArticulo;
-
-    @FXML
-    private Button btnActualizarArticulo;
-
-    @FXML
-    private TableView<?> tblAnuncio;
-
-    @FXML
-    private ChoiceBox<?> cboxUsuarios;
-
-    @FXML
-    private Button btnCrearAnuncio;
-
-    @FXML
-    private TableView<?> tblAnuncioVista;
-
-    @FXML
-    private Button btnSubirImagen;
-
-    @FXML
-    private Button btnEliminarArticulo;
-
-    @FXML
-    private Button btnActualizarAnuncio;
-
-    @FXML
-    private ChoiceBox<?> cboxTipoArticulo;
-
-    @FXML
-    private TableColumn<?, ?> colArticuloAnuncio;
-
-    @FXML
-    private TableColumn<?, ?> colNombreArtiuclo;
-
-    @FXML
-    private TextField txtIdArticulo;
-
-    @FXML
-    private ImageView vistaImagen;
-
-    @FXML
-    private Tab tabLibro;
-
-    @FXML
-    private Button btnMensajes;
-
-    @FXML
-    private TextField txtNombreArticulo;
-
-    @FXML
-    private Tab tabBiblioteca;
-
-    @FXML
-    private TableColumn<?, ?> colValorInicialAnuncio;
-
-    @FXML
-    private TextField txtValorInicial;
-
-    @FXML
-    private Button btnCerrarSesionC;
-
-    @FXML
-    private TableColumn<?, ?> col_IdArticulo;
-
-    @FXML
-    private DatePicker dtpFechaInicio;
-
-    @FXML
-    private TableColumn<?, ?> colDescripcionArticulo;
-
-    @FXML
-    private TableColumn<?, ?> colFechaFinAnuncio;
-
-    @FXML
-    private Button btnCerrarSesionA;
-
-    @FXML
-    private TabPane tabCrudLibro;
-
-    @FXML
-    private TableColumn<?, ?> col_IdAnuncio;
-
-    @FXML
-    void CrearArticulo(ActionEvent event) {
+    void CrearLibro(ActionEvent event) {
 
     }
 
     @FXML
-    void ActualizarArticulo(ActionEvent event) {
+    void BuscarLibro(ActionEvent event) {
 
     }
 
     @FXML
-    void EliminarArticulo(ActionEvent event) {
+    void EliminarLibro(ActionEvent event) {
 
     }
 
     @FXML
-    void subirImagen(ActionEvent event) {
+    void ActualizarLibro(ActionEvent event) {
 
     }
 
     @FXML
-    void CrearAnuncio(ActionEvent event) {
+    void cerrarSesionP(ActionEvent event) {
 
     }
 
     @FXML
-    void ActualizarAnuncio(ActionEvent event) {
+    void DevolverLibro(ActionEvent event) {
 
     }
 
     @FXML
-    void EliminarAnuncio(ActionEvent event) {
+    void cerrarSesionD(ActionEvent event) {
 
     }
 
     @FXML
-    void cerrarSesionA(ActionEvent event) {
+    void SolicitarPrestamo(ActionEvent event) {
 
     }
 
-    @FXML
-    void VerPujas(ActionEvent event) {
-
-    }
-
-    @FXML
-    void exportarAnuncios(ActionEvent event) {
-
-    }
-
-    @FXML
-    void verMensajes(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cerrarSesionC(ActionEvent event) {
-
-    }
-
-    @FXML
-    void CrearPuja(ActionEvent event) {
-
-    }
-
-    @FXML
+    @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert col_UsuarioVista != null : "fx:id=\"col_UsuarioVista\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colTipoArticulo != null : "fx:id=\"colTipoArticulo\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert col_idVista != null : "fx:id=\"col_idVista\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert cboxArticulo != null : "fx:id=\"cboxArticulo\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert dtpFechaFinal != null : "fx:id=\"dtpFechaFinal\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert col_ValorInicialVista != null : "fx:id=\"col_ValorInicialVista\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnExportarAnuncios != null : "fx:id=\"btnExportarAnuncios\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert tblArticulos != null : "fx:id=\"tblArticulos\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnVerPujas != null : "fx:id=\"btnVerPujas\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert col_FechaFinVista != null : "fx:id=\"col_FechaFinVista\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnIrAPuja != null : "fx:id=\"btnIrAPuja\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert tabMisLibros != null : "fx:id=\"tabMisLibros\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnEliminarAnuncio != null : "fx:id=\"btnEliminarAnuncio\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert col_FechaInicioVista != null : "fx:id=\"col_FechaInicioVista\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert txtIdAnuncio != null : "fx:id=\"txtIdAnuncio\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colUsuarioAnuncio != null : "fx:id=\"colUsuarioAnuncio\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert txtDescripcionArticulo != null : "fx:id=\"txtDescripcionArticulo\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert col_IdLibroP != null : "fx:id=\"col_IdLibroP\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert tblLibrosPrestados != null : "fx:id=\"tblLibrosPrestados\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert colNombreLibroC != null : "fx:id=\"colNombreLibroC\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert btnActualizarLibro != null : "fx:id=\"btnActualizarLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert colNombreLibroD != null : "fx:id=\"colNombreLibroD\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert btnDevolverLibro != null : "fx:id=\"btnDevolverLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert dateFechaLibro != null : "fx:id=\"dateFechaLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert tblLibrosCreados != null : "fx:id=\"tblLibrosCreados\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert btnBuscarLibro != null : "fx:id=\"btnBuscarLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert colAutorLibroP != null : "fx:id=\"colAutorLibroP\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert colFechaLibroP != null : "fx:id=\"colFechaLibroP\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert tabCrearLibro != null : "fx:id=\"tabCrearLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert txtIdLibro != null : "fx:id=\"txtIdLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert btnSolicitarPrestamo != null : "fx:id=\"btnSolicitarPrestamo\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert txtAutorLibro != null : "fx:id=\"txtAutorLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert colNombreLibroP != null : "fx:id=\"colNombreLibroP\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
         assert colFechaInicioAnuncio != null : "fx:id=\"colFechaInicioAnuncio\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert col_ArticuloVista != null : "fx:id=\"col_ArticuloVista\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnCrearArticulo != null : "fx:id=\"btnCrearArticulo\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnActualizarArticulo != null : "fx:id=\"btnActualizarArticulo\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert tblAnuncio != null : "fx:id=\"tblAnuncio\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert cboxUsuarios != null : "fx:id=\"cboxUsuarios\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnCrearAnuncio != null : "fx:id=\"btnCrearAnuncio\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert tblAnuncioVista != null : "fx:id=\"tblAnuncioVista\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnSubirImagen != null : "fx:id=\"btnSubirImagen\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnEliminarArticulo != null : "fx:id=\"btnEliminarArticulo\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnActualizarAnuncio != null : "fx:id=\"btnActualizarAnuncio\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert cboxTipoArticulo != null : "fx:id=\"cboxTipoArticulo\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colArticuloAnuncio != null : "fx:id=\"colArticuloAnuncio\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colNombreArtiuclo != null : "fx:id=\"colNombreArtiuclo\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert txtIdArticulo != null : "fx:id=\"txtIdArticulo\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert vistaImagen != null : "fx:id=\"vistaImagen\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert tabLibro != null : "fx:id=\"tabLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnMensajes != null : "fx:id=\"btnMensajes\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert txtNombreArticulo != null : "fx:id=\"txtNombreArticulo\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert colAutorLibroC != null : "fx:id=\"colAutorLibroC\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert colAutorLibroD != null : "fx:id=\"colAutorLibroD\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert colFechaLibroC != null : "fx:id=\"colFechaLibroC\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert colFechaLibroD != null : "fx:id=\"colFechaLibroD\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert tblLibrosDisponibles != null : "fx:id=\"tblLibrosDisponibles\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert btnCrearLibro != null : "fx:id=\"btnCrearLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert txtNombreLibro != null : "fx:id=\"txtNombreLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert btnCerrarSesionP != null : "fx:id=\"btnCerrarSesionP\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert tabPrestamos != null : "fx:id=\"tabPrestamos\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert cboxEstudiantes != null : "fx:id=\"cboxEstudiantes\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert col_idLibroD != null : "fx:id=\"col_idLibroD\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert col_IdLibroC != null : "fx:id=\"col_IdLibroC\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert cboxOrden != null : "fx:id=\"cboxOrden\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
         assert tabBiblioteca != null : "fx:id=\"tabBiblioteca\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colValorInicialAnuncio != null : "fx:id=\"colValorInicialAnuncio\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert txtValorInicial != null : "fx:id=\"txtValorInicial\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnCerrarSesionC != null : "fx:id=\"btnCerrarSesionC\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert col_IdArticulo != null : "fx:id=\"col_IdArticulo\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert dtpFechaInicio != null : "fx:id=\"dtpFechaInicio\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colDescripcionArticulo != null : "fx:id=\"colDescripcionArticulo\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert btnEliminarLibro != null : "fx:id=\"btnEliminarLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
         assert colFechaFinAnuncio != null : "fx:id=\"colFechaFinAnuncio\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnCerrarSesionA != null : "fx:id=\"btnCerrarSesionA\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+        assert btnCerrarSesionD != null : "fx:id=\"btnCerrarSesionD\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
         assert tabCrudLibro != null : "fx:id=\"tabCrudLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert col_IdAnuncio != null : "fx:id=\"col_IdAnuncio\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
 
     }
 
-    public TabPane getTabCrudLibro() {
-        return tabCrudLibro;
-    }
 
 }
