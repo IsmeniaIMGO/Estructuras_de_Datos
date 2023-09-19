@@ -2,6 +2,7 @@ package Laboratorio2.Controller;
 
 import Laboratorio2.Application.*;
 import Laboratorio2.Model.Biblioteca;
+import Laboratorio2.Model.Libro;
 import Laboratorio2.Model.TipoUsuario;
 import Laboratorio2.Model.Usuario;
 import javafx.collections.ObservableList;
@@ -16,25 +17,9 @@ public class Singleton {
     Biblioteca biblioteca;
     private Aplicacion aplicacion;
 
-    public ArrayList<Usuario> listaUsuarios() {
-        return biblioteca.getListaUsuarios();
-
-    }
-
-    public Set<Usuario> obtenerListaUsuariosEstudiantes() {
-        return biblioteca.getListaEstudiantes();
-    }
-
-    public Set<Usuario> obtenerListaUsuariosBibliotecarios() {
-        return biblioteca.getListaBibliotecarios();
-    }
-
-
-
     private static class SingletonHolder{
         private final static Singleton eInstance = new Singleton();
     }
-
     public static Singleton getInstance(){
         return SingletonHolder.eInstance;
     }
@@ -59,6 +44,8 @@ public class Singleton {
         inicializarDatos();
     }
 
+
+    //---------------------------Inicializacion de datos--------------//
 
     private void inicializarDatos (){
         biblioteca = new Biblioteca();
@@ -95,7 +82,7 @@ public class Singleton {
         this.biblioteca.getListaUsuarios().add(usuario2);
         this.biblioteca.getListaEstudiantes().add(usuario2);
 
-        System.out.println("Empresa Inicializada "+ biblioteca.getNombre());
+        System.out.println("Biblioteca Inicializada "+ biblioteca.getNombre());
 
     }
 
@@ -122,7 +109,8 @@ public class Singleton {
     }
 
 
-    ///---------------------------Metodos que llaman a la biblioteca--------------//
+    ///---------------------------METODOS QUE LLAMAN A LA BIBLIOTECA--------------//
+    //---------------------------Metodos de Login--------------//
     public boolean verificarEstudiante(String usser, String password) {
         return biblioteca.verificarEstudiante(usser, password);
     }
@@ -131,6 +119,7 @@ public class Singleton {
         return biblioteca.verificarBibliotecario(usser, password);
     }
 
+    //---------------------------Metodos de usuario--------------//
     public void crearUsuario(String usser, String password, String nombre, String cedula, TipoUsuario tipoUsuario) throws Exception {
         biblioteca.crearUsuario(usser, password, nombre, cedula, tipoUsuario);
     }
@@ -148,6 +137,46 @@ public class Singleton {
     }
 
 
+    public ArrayList<Usuario> listaUsuarios() {
+        return biblioteca.getListaUsuarios();
 
+    }
+
+    public Set<Usuario> obtenerListaUsuariosEstudiantes() {
+        return biblioteca.getListaEstudiantes();
+    }
+
+    public Set<Usuario> obtenerListaUsuariosBibliotecarios() {
+        return biblioteca.getListaBibliotecarios();
+    }
+
+    //---------------------------Metodos de libro--------------//
+    public void crearLibro(String idLibro, String nombreLibro, String autorLibro, int year) throws Exception {
+        biblioteca.crearLibro(idLibro, nombreLibro, autorLibro, year);
+    }
+
+    public Libro buscarLibro(String idLibro) {
+        return biblioteca.buscarLibro(idLibro);
+    }
+
+    public void eliminarLibro(String idLibro) {
+        biblioteca.eliminarLibro(idLibro);
+    }
+
+    public void actualizarLibro(String idLibro, String nombreLibro, String autorLibro, int year) {
+        biblioteca.actualizarLibro(idLibro, nombreLibro, autorLibro, year);
+    }
+    public Set<Libro> listaLibros() {
+        return biblioteca.getListaLibros();
+
+    }
+
+    public Set<Libro> obtenerListaLibrosAutor() {
+        return biblioteca.getLibrosPorAutor();
+    }
+
+    public Set<Libro> obtenerListaLibrosFecha() {
+        return biblioteca.getLibrosPorFecha();
+    }
 
 }

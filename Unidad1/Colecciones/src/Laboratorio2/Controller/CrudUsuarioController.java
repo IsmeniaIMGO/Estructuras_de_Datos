@@ -46,8 +46,6 @@ public class CrudUsuarioController {
     public ObservableList<Usuario> listaUsuarios = FXCollections.observableArrayList();
     private ObservableList<TipoUsuario> vistaListaTipoUsuario = FXCollections.observableArrayList();
 
-    public ObservableList<Usuario> listaEstudiantes = FXCollections.observableArrayList();
-
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -114,7 +112,6 @@ public class CrudUsuarioController {
     @FXML
     void buscarUsuario(ActionEvent event) {
         buscarUsuario();
-        observarDatos();
 
 
     }

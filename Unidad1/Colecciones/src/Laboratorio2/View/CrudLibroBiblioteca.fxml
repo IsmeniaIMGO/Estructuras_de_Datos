@@ -116,8 +116,6 @@
                               <TableColumn fx:id="colNombreLibroP" prefWidth="134.0" text="Nombre" />
                               <TableColumn fx:id="colAutorLibroP" prefWidth="125.0" text="Autor" />
                               <TableColumn fx:id="colFechaLibroP" prefWidth="155.0" text="Año de publicacion" />
-                              <TableColumn fx:id="colFechaInicioAnuncio" prefWidth="117.0" text="Fecha de inicio" />
-                              <TableColumn fx:id="colFechaFinAnuncio" prefWidth="71.0" text="Fecha de fin" />
                            </columns>
                         </TableView>
                         <Button fx:id="btnCerrarSesionP" layoutX="413.0" layoutY="563.0" mnemonicParsing="false" onAction="#cerrarSesionP" style="-fx-background-color: #CD5C5C;" text="Cerrar Sesion" textFill="WHITE">
@@ -169,7 +167,7 @@
                            <font>
                               <Font name="Calibri" size="17.0" />
                            </font></Text>
-                        <ComboBox fx:id="cboxOrden" layoutX="148.0" layoutY="73.0" prefHeight="29.0" prefWidth="262.0" />
+                        <ComboBox fx:id="cboxOrden" layoutX="148.0" layoutY="73.0" onAction="#ordenarLibros" prefHeight="29.0" prefWidth="262.0" />
                      </children>
                   </AnchorPane>
               </content>

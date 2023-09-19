@@ -8,6 +8,13 @@ import java.util.ResourceBundle;
 
 import Laboratorio2.Application.Aplicacion;
 import Laboratorio2.Model.Biblioteca;
+import Laboratorio2.Model.Libro;
+import Laboratorio2.Model.TipoUsuario;
+import Laboratorio2.Model.Usuario;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,6 +25,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class CrudLibroBiblioteca {
 
@@ -32,9 +40,12 @@ public class CrudLibroBiblioteca {
         singleton.setAplicacion(aplicacion);
     }
 
-
-
-
+    //para la tabla del crud y los libros prestados
+    private ObservableList<Libro> vistaListaLibros = FXCollections.observableArrayList();
+    //para el combobox
+    private ObservableList<Usuario> vistaListaUsuarios = FXCollections.observableArrayList();
+    //para el combobox filtros autor y fecha
+    private ObservableList<String> vistaListaFiltros = FXCollections.observableArrayList();
 
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -44,19 +55,19 @@ public class CrudLibroBiblioteca {
     private URL location;
 
     @FXML // fx:id="col_IdLibroP"
-    private TableColumn<?, ?> col_IdLibroP; // Value injected by FXMLLoader
+    private TableColumn<Libro, String> col_IdLibroP; // Value injected by FXMLLoader
 
     @FXML // fx:id="tblLibrosPrestados"
-    private TableView<?> tblLibrosPrestados; // Value injected by FXMLLoader
+    private TableView<Libro> tblLibrosPrestados; // Value injected by FXMLLoader
 
     @FXML // fx:id="colNombreLibroC"
-    private TableColumn<?, ?> colNombreLibroC; // Value injected by FXMLLoader
+    private TableColumn<Libro, String> colNombreLibroC; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnActualizarLibro"
     private Button btnActualizarLibro; // Value injected by FXMLLoader
 
     @FXML // fx:id="colNombreLibroD"
-    private TableColumn<?, ?> colNombreLibroD; // Value injected by FXMLLoader
+    private TableColumn<Libro, String> colNombreLibroD; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnDevolverLibro"
     private Button btnDevolverLibro; // Value injected by FXMLLoader
@@ -65,16 +76,16 @@ public class CrudLibroBiblioteca {
     private DatePicker dateFechaLibro; // Value injected by FXMLLoader
 
     @FXML // fx:id="tblLibrosCreados"
-    private TableView<?> tblLibrosCreados; // Value injected by FXMLLoader
+    private TableView<Libro> tblLibrosCreados; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnBuscarLibro"
     private Button btnBuscarLibro; // Value injected by FXMLLoader
 
     @FXML // fx:id="colAutorLibroP"
-    private TableColumn<?, ?> colAutorLibroP; // Value injected by FXMLLoader
+    private TableColumn<Libro, String> colAutorLibroP; // Value injected by FXMLLoader
 
     @FXML // fx:id="colFechaLibroP"
-    private TableColumn<?, ?> colFechaLibroP; // Value injected by FXMLLoader
+    private TableColumn<Libro, String> colFechaLibroP; // Value injected by FXMLLoader
 
     @FXML // fx:id="tabCrearLibro"
     private Tab tabCrearLibro; // Value injected by FXMLLoader
@@ -89,25 +100,22 @@ public class CrudLibroBiblioteca {
     private TextField txtAutorLibro; // Value injected by FXMLLoader
 
     @FXML // fx:id="colNombreLibroP"
-    private TableColumn<?, ?> colNombreLibroP; // Value injected by FXMLLoader
-
-    @FXML // fx:id="colFechaInicioAnuncio"
-    private TableColumn<?, ?> colFechaInicioAnuncio; // Value injected by FXMLLoader
+    private TableColumn<Libro, String> colNombreLibroP; // Value injected by FXMLLoader
 
     @FXML // fx:id="colAutorLibroC"
-    private TableColumn<?, ?> colAutorLibroC; // Value injected by FXMLLoader
+    private TableColumn<Libro, String> colAutorLibroC; // Value injected by FXMLLoader
 
     @FXML // fx:id="colAutorLibroD"
-    private TableColumn<?, ?> colAutorLibroD; // Value injected by FXMLLoader
+    private TableColumn<Libro, String> colAutorLibroD; // Value injected by FXMLLoader
 
     @FXML // fx:id="colFechaLibroC"
-    private TableColumn<?, ?> colFechaLibroC; // Value injected by FXMLLoader
+    private TableColumn<Libro, String> colFechaLibroC; // Value injected by FXMLLoader
 
     @FXML // fx:id="colFechaLibroD"
-    private TableColumn<?, ?> colFechaLibroD; // Value injected by FXMLLoader
+    private TableColumn<Libro, String> colFechaLibroD; // Value injected by FXMLLoader
 
     @FXML // fx:id="tblLibrosDisponibles"
-    private TableView<?> tblLibrosDisponibles; // Value injected by FXMLLoader
+    private TableView<Libro> tblLibrosDisponibles; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnCrearLibro"
     private Button btnCrearLibro; // Value injected by FXMLLoader
@@ -122,25 +130,22 @@ public class CrudLibroBiblioteca {
     private Tab tabPrestamos; // Value injected by FXMLLoader
 
     @FXML // fx:id="cboxEstudiantes"
-    private ComboBox<?> cboxEstudiantes; // Value injected by FXMLLoader
+    private ComboBox<Usuario> cboxEstudiantes; // Value injected by FXMLLoader
 
     @FXML // fx:id="col_idLibroD"
-    private TableColumn<?, ?> col_idLibroD; // Value injected by FXMLLoader
+    private TableColumn<Libro, String> col_idLibroD; // Value injected by FXMLLoader
 
     @FXML // fx:id="col_IdLibroC"
-    private TableColumn<?, ?> col_IdLibroC; // Value injected by FXMLLoader
+    private TableColumn<Libro, String> col_IdLibroC; // Value injected by FXMLLoader
 
     @FXML // fx:id="cboxOrden"
-    private ComboBox<?> cboxOrden; // Value injected by FXMLLoader
+    private ComboBox<String> cboxOrden; // Value injected by FXMLLoader
 
     @FXML // fx:id="tabBiblioteca"
     private Tab tabBiblioteca; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnEliminarLibro"
     private Button btnEliminarLibro; // Value injected by FXMLLoader
-
-    @FXML // fx:id="colFechaFinAnuncio"
-    private TableColumn<?, ?> colFechaFinAnuncio; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnCerrarSesionD"
     private Button btnCerrarSesionD; // Value injected by FXMLLoader
@@ -149,28 +154,36 @@ public class CrudLibroBiblioteca {
     private TabPane tabCrudLibro; // Value injected by FXMLLoader
 
     @FXML
-    void CrearLibro(ActionEvent event) {
+    void CrearLibro(ActionEvent event) throws Exception {
+        crearLibro();
+        //observarDatos();
+        limpiarCampos();
 
     }
 
     @FXML
     void BuscarLibro(ActionEvent event) {
-
+        buscarLibro();
     }
 
     @FXML
     void EliminarLibro(ActionEvent event) {
+        eliminarLibro();
+        observarDatos();
+        limpiarCampos();
 
     }
 
     @FXML
     void ActualizarLibro(ActionEvent event) {
-
+        actualizarLibro();
+        observarDatos();
+        limpiarCampos();
     }
 
     @FXML
     void cerrarSesionP(ActionEvent event) {
-
+        singleton.mostrarLogin("/Laboratorio2/View/Login.fxml");
     }
 
     @FXML
@@ -180,7 +193,7 @@ public class CrudLibroBiblioteca {
 
     @FXML
     void cerrarSesionD(ActionEvent event) {
-
+        singleton.mostrarLogin("/Laboratorio2/View/Login.fxml");
     }
 
     @FXML
@@ -188,46 +201,42 @@ public class CrudLibroBiblioteca {
 
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-        assert col_IdLibroP != null : "fx:id=\"col_IdLibroP\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert tblLibrosPrestados != null : "fx:id=\"tblLibrosPrestados\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colNombreLibroC != null : "fx:id=\"colNombreLibroC\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnActualizarLibro != null : "fx:id=\"btnActualizarLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colNombreLibroD != null : "fx:id=\"colNombreLibroD\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnDevolverLibro != null : "fx:id=\"btnDevolverLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert dateFechaLibro != null : "fx:id=\"dateFechaLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert tblLibrosCreados != null : "fx:id=\"tblLibrosCreados\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnBuscarLibro != null : "fx:id=\"btnBuscarLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colAutorLibroP != null : "fx:id=\"colAutorLibroP\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colFechaLibroP != null : "fx:id=\"colFechaLibroP\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert tabCrearLibro != null : "fx:id=\"tabCrearLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert txtIdLibro != null : "fx:id=\"txtIdLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnSolicitarPrestamo != null : "fx:id=\"btnSolicitarPrestamo\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert txtAutorLibro != null : "fx:id=\"txtAutorLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colNombreLibroP != null : "fx:id=\"colNombreLibroP\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colFechaInicioAnuncio != null : "fx:id=\"colFechaInicioAnuncio\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colAutorLibroC != null : "fx:id=\"colAutorLibroC\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colAutorLibroD != null : "fx:id=\"colAutorLibroD\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colFechaLibroC != null : "fx:id=\"colFechaLibroC\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colFechaLibroD != null : "fx:id=\"colFechaLibroD\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert tblLibrosDisponibles != null : "fx:id=\"tblLibrosDisponibles\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnCrearLibro != null : "fx:id=\"btnCrearLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert txtNombreLibro != null : "fx:id=\"txtNombreLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnCerrarSesionP != null : "fx:id=\"btnCerrarSesionP\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert tabPrestamos != null : "fx:id=\"tabPrestamos\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert cboxEstudiantes != null : "fx:id=\"cboxEstudiantes\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert col_idLibroD != null : "fx:id=\"col_idLibroD\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert col_IdLibroC != null : "fx:id=\"col_IdLibroC\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert cboxOrden != null : "fx:id=\"cboxOrden\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert tabBiblioteca != null : "fx:id=\"tabBiblioteca\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnEliminarLibro != null : "fx:id=\"btnEliminarLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert colFechaFinAnuncio != null : "fx:id=\"colFechaFinAnuncio\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert btnCerrarSesionD != null : "fx:id=\"btnCerrarSesionD\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
-        assert tabCrudLibro != null : "fx:id=\"tabCrudLibro\" was not injected: check your FXML file 'CrudLibroBiblioteca.fxml'.";
+
+    @FXML
+    void ordenarLibros(ActionEvent event) {
+        if (cboxOrden.getValue().equals("Autor")) {
+            observarDatosAutor();
+        }else{
+            if (cboxOrden.getValue().equals("Fecha")) {
+                observarDatosFecha();
+            }
+        }
 
     }
 
+    @FXML // This method is called by the FXMLLoader when initialization is complete
+    void initialize() {
+        limpiarCampos();
+        seleccionarElemento();
+        //seleccionarElemento2();
+        //seleccionarElemento3();
+
+        observarDatos();
+        observarDatosPrestamos();
+        observarDatosAutor();
+        observarDatosFecha();
+        vistaListaFiltros.setAll("Autor", "Fecha");
+        cboxOrden.setItems(vistaListaFiltros);
+
+        vistaListaUsuarios.setAll(singleton.obtenerListaUsuariosEstudiantes());
+        cboxEstudiantes.setItems(vistaListaUsuarios);
+
+
+
+
+    }
+
+    //---------------------------Metodos de la estructura--------------//
     public TabPane getTabCrudLibro() {
         return tabCrudLibro;
     }
@@ -239,4 +248,136 @@ public class CrudLibroBiblioteca {
     public Button getBtnSolicitarPrestamo() {
         return btnSolicitarPrestamo;
     }
+
+
+    //---------------------------Metodos de crear LIBRO--------------//
+
+    public void crearLibro() throws Exception {
+        String idLibro = txtIdLibro.getText();
+        String nombreLibro = txtNombreLibro.getText();
+        String autorLibro = txtAutorLibro.getText();
+
+        java.time.LocalDate selectedDate = dateFechaLibro.getValue();
+        int year = selectedDate.getYear();
+
+        singleton.crearLibro(idLibro, nombreLibro, autorLibro, year);
+    }
+
+    public void buscarLibro(){
+        String idLibro = txtIdLibro.getText();
+        Libro libro = singleton.buscarLibro(idLibro);
+        if(libro != null){
+            txtNombreLibro.setText(libro.getNombre());
+            txtAutorLibro.setText(libro.getAutor());
+            dateFechaLibro.setValue(java.time.LocalDate.of(libro.getFechaPublicacion(), 1, 1));
+        }
+    }
+
+    public void eliminarLibro(){
+        String idLibro = txtIdLibro.getText();
+        singleton.eliminarLibro(idLibro);
+    }
+
+
+    public void actualizarLibro(){
+        String idLibro = txtIdLibro.getText();
+        String nombreLibro = txtNombreLibro.getText();
+        String autorLibro = txtAutorLibro.getText();
+
+        java.time.LocalDate selectedDate = dateFechaLibro.getValue();
+        int year = selectedDate.getYear();
+
+        singleton.actualizarLibro(idLibro, nombreLibro, autorLibro, year);
+    }
+
+
+
+
+    //---------------------------Metodos adicionales--------------//
+    public void observarDatos() {
+        //para tab: crear Libro
+        col_IdLibroC.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNombreLibroC.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colAutorLibroC.setCellValueFactory(new PropertyValueFactory<>("autor"));
+        colFechaLibroC.setCellValueFactory(new PropertyValueFactory<>("fechaPublicacion"));
+
+        vistaListaLibros.setAll(singleton.listaLibros());
+        tblLibrosCreados.setItems(vistaListaLibros);
+    }
+
+    public void observarDatosPrestamos(){
+        //para tab: prestamos
+        col_IdLibroP.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNombreLibroP.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colAutorLibroP.setCellValueFactory(new PropertyValueFactory<>("autor"));
+        colFechaLibroP.setCellValueFactory(new PropertyValueFactory<>("fechaPublicacion"));
+    }
+
+    public void observarDatosAutor(){
+        col_idLibroD.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNombreLibroD.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colAutorLibroD.setCellValueFactory(new PropertyValueFactory<>("autor"));
+        colFechaLibroD.setCellValueFactory(new PropertyValueFactory<>("fechaPublicacion"));
+
+        vistaListaLibros.setAll(singleton.obtenerListaLibrosAutor());
+        tblLibrosDisponibles.setItems(vistaListaLibros);
+    }
+
+    public void observarDatosFecha(){
+        col_idLibroD.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNombreLibroD.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colAutorLibroD.setCellValueFactory(new PropertyValueFactory<>("autor"));
+        colFechaLibroD.setCellValueFactory(new PropertyValueFactory<>("fechaPublicacion"));
+
+        vistaListaLibros.setAll(singleton.obtenerListaLibrosFecha());
+        tblLibrosDisponibles.setItems(vistaListaLibros);
+
+    }
+
+    public void seleccionarElemento(){
+        //para la tabla de crear libros
+        tblLibrosCreados.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<Libro>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Libro> arg0, Libro oldValue, Libro libroSeleccionado) {
+                        if(libroSeleccionado != null){
+                            txtIdLibro.setText(libroSeleccionado.getId());
+                            txtNombreLibro.setText(libroSeleccionado.getNombre());
+                            txtAutorLibro.setText(libroSeleccionado.getAutor());
+                            dateFechaLibro.setValue(java.time.LocalDate.of(libroSeleccionado.getFechaPublicacion(), 1, 1));
+                        }
+                    }
+                }
+        );
+    }
+
+
+    /**
+     * metodo que limpia los campos de texto
+     */
+    public void limpiarCampos() {
+        txtIdLibro.setText("");
+        txtIdLibro.setPromptText("Id del libro");
+        txtNombreLibro.setText("");
+        txtNombreLibro.setPromptText("Nombre del libro");
+        txtAutorLibro.setText("");
+        txtAutorLibro.setPromptText("Autor del libro");
+        dateFechaLibro.setValue(null);
+        dateFechaLibro.setPromptText("Fecha de publicacion");
+
+
+        tblLibrosCreados.getSelectionModel().clearSelection();
+        tblLibrosPrestados.getSelectionModel().clearSelection();
+        tblLibrosDisponibles.getSelectionModel().clearSelection();
+
+    }
+
+
+
+
+
+
+
+
 }
+
