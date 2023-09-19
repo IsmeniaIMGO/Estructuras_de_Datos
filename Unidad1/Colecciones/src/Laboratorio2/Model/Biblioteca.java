@@ -10,12 +10,12 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
     //te amo git :v
     private String nit;
     private String nombre;
-    private Set<Libro> ListaLibros = new HashSet<>();
-    private Set<Libro> librosPorAutor = new TreeSet<>(Comparator.comparing(Libro::getAutor));
-    private Set<Libro> librosPorFecha = new TreeSet<>(Comparator.comparingInt(Libro::getFechaPublicacion));
+    private HashSet<Libro> ListaLibros = new HashSet<>();
+    private TreeSet<Libro> librosPorAutor = new TreeSet<>(Comparator.comparing(Libro::getAutor));
+    private TreeSet<Libro> librosPorFecha = new TreeSet<>(Comparator.comparingInt(Libro::getFechaPublicacion));
     private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
-    private Set<Usuario> listaEstudiantes = new TreeSet<>();
-    private Set<Usuario> listaBibliotecarios = new HashSet<>();
+    private TreeSet<Usuario> listaEstudiantes = new TreeSet<>(Comparator.comparing(Usuario::getCedula));
+    private HashSet<Usuario> listaBibliotecarios = new HashSet<>();
     private HashMap<String, Prestamo> listaPrestamos = new HashMap<>();
 
 
@@ -25,16 +25,16 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
 
     // Constructor con atributos
     public Biblioteca(String nit, String nombre,
-                      Set<Libro> listaLibros,
-                      Set<Libro> librosPorAutor,
-                      Set<Libro> librosPorFecha,
+                      HashSet<Libro> listaLibros,
+                      TreeSet<Libro> librosPorAutor,
+                      TreeSet<Libro> librosPorFecha,
                       ArrayList<Usuario> listaUsuarios,
-                      Set<Usuario> listaEstudiantes,
-                      Set<Usuario> listaBibliotecarios,
+                      TreeSet<Usuario> listaEstudiantes,
+                      HashSet<Usuario> listaBibliotecarios,
                       HashMap<String, Prestamo> listaPrestamos) {
         this.nit = nit;
         this.nombre = nombre;
-        ListaLibros = listaLibros;
+        this.ListaLibros = listaLibros;
         this.librosPorAutor = librosPorAutor;
         this.librosPorFecha = librosPorFecha;
         this.listaUsuarios = listaUsuarios;
@@ -64,7 +64,7 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
         return ListaLibros;
     }
 
-    public void setListaLibros(Set<Libro> listaLibros) {
+    public void setListaLibros(HashSet<Libro> listaLibros) {
         ListaLibros = listaLibros;
     }
 
@@ -72,7 +72,7 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
         return librosPorAutor;
     }
 
-    public void setLibrosPorAutor(Set<Libro> librosPorAutor) {
+    public void setLibrosPorAutor(TreeSet<Libro> librosPorAutor) {
         this.librosPorAutor = librosPorAutor;
     }
 
@@ -80,7 +80,7 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
         return librosPorFecha;
     }
 
-    public void setLibrosPorFecha(Set<Libro> librosPorFecha) {
+    public void setLibrosPorFecha(TreeSet<Libro> librosPorFecha) {
         this.librosPorFecha = librosPorFecha;
     }
 
@@ -92,19 +92,19 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
         this.listaUsuarios = listaUsuarios;
     }
 
-    public Set<Usuario> getListaEstudiantes() {
+    public TreeSet<Usuario> getListaEstudiantes() {
         return listaEstudiantes;
     }
 
-    public void setListaEstudiantes(Set<Usuario> listaEstudiantes) {
+    public void setListaEstudiantes(TreeSet<Usuario> listaEstudiantes) {
         this.listaEstudiantes = listaEstudiantes;
     }
 
-    public Set<Usuario> getListaBibliotecarios() {
+    public HashSet<Usuario> getListaBibliotecarios() {
         return listaBibliotecarios;
     }
 
-    public void setListaBibliotecarios(Set<Usuario> listaBibliotecarios) {
+    public void setListaBibliotecarios(HashSet<Usuario> listaBibliotecarios) {
         this.listaBibliotecarios = listaBibliotecarios;
     }
 
@@ -165,13 +165,10 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
         Usuario usuario = new Usuario(nombre, cedula, usser, password, tipoUsuario);
 
         this.listaUsuarios.add(usuario);
+        this.listaBibliotecarios.add(usuario);
 
-        if(tipoUsuario.equals(TipoUsuario.BIBLIOTECARIO)){
-            this.listaBibliotecarios.add(usuario);
-        }else{
+        if (tipoUsuario == TipoUsuario.ESTUDIANTE)
             this.listaEstudiantes.add(usuario);
-        }
-
 
     }
     @Override
@@ -265,8 +262,8 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
         Libro libro = new Libro(id, nombre, autor, fechaPublicacion);
 
         this.ListaLibros.add(libro);
-        this.librosPorAutor.add(libro);
-        this.librosPorFecha.add(libro);
+        this.librosPorAutor.addAll(ListaLibros);
+        this.librosPorFecha.addAll(ListaLibros);
 
     }
 
@@ -281,22 +278,28 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
     }
 
     @Override
-    public void eliminarLibro(String id) {
+    public void eliminarLibro(String id) throws LibroException {
+        if (!existeLibro(id))
+            throw new LibroException("El libro con ID " + id + " no se encuentra registrado dentro de la empresa");
+
         for (Libro libro : ListaLibros) {
             if(libro.getId().equals(id)){
                 ListaLibros.remove(libro);
+                break;
             }
         }
 
         for (Libro libro : librosPorAutor) {
             if(libro.getId().equals(id)){
                 librosPorAutor.remove(libro);
+                break;
             }
         }
 
         for (Libro libro : librosPorFecha) {
             if(libro.getId().equals(id)){
                 librosPorFecha.remove(libro);
+                break;
             }
         }
     }
@@ -306,21 +309,6 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
         if(!id.equals("")){
 
             for(Libro l : ListaLibros){
-                if(l != null && l.getId() != null && l.getId().equals(id)){
-                    if(!nombre.equals("")) l.setNombre(nombre);
-                    if(!autor.equals("")) l.setAutor(autor);
-                    if(fechaPublicacion != 0) l.setFechaPublicacion(fechaPublicacion);
-                }
-            }
-            for(Libro l : librosPorAutor){
-                if(l != null && l.getId() != null && l.getId().equals(id)){
-                    if(!nombre.equals("")) l.setNombre(nombre);
-                    if(!autor.equals("")) l.setAutor(autor);
-                    if(fechaPublicacion != 0) l.setFechaPublicacion(fechaPublicacion);
-                }
-            }
-
-            for(Libro l : librosPorFecha){
                 if(l != null && l.getId() != null && l.getId().equals(id)){
                     if(!nombre.equals("")) l.setNombre(nombre);
                     if(!autor.equals("")) l.setAutor(autor);
@@ -379,6 +367,18 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
 
     }
 
+
+    public ArrayList<Libro> listaLibrosPrestados(Usuario usuario) {
+        for (Usuario u : listaUsuarios) {
+            if (u.equals(usuario)) {
+                return u.getListaPrestamos();
+
+            }
+        }
+
+        return new ArrayList<>();
+
+    }
 
 
 }

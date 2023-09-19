@@ -21,9 +21,9 @@
                               <Image url="@../../imagenes/fea45186bd5c19d12a4bfe32c43909dd.jpg" />
                            </image>
                         </ImageView>
-                        <Label layoutX="165.0" layoutY="24.0" prefHeight="34.0" prefWidth="156.0" text="CREAR LIBRO">
+                        <Label layoutX="146.0" layoutY="22.0" prefHeight="37.0" prefWidth="243.0" text="CREAR LIBRO">
                            <font>
-                              <Font name="Franklin Gothic Demi" size="24.0" />
+                              <Font name="Lucida Calligraphy Italic" size="24.0" />
                            </font>
                         </Label>
                         <TableView fx:id="tblLibrosCreados" layoutX="39.0" layoutY="337.0" prefHeight="253.0" prefWidth="522.0">
@@ -122,7 +122,7 @@
                            <font>
                               <Font name="Franklin Gothic Demi" size="18.0" />
                            </font></Button>
-                        <ComboBox fx:id="cboxEstudiantes" layoutX="158.0" layoutY="125.0" prefHeight="29.0" prefWidth="342.0" />
+                        <ComboBox fx:id="cboxEstudiantes" layoutX="158.0" layoutY="125.0" onAction="#VerListaPrestamos" prefHeight="29.0" prefWidth="342.0" />
                         <Button fx:id="btnDevolverLibro" layoutX="57.0" layoutY="563.0" mnemonicParsing="false" onAction="#DevolverLibro" prefHeight="34.0" prefWidth="141.0" style="-fx-background-color: #000000;" text="DevolverLibro" textFill="WHITE">
                            <font>
                               <Font name="Franklin Gothic Demi" size="18.0" />
@@ -136,12 +136,12 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="596.0">
                      <children>
-                        <ImageView fitHeight="622.0" fitWidth="722.0" pickOnBounds="true">
+                        <ImageView fitHeight="622.0" fitWidth="600.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../../imagenes/e11478a9e3a7daa70099b56767133725.jpg" />
+                              <Image url="@../../imagenes/6e6906925e98553aa0db496ef7321374.jpg" />
                            </image>
                         </ImageView>
-                        <TableView fx:id="tblLibrosDisponibles" layoutX="35.0" layoutY="127.0" prefHeight="442.0" prefWidth="375.0">
+                        <TableView fx:id="tblLibrosDisponibles" layoutX="75.0" layoutY="127.0" prefHeight="233.0" prefWidth="456.0">
                           <columns>
                             <TableColumn fx:id="col_idLibroD" prefWidth="46.0" text="Id" />
                             <TableColumn fx:id="colNombreLibroD" prefWidth="86.0" text="Nombre" />
@@ -149,25 +149,27 @@
                               <TableColumn fx:id="colFechaLibroD" prefWidth="135.0" text="Año de publicacion" />
                           </columns>
                         </TableView>
-                        <Label layoutX="136.0" layoutY="21.0" text="LIBROS DISPONIBLES">
+                        <Label layoutX="188.0" layoutY="20.0" prefHeight="18.0" prefWidth="224.0" text="LIBROS DISPONIBLES">
                            <font>
-                              <Font name="Calibri Bold" size="20.0" />
+                              <Font name="Lucida Calligraphy Italic" size="18.0" />
                            </font></Label>
                         <HBox layoutX="239.0" layoutY="555.0" spacing="50.0" />
-                        <Button fx:id="btnCerrarSesionD" layoutX="445.0" layoutY="537.0" mnemonicParsing="false" onAction="#cerrarSesionD" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: #CD5C5C;" text="Cerrar Sesion" textFill="WHITE">
+                        <Button fx:id="btnCerrarSesionD" layoutX="393.0" layoutY="537.0" mnemonicParsing="false" onAction="#cerrarSesionD" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: #CD5C5C;" text="Cerrar Sesion" textFill="WHITE">
                            <font>
                               <Font name="Franklin Gothic Demi" size="18.0" />
                            </font></Button>
-                        <Button fx:id="btnSolicitarPrestamo" layoutX="444.0" layoutY="466.0" mnemonicParsing="false" onAction="#SolicitarPrestamo" prefHeight="44.0" prefWidth="140.0" style="-fx-background-color: #000000;" text="Solicitar Prestamo" textFill="WHITE">
+                        <Button fx:id="btnSolicitarPrestamo" layoutX="75.0" layoutY="537.0" mnemonicParsing="false" onAction="#SolicitarPrestamo" prefHeight="36.0" prefWidth="147.0" style="-fx-background-color: #000000;" text="Solicitar Prestamo" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Text layoutX="47.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordenar por: ">
+                        <Text layoutX="75.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordenar por: ">
                            <font>
                               <Font name="Calibri" size="17.0" />
                            </font></Text>
-                        <ComboBox fx:id="cboxOrden" layoutX="148.0" layoutY="73.0" onAction="#ordenarLibros" prefHeight="29.0" prefWidth="262.0" />
+                        <ComboBox fx:id="cboxOrden" layoutX="188.0" layoutY="80.0" onAction="#ordenarLibros" prefHeight="29.0" prefWidth="338.0" />
+                        <ComboBox fx:id="cboxUsuarioPrestamo" layoutX="231.0" layoutY="435.0" prefHeight="40.0" prefWidth="144.0" />
+                        <Text layoutX="175.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elija su usuario para continuar con el prestamo de un libro" textAlignment="CENTER" wrappingWidth="255.49951171875" />
                      </children>
                   </AnchorPane>
               </content>

@@ -1,6 +1,7 @@
 package Laboratorio2.Controller;
 
 import Laboratorio2.Application.*;
+import Laboratorio2.Exceptions.LibroException;
 import Laboratorio2.Model.Biblioteca;
 import Laboratorio2.Model.Libro;
 import Laboratorio2.Model.TipoUsuario;
@@ -8,7 +9,9 @@ import Laboratorio2.Model.Usuario;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Singleton {
     /**
@@ -16,6 +19,7 @@ public class Singleton {
      */
     Biblioteca biblioteca;
     private Aplicacion aplicacion;
+
 
     private static class SingletonHolder{
         private final static Singleton eInstance = new Singleton();
@@ -51,36 +55,23 @@ public class Singleton {
         biblioteca = new Biblioteca();
         biblioteca.setNombre("Subastas Quindio");
 
-        Usuario usuario = new Usuario();
+        try {
+            this.biblioteca.crearUsuario("marce", "123", "Marcela", "1", TipoUsuario.BIBLIOTECARIO);
+            this.biblioteca.crearUsuario("sofi", "123", "Sofia", "2", TipoUsuario.ESTUDIANTE);
+            this.biblioteca.crearUsuario("juan", "123", "Juan", "3", TipoUsuario.ESTUDIANTE);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
-        usuario.setUsser("marce");
-        usuario.setPassword("123");
-        usuario.setNombre("Marcela");
-        usuario.setCedula("1");
-        usuario.setTipoUsuario(TipoUsuario.BIBLIOTECARIO);
+        try {
+            this.biblioteca.crearLibro("1", "El principito", "Antoine de Saint-Exupéry", 1943);
+            this.biblioteca.crearLibro("2", "El alquimista", "Paulo Coelho", 1988);
+            this.biblioteca.crearLibro("3", "El señor de los anillos", "J. R. R. Tolkien", 1954);
+            this.biblioteca.crearLibro("4", "El código Da Vinci", "Dan Brown", 2003);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
-        this.biblioteca.getListaUsuarios().add(usuario);
-        this.biblioteca.getListaBibliotecarios().add(usuario);
-
-        Usuario usuario1 = new Usuario();
-        usuario1.setUsser("sofi");
-        usuario1.setPassword("123");
-        usuario1.setNombre("Sofia");
-        usuario1.setCedula("2");
-        usuario1.setTipoUsuario(TipoUsuario.ESTUDIANTE);
-
-        this.biblioteca.getListaUsuarios().add(usuario1);
-        this.biblioteca.getListaEstudiantes().add(usuario1);
-
-        Usuario usuario2 = new Usuario();
-        usuario2.setUsser("juan");
-        usuario2.setPassword("123");
-        usuario2.setNombre("Juan");
-        usuario2.setCedula("3");
-        usuario2.setTipoUsuario(TipoUsuario.ESTUDIANTE);
-
-        this.biblioteca.getListaUsuarios().add(usuario2);
-        this.biblioteca.getListaEstudiantes().add(usuario2);
 
         System.out.println("Biblioteca Inicializada "+ biblioteca.getNombre());
 
@@ -142,7 +133,7 @@ public class Singleton {
 
     }
 
-    public Set<Usuario> obtenerListaUsuariosEstudiantes() {
+    public TreeSet<Usuario> obtenerListaUsuariosEstudiantes() {
         return biblioteca.getListaEstudiantes();
     }
 
@@ -159,7 +150,7 @@ public class Singleton {
         return biblioteca.buscarLibro(idLibro);
     }
 
-    public void eliminarLibro(String idLibro) {
+    public void eliminarLibro(String idLibro) throws LibroException {
         biblioteca.eliminarLibro(idLibro);
     }
 
@@ -170,13 +161,16 @@ public class Singleton {
         return biblioteca.getListaLibros();
 
     }
-
     public Set<Libro> obtenerListaLibrosAutor() {
         return biblioteca.getLibrosPorAutor();
     }
 
     public Set<Libro> obtenerListaLibrosFecha() {
         return biblioteca.getLibrosPorFecha();
+    }
+
+    public ArrayList<Libro> listaLibrosPrestados(Usuario usuario) {
+        return biblioteca.listaLibrosPrestados(usuario);
     }
 
 }

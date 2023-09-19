@@ -10,7 +10,7 @@ public class Usuario implements Comparable<Usuario>{
     private String usser;
     private String password;
     private TipoUsuario tipoUsuario;
-    private ArrayList<Prestamo> listaPrestamos = new ArrayList<>();
+    private ArrayList<Libro> listaPrestamos = new ArrayList<>();
 
     // Constructor sin atributos
     public Usuario() {
@@ -66,11 +66,11 @@ public class Usuario implements Comparable<Usuario>{
         this.tipoUsuario = tipoUsuario;
     }
 
-    public ArrayList<Prestamo> getListaPrestamos() {
+    public ArrayList<Libro> getListaPrestamos() {
         return listaPrestamos;
     }
 
-    public void setListaPrestamos(ArrayList<Prestamo> listaPrestamos) {
+    public void setListaPrestamos(ArrayList<Libro> listaPrestamos) {
         this.listaPrestamos = listaPrestamos;
     }
 
@@ -104,7 +104,7 @@ public class Usuario implements Comparable<Usuario>{
     // Metodo compareTo
     @Override
     public int compareTo(Usuario o) {
-        return this.cedula.compareTo(o.cedula);
+        return this.tipoUsuario.compareTo(o.tipoUsuario);
     }
 
 

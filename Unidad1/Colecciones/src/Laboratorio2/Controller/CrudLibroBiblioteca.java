@@ -4,9 +4,11 @@
 package Laboratorio2.Controller;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 import Laboratorio2.Application.Aplicacion;
+import Laboratorio2.Exceptions.LibroException;
 import Laboratorio2.Model.Biblioteca;
 import Laboratorio2.Model.Libro;
 import Laboratorio2.Model.TipoUsuario;
@@ -154,9 +156,15 @@ public class CrudLibroBiblioteca {
     private TabPane tabCrudLibro; // Value injected by FXMLLoader
 
     @FXML
+    private ComboBox<Usuario> cboxUsuarioPrestamo;
+
+    @FXML
     void CrearLibro(ActionEvent event) throws Exception {
         crearLibro();
-        //observarDatos();
+        observarDatos();
+        observarDatosPrestamos();
+        observarDatosAutor();
+        observarDatosFecha();
         limpiarCampos();
 
     }
@@ -167,9 +175,12 @@ public class CrudLibroBiblioteca {
     }
 
     @FXML
-    void EliminarLibro(ActionEvent event) {
+    void EliminarLibro(ActionEvent event) throws LibroException {
         eliminarLibro();
         observarDatos();
+        observarDatosPrestamos();
+        observarDatosAutor();
+        observarDatosFecha();
         limpiarCampos();
 
     }
@@ -178,6 +189,9 @@ public class CrudLibroBiblioteca {
     void ActualizarLibro(ActionEvent event) {
         actualizarLibro();
         observarDatos();
+        observarDatosPrestamos();
+        observarDatosAutor();
+        observarDatosFecha();
         limpiarCampos();
     }
 
@@ -212,14 +226,22 @@ public class CrudLibroBiblioteca {
             }
         }
 
+
+
+    }
+
+    @FXML
+    void VerListaPrestamos(ActionEvent event) {
+        Usuario usuario = cboxEstudiantes.getValue();
+        observarDatosPrestamos();
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         limpiarCampos();
         seleccionarElemento();
-        //seleccionarElemento2();
-        //seleccionarElemento3();
+        seleccionarElemento2();
+        seleccionarElemento3();
 
         observarDatos();
         observarDatosPrestamos();
@@ -228,10 +250,11 @@ public class CrudLibroBiblioteca {
         vistaListaFiltros.setAll("Autor", "Fecha");
         cboxOrden.setItems(vistaListaFiltros);
 
+
         vistaListaUsuarios.setAll(singleton.obtenerListaUsuariosEstudiantes());
+
         cboxEstudiantes.setItems(vistaListaUsuarios);
-
-
+        cboxUsuarioPrestamo.setItems(vistaListaUsuarios);
 
 
     }
@@ -273,7 +296,7 @@ public class CrudLibroBiblioteca {
         }
     }
 
-    public void eliminarLibro(){
+    public void eliminarLibro() throws LibroException {
         String idLibro = txtIdLibro.getText();
         singleton.eliminarLibro(idLibro);
     }
@@ -305,12 +328,17 @@ public class CrudLibroBiblioteca {
         tblLibrosCreados.setItems(vistaListaLibros);
     }
 
-    public void observarDatosPrestamos(){
+    public void observarDatosPrestamos() {
         //para tab: prestamos
         col_IdLibroP.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNombreLibroP.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colAutorLibroP.setCellValueFactory(new PropertyValueFactory<>("autor"));
         colFechaLibroP.setCellValueFactory(new PropertyValueFactory<>("fechaPublicacion"));
+
+
+        //vistaListaLibros.setAll(singleton.listaLibrosPrestados();
+       //tblLibrosPrestados.setItems(vistaListaLibros);
+
     }
 
     public void observarDatosAutor(){
@@ -351,6 +379,30 @@ public class CrudLibroBiblioteca {
         );
     }
 
+    public void seleccionarElemento2(){
+
+        //para la tabla de prestamos
+        tblLibrosPrestados.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<Libro>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Libro> arg0, Libro oldValue, Libro libroSeleccionado) {
+
+                    }
+                }
+        );
+    }
+
+    public void seleccionarElemento3(){
+        //para la tabla de libros disponibles
+        tblLibrosDisponibles.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<Libro>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Libro> arg0, Libro oldValue, Libro libroSeleccionado) {
+
+                    }
+                }
+        );
+    }
 
     /**
      * metodo que limpia los campos de texto
@@ -364,7 +416,6 @@ public class CrudLibroBiblioteca {
         txtAutorLibro.setPromptText("Autor del libro");
         dateFechaLibro.setValue(null);
         dateFechaLibro.setPromptText("Fecha de publicacion");
-
 
         tblLibrosCreados.getSelectionModel().clearSelection();
         tblLibrosPrestados.getSelectionModel().clearSelection();

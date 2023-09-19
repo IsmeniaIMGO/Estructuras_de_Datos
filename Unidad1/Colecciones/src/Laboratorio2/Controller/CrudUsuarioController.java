@@ -5,6 +5,7 @@ package Laboratorio2.Controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -246,7 +247,8 @@ public class CrudUsuarioController {
         col_NombreUsuario.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         col_TipoUsuario.setCellValueFactory(new PropertyValueFactory<>("tipoUsuario"));
 
-        listaUsuarios.setAll(singleton.obtenerListaUsuariosEstudiantes());
+        listaUsuarios.setAll(singleton.listaUsuarios());
+        Collections.sort(listaUsuarios);
         tblUsuarios.setItems(listaUsuarios);
 
     }

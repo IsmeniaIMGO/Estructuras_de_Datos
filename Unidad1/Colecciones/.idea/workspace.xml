@@ -9,6 +9,9 @@
       <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Controller/CrudLibroBiblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Controller/CrudLibroBiblioteca.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Controller/CrudUsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Controller/CrudUsuarioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Controller/Singleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Controller/Singleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Model/Biblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Model/Biblioteca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Model/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Services/ICrudLibro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Services/ICrudLibro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Laboratorio2/View/CrudLibroBiblioteca.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/View/CrudLibroBiblioteca.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +97,8 @@
       <workItem from="1695081527965" duration="5482000" />
       <workItem from="1695090058247" duration="4542000" />
       <workItem from="1695098569483" duration="8709000" />
-      <workItem from="1695138285616" duration="5317000" />
+      <workItem from="1695138285616" duration="5729000" />
+      <workItem from="1695151769634" duration="9376000" />
     </task>
     <servers />
   </component>
