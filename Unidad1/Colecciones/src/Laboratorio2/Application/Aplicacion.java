@@ -1,5 +1,6 @@
 package Laboratorio2.Application;
 
+import Laboratorio2.Controller.CrudLibroBiblioteca;
 import Laboratorio2.Controller.CrudUsuarioController;
 import Laboratorio2.Controller.LoginController;
 import Laboratorio2.Controller.Singleton;
@@ -68,6 +69,45 @@ public class Aplicacion extends Application {
             Escena.setY(-4);
             Escena.show();
 
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void mostrarCrudLibroBibliotecaE(String ruta) {
+        try {
+            FXMLLoader ventana = new FXMLLoader();
+            ventana.setLocation(Aplicacion.class.getResource(ruta));
+
+            AnchorPane diseño = (AnchorPane)ventana.load();
+            CrudLibroBiblioteca crudLibroBiblioteca = ventana.getController();
+            crudLibroBiblioteca.setAplicacion(this);
+
+            crudLibroBiblioteca.getTabCrudLibro().getTabs().remove(0);
+            Scene lugar = new Scene(diseño);
+            Escena.setScene(lugar);
+            Escena.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void mostrarCrudLibroBibliotecaB(String ruta) {
+        try {
+            FXMLLoader ventana = new FXMLLoader();
+            ventana.setLocation(Aplicacion.class.getResource(ruta));
+
+            AnchorPane diseño = (AnchorPane)ventana.load();
+            CrudLibroBiblioteca crudLibroBiblioteca = ventana.getController();
+            crudLibroBiblioteca.setAplicacion(this);
+
+            crudLibroBiblioteca.getTabCrudLibro().getTabs().remove(1);
+            Scene lugar = new Scene(diseño);
+            Escena.setScene(lugar);
+            Escena.show();
 
         } catch (Exception e) {
             e.printStackTrace();

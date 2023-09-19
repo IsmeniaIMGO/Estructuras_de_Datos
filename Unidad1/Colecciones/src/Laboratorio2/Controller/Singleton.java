@@ -10,7 +10,21 @@ public class Singleton {
     Biblioteca biblioteca;
     private Aplicacion aplicacion;
 
+    public boolean verificarEstudiante(String usser, String contrasena) {
+        return biblioteca.verificarEstudiante(usser, contrasena);
+    }
 
+    public void mostrarCrudLibroBibliotecaE(String ruta) {
+        aplicacion.mostrarCrudLibroBibliotecaE(ruta);
+    }
+
+    public boolean verificarBibliotecario(String usser, String contrasena) {
+        return biblioteca.verificarBibliotecario(usser, contrasena);
+    }
+
+    public void mostrarCrudLibroBibliotecaB(String ruta) {
+        aplicacion.mostrarCrudLibroBibliotecaB(ruta);
+    }
 
 
     private static class SingletonHolder{

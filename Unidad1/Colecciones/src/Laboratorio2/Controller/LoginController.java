@@ -1,6 +1,7 @@
 package Laboratorio2.Controller;
 
 import Laboratorio2.Application.Aplicacion;
+import Laboratorio2.Exceptions.ParametroVacioException;
 import Laboratorio2.Model.Biblioteca;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,8 +46,9 @@ public class LoginController {
     private PasswordField txtPassword;
 
     @FXML
-    void ingresarUsuario(ActionEvent event) {
-
+    void ingresarUsuario(ActionEvent event) throws ParametroVacioException {
+        singleton.mostrarCrudLibroBibliotecaE("/Laboratorio2/View/CrudLibroBiblioteca.fxml");
+            //verificarInicioSesion();
     }
 
 
@@ -69,29 +71,27 @@ public class LoginController {
     /**
      * Metodo que me permite verificar el inicio de sesion
      */
-    /*private void verificarInicioSesion() {
+    private void verificarInicioSesion() throws ParametroVacioException {
         String usser = txtUsser.getText();
         String contrasena = txtPassword.getText();
 
         if (!usser.equals("") && !contrasena.equals("")){
             //si el tipo de usuario es anunciante entonces me abre una ventana especial para anunciantes
-            if (singleton.verificarAnunciante(usser, contrasena)) {
-                singleton.mostrarCrudArticuloAnuncioA("/co/uniquindio/edu/Empresa/views/CrudArticuloAnuncio.fxml");
-                singleton.guardarRegistroLog("Usuario: "+usser+"-"+contrasena, 1, "iniciarSesion");
+            if (singleton.verificarEstudiante(usser, contrasena)) {
+                singleton.mostrarCrudLibroBibliotecaE("/Laboratorio2/View/CrudLibroBiblioteca.fxml");
 
                 //si el tipo de usuario es comprador entonces me abre una ventana especial para anunciantes
-            }else if (singleton.verificarComprador(usser, contrasena)) {
-                singleton.mostrarCrudArticuloAnuncioC("/co/uniquindio/edu/Empresa/views/CrudArticuloAnuncio.fxml");
-                singleton.guardarRegistroLog("Usuario: "+usser+"-"+contrasena, 1, "iniciarSesion");
+            }else if (singleton.verificarBibliotecario(usser, contrasena)) {
+                singleton.mostrarCrudLibroBibliotecaB("/Laboratorio2/View/CrudLibroBiblioteca.fxml");
 
             }else {
                 //si no cumple las anteriores opciones entonces ingreso algo mal
-                singleton.mostrarMensaje("Error Ingreso", "", "La informacion digitada no es correcta ", AlertType.ERROR);
+                System.out.println("La informacion digitada no es correcta");
             }
         }else {
             //si intenta iniciar sesion pero los campos estan vacios
-            singleton.mostrarMensaje("Parametros Vacios", "", "por favor llene los campos vacios", AlertType.WARNING);
+            throw new ParametroVacioException("Alguno de los parámetros indicados es está vacío");
         }
 
-    }*/
+    }
 }

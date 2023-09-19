@@ -94,7 +94,7 @@ public class CrudUsuarioController {
 
     @FXML
     void AbrirLogin(ActionEvent event) {
-
+        singleton.mostrarLogin("/Laboratorio2/View/Login.fxml");
     }
 
     @FXML
