@@ -12,14 +12,14 @@
 
 <fx:root prefHeight="387.0" prefWidth="565.0" style="-fx-background-radius: 20; -fx-border-radius: 40;" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Laboratorio2.Controller.LoginController">
     <children>
-      <ImageView fitHeight="387.0" fitWidth="641.0" opacity="0.81" pickOnBounds="true" preserveRatio="true" smooth="false">
+      <ImageView fitHeight="406.0" fitWidth="574.0" pickOnBounds="true" smooth="false">
          <image>
             <Image url="@../../imagenes/fondo.jpg" />
          </image>
       </ImageView>
       <Pane layoutX="115.0" layoutY="71.0" prefHeight="279.0" prefWidth="352.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;">
          <children>
-            <ImageView fitHeight="41.0" fitWidth="43.0" layoutX="19.0" layoutY="54.0" opacity="0.61" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="41.0" fitWidth="43.0" layoutX="19.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../imagenes/iconusser.png" />
                </image>
@@ -32,29 +32,29 @@
                   <Image url="@../../imagenes/contrasena.png" />
                </image>
                <effect>
-                  <ColorAdjust contrast="-0.62" />
+                  <ColorAdjust contrast="1.0" />
                </effect>
             </ImageView>
               <TextField fx:id="txtUsser" layoutX="88.0" layoutY="54.0" prefHeight="41.0" prefWidth="210.0" />
             <PasswordField fx:id="txtPassword" layoutX="88.0" layoutY="117.0" prefHeight="41.0" prefWidth="210.0" />
-              <Button fx:id="btnIngresar" layoutX="115.0" layoutY="177.0" mnemonicParsing="false" onAction="#ingresarUsuario" prefHeight="25.0" prefWidth="138.0" style="-fx-background-color: #3DAAC3;" text="Iniciar Sesion" textAlignment="CENTER" textFill="WHITE">
+              <Button fx:id="btnIngresar" layoutX="115.0" layoutY="177.0" mnemonicParsing="false" onAction="#ingresarUsuario" prefHeight="25.0" prefWidth="138.0" style="-fx-background-color: #000000;" text="Iniciar Sesion" textAlignment="CENTER" textFill="WHITE">
                   <font>
                       <Font name="Franklin Gothic Demi" size="18.0" />
                   </font>
               </Button>
-              <Button fx:id="btnCrearCuenta" layoutX="115.0" layoutY="224.0" mnemonicParsing="false" onAction="#crearUsuario" prefHeight="25.0" prefWidth="138.0" style="-fx-background-color: #3DAAC3;" text="Crear Cuenta" textAlignment="CENTER" textFill="WHITE">
+              <Button fx:id="btnCrearCuenta" layoutX="115.0" layoutY="224.0" mnemonicParsing="false" onAction="#crearUsuario" prefHeight="25.0" prefWidth="138.0" style="-fx-background-color: #000000;" text="Crear Cuenta" textAlignment="CENTER" textFill="WHITE">
                   <font>
                       <Font name="Franklin Gothic Demi" size="18.0" />
                   </font>
               </Button>
          </children>
       </Pane>
-      <ImageView fitHeight="82.0" fitWidth="108.0" focusTraversable="true" layoutX="237.0" layoutY="14.0" pickOnBounds="true">
+      <ImageView fitHeight="113.0" fitWidth="115.0" layoutX="235.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../imagenes/libro.jpg" />
+            <Image url="@../../imagenes/libro.png" />
          </image>
          <effect>
-            <ColorAdjust contrast="0.52" hue="0.02" />
+            <ColorAdjust brightness="0.35" contrast="0.41" hue="1.0" saturation="-0.1" />
          </effect>
       </ImageView>
     </children>

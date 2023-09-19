@@ -65,6 +65,7 @@ public class Aplicacion extends Application {
 
             Scene lugar = new Scene(diseño);
             Escena.setScene(lugar);
+            Escena.setY(-4);
             Escena.show();
 
 

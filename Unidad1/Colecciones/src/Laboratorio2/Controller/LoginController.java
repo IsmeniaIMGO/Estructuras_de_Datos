@@ -55,13 +55,15 @@ public class LoginController {
         singleton.mostrarCrudUsuario("/Laboratorio2/View/CrudUsuario.fxml");
     }
 
+
     @FXML
     void initialize() {
         assert btnCrearCuenta != null : "fx:id=\"btnCrearCuenta\" was not injected: check your FXML file 'Login.fxml'.";
         assert txtUsser != null : "fx:id=\"txtUsser\" was not injected: check your FXML file 'Login.fxml'.";
         assert btnIngresar != null : "fx:id=\"btnIngresar\" was not injected: check your FXML file 'Login.fxml'.";
         assert txtPassword != null : "fx:id=\"txtPassword\" was not injected: check your FXML file 'Login.fxml'.";
-
+        txtUsser.setPromptText("Ingrese su usuario");
+        txtPassword.setPromptText("Ingrese su contraseña");
     }
 
     /**
