@@ -85,6 +85,7 @@ public class Aplicacion extends Application {
             crudLibroBiblioteca.setAplicacion(this);
 
             crudLibroBiblioteca.getTabCrudLibro().getTabs().remove(0);
+            crudLibroBiblioteca.getTabCrudLibro().getTabs().remove(1);
 
             Scene lugar = new Scene(diseño);
             Escena.setScene(lugar);
@@ -105,6 +106,9 @@ public class Aplicacion extends Application {
             AnchorPane diseño = (AnchorPane)ventana.load();
             CrudLibroBiblioteca crudLibroBiblioteca = ventana.getController();
             crudLibroBiblioteca.setAplicacion(this);
+
+            crudLibroBiblioteca.getTabCrudLibro().getTabs().remove(1);
+
 
             crudLibroBiblioteca.getBtnSolicitarPrestamo().setDisable(true);
             crudLibroBiblioteca.getBtnDevolverLibro().setDisable(true);

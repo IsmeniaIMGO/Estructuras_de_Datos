@@ -157,6 +157,19 @@ public class CrudUsuarioController {
         observarDatos();
         vistaListaTipoUsuario.setAll(TipoUsuario.ESTUDIANTE, TipoUsuario.BIBLIOTECARIO);
         cboxTipoUsuario.setItems(vistaListaTipoUsuario);
+
+       cbkEstudiante.setOnAction(event -> {
+           if (cbkEstudiante.isSelected()) {
+               cbkBibliotecario.setSelected(false);
+           }
+       });
+
+         cbkBibliotecario.setOnAction(event -> {
+              if (cbkBibliotecario.isSelected()) {
+                cbkEstudiante.setSelected(false);
+              }
+         });
+
     }
 
 
@@ -290,6 +303,7 @@ public class CrudUsuarioController {
 
 
 
+
     private void limpiarCampos() {
         txtCedula.setText("");
         txtCedula.setPromptText("Ingrese un nuevo Id");
@@ -301,6 +315,8 @@ public class CrudUsuarioController {
         txtPassword.setPromptText("Ingrese una contraseña");
         cbkEstudiante.setSelected(false);;
         cbkBibliotecario.setSelected(false);
+
+        cboxTipoUsuario.setPromptText("Tipo de Usuario");
 
         tblUsuarios.getSelectionModel().clearSelection();
     }

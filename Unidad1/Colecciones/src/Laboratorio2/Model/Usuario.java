@@ -17,12 +17,15 @@ public class Usuario implements Comparable<Usuario>{
     }
 
     // Constructor con atributos
-    public Usuario(String nombre, String cedula, String usser, String password, TipoUsuario tipoUsuario) {
+
+
+    public Usuario(String nombre, String cedula, String usser, String password, TipoUsuario tipoUsuario, ArrayList<Libro> listaPrestamos) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.usser = usser;
         this.password = password;
         this.tipoUsuario = tipoUsuario;
+        this.listaPrestamos = listaPrestamos;
     }
 
     // Getters y Setters

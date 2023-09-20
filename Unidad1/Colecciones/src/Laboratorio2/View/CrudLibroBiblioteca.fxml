@@ -16,12 +16,12 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="646.0" prefWidth="684.0">
                      <children>
-                        <ImageView fitHeight="632.0" fitWidth="613.0" layoutX="-4.0" layoutY="-6.0" pickOnBounds="true">
+                        <ImageView fitHeight="636.0" fitWidth="613.0" layoutX="-4.0" layoutY="-2.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../../imagenes/fea45186bd5c19d12a4bfe32c43909dd.jpg" />
+                              <Image url="@../../imagenes/038c35ef37f784c84ca147fd44d7e492.jpg" />
                            </image>
                         </ImageView>
-                        <Label layoutX="146.0" layoutY="22.0" prefHeight="37.0" prefWidth="243.0" text="CREAR LIBRO">
+                        <Label layoutX="203.0" layoutY="23.0" prefHeight="37.0" prefWidth="199.0" text="CREAR LIBRO">
                            <font>
                               <Font name="Lucida Calligraphy Italic" size="24.0" />
                            </font>
@@ -96,7 +96,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="tabPrestamos" text="Prestamos">
+            <Tab fx:id="tabMisLibros" text="Mis Libros">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="646.0" prefWidth="738.0">
                      <children>
@@ -132,11 +132,40 @@
                   </AnchorPane>
                </content>
             </Tab>
+            <Tab fx:id="tabPrestamos" text="Prestamos">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="625.0" fitWidth="600.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../../imagenes/0bed9286688efd06bca038796f08441c.jpg" />
+                           </image>
+                        </ImageView>
+                        <TableView fx:id="tblPrestamos" layoutX="75.0" layoutY="60.0" prefHeight="494.0" prefWidth="446.0">
+                          <columns>
+                            <TableColumn fx:id="col_idPrestamo" prefWidth="106.0" text="Id" />
+                            <TableColumn fx:id="col_prestamo" prefWidth="369.0" text="Prestamo" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="232.0" text="Prestamos" wrapText="true">
+                           <font>
+                              <Font name="Lucida Calligraphy Italic" size="24.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnCerrarSesionPrestamo" layoutX="236.0" layoutY="569.0" mnemonicParsing="false" onAction="#cerrarSesionPrestamo" prefHeight="29.0" prefWidth="128.0" style="-fx-background-color: #CD5C5C;" text="Cerrar Sesion" textFill="WHITE">
+                           <font>
+                              <Font name="Franklin Gothic Demi" size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
             <Tab fx:id="tabBiblioteca" text="Biblioteca">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="596.0">
                      <children>
-                        <ImageView fitHeight="622.0" fitWidth="600.0" pickOnBounds="true">
+                        <ImageView fitHeight="680.0" fitWidth="617.0" layoutX="-6.0" pickOnBounds="true">
                            <image>
                               <Image url="@../../imagenes/6e6906925e98553aa0db496ef7321374.jpg" />
                            </image>
@@ -149,9 +178,9 @@
                               <TableColumn fx:id="colFechaLibroD" prefWidth="135.0" text="Año de publicacion" />
                           </columns>
                         </TableView>
-                        <Label layoutX="188.0" layoutY="20.0" prefHeight="18.0" prefWidth="224.0" text="LIBROS DISPONIBLES">
+                        <Label layoutX="175.0" layoutY="14.0" prefHeight="37.0" prefWidth="251.0" text="LIBROS DISPONIBLES">
                            <font>
-                              <Font name="Lucida Calligraphy Italic" size="18.0" />
+                              <Font name="Lucida Calligraphy Italic" size="20.0" />
                            </font></Label>
                         <HBox layoutX="239.0" layoutY="555.0" spacing="50.0" />
                         <Button fx:id="btnCerrarSesionD" layoutX="393.0" layoutY="537.0" mnemonicParsing="false" onAction="#cerrarSesionD" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: #CD5C5C;" text="Cerrar Sesion" textFill="WHITE">
@@ -168,7 +197,7 @@
                               <Font name="Calibri" size="17.0" />
                            </font></Text>
                         <ComboBox fx:id="cboxOrden" layoutX="188.0" layoutY="80.0" onAction="#ordenarLibros" prefHeight="29.0" prefWidth="338.0" />
-                        <ComboBox fx:id="cboxUsuarioPrestamo" layoutX="231.0" layoutY="435.0" prefHeight="40.0" prefWidth="144.0" />
+                        <ComboBox fx:id="cboxUsuarioPrestamo" layoutX="193.0" layoutY="424.0" prefHeight="40.0" prefWidth="220.0" />
                         <Text layoutX="175.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elija su usuario para continuar con el prestamo de un libro" textAlignment="CENTER" wrappingWidth="255.49951171875" />
                      </children>
                   </AnchorPane>

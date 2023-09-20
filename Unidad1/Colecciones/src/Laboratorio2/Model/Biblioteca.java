@@ -161,8 +161,9 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
 
         if(nombre.equals("") || tipoUsuario.equals("") || usser.equals("") || password.equals(""))
             throw new ParametroVacioException("Alguno de los parámetros indicados es está vacío");
+        ArrayList<Libro> librosPrestados = new ArrayList<Libro>();
 
-        Usuario usuario = new Usuario(nombre, cedula, usser, password, tipoUsuario);
+        Usuario usuario = new Usuario(nombre, cedula, usser, password, tipoUsuario, librosPrestados);
 
         this.listaUsuarios.add(usuario);
         this.listaBibliotecarios.add(usuario);
@@ -367,18 +368,14 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
 
     }
 
+    public ArrayList<Libro> listaLibrosPrestados(String cedula) {
+        ArrayList<Libro> librosPrestados = new ArrayList<>();
 
-    public ArrayList<Libro> listaLibrosPrestados(Usuario usuario) {
-        for (Usuario u : listaUsuarios) {
-            if (u.equals(usuario)) {
-                return u.getListaPrestamos();
-
+        for (Usuario usuario : listaUsuarios) {
+            if(usuario.getCedula().equals(cedula)){
+                librosPrestados = usuario.getListaPrestamos();
             }
         }
-
-        return new ArrayList<>();
-
+         return librosPrestados;
     }
-
-
 }

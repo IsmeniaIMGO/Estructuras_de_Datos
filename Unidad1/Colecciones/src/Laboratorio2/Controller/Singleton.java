@@ -20,6 +20,10 @@ public class Singleton {
     Biblioteca biblioteca;
     private Aplicacion aplicacion;
 
+    public ArrayList<Libro> listaLibrosPrestados(String cedula) {
+        return biblioteca.listaLibrosPrestados(cedula);
+    }
+
 
     private static class SingletonHolder{
         private final static Singleton eInstance = new Singleton();
@@ -71,7 +75,6 @@ public class Singleton {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
 
         System.out.println("Biblioteca Inicializada "+ biblioteca.getNombre());
 
@@ -169,8 +172,5 @@ public class Singleton {
         return biblioteca.getLibrosPorFecha();
     }
 
-    public ArrayList<Libro> listaLibrosPrestados(Usuario usuario) {
-        return biblioteca.listaLibrosPrestados(usuario);
-    }
 
 }
