@@ -60,7 +60,7 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
         this.nombre = nombre;
     }
 
-    public Set<Libro> getListaLibros() {
+    public HashSet<Libro> getListaLibros() {
         return ListaLibros;
     }
 
@@ -359,12 +359,43 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
     }
 
     @Override
-    public void prestarLibro(String idPrestamo, String cedulaUsuario) {
+    public void prestarLibro(Libro libro, Usuario usuario) throws Exception {
+
+        if (libro == null)
+            throw new NuloVacioException("Elija un libro para el prestamo");
+
+        if (usuario==null)
+            throw new NuloVacioException("Elija su usuario para hacer el prestamo");
+
+        HashMap<String, DetallePrestamo> listaDetallePrestamo = new HashMap<>();
+        listaDetallePrestamo.put(libro.getId(), new DetallePrestamo(libro.getId(), libro));
+
+        Prestamo prestamo = new Prestamo(libro.getId(), usuario, listaDetallePrestamo);
+
+        usuario.getListaPrestamos().add(libro);
+        listaPrestamos.put(prestamo.getId(), prestamo);
 
     }
 
     @Override
-    public void devolverLibro(String idprestamo, String cedulaUsuario) {
+    public void devolverLibro(Libro libro, Usuario usuario) throws Exception {
+
+        if (libro == null)
+            throw new NuloVacioException("Elija un libro para el prestamo");
+
+        if (usuario==null)
+            throw new NuloVacioException("Elija su usuario para hacer el prestamo");
+
+
+
+        for (Usuario u : listaUsuarios) {
+            if (u.getCedula().equals(usuario.getCedula())) {
+                u.getListaPrestamos().remove(libro);
+                break;
+            }
+        }
+
+        listaPrestamos.remove(libro.getId());
 
     }
 

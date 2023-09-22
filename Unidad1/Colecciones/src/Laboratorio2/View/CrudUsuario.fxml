@@ -14,11 +14,8 @@
     <children>
       <ImageView fitHeight="668.0" fitWidth="608.0" pickOnBounds="true">
          <image>
-            <Image url="@../../imagenes/fondo%202.jpg" />
+            <Image url="@../../imagenes/fondo2.jpg" />
          </image>
-         <effect>
-            <ColorAdjust brightness="0.24" hue="-1.0" />
-         </effect>
       </ImageView>
         <Label layoutX="238.0" layoutY="49.0" text="CREAR USUARIO">
             <font>

@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 
+
 public class Aplicacion extends Application {
     //atributos propios
     private Singleton singleton = Singleton.getInstance();
@@ -55,6 +56,10 @@ public class Aplicacion extends Application {
 
     }
 
+    /**
+     * metodo que muestra el crud para el usuario
+     * @param ruta
+     */
     public void mostrarCrudUsuario(String ruta) {
         try {
             FXMLLoader ventana = new FXMLLoader();
@@ -75,6 +80,10 @@ public class Aplicacion extends Application {
         }
     }
 
+    /**
+     * metodo que muestra las ventanas para el usuario tipo estudiante
+     * @param ruta
+     */
     public void mostrarCrudLibroBibliotecaE(String ruta) {
         try {
             FXMLLoader ventana = new FXMLLoader();
@@ -98,6 +107,11 @@ public class Aplicacion extends Application {
 
     }
 
+
+    /**
+     * metodo que muestra las ventanas para el usuario tipo bibliotecario
+     * @param ruta
+     */
     public void mostrarCrudLibroBibliotecaB(String ruta) {
         try {
             FXMLLoader ventana = new FXMLLoader();
@@ -112,6 +126,8 @@ public class Aplicacion extends Application {
 
             crudLibroBiblioteca.getBtnSolicitarPrestamo().setDisable(true);
             crudLibroBiblioteca.getBtnDevolverLibro().setDisable(true);
+            crudLibroBiblioteca.getCboxEstudiante().setDisable(true);
+
 
             Scene lugar = new Scene(diseño);
             Escena.setScene(lugar);

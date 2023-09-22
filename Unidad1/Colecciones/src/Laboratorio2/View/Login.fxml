@@ -21,7 +21,7 @@
          <children>
             <ImageView fitHeight="41.0" fitWidth="43.0" layoutX="19.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../imagenes/iconusser.png" />
+                  <Image url="@../../imagenes/usuario.png" />
                </image>
                <effect>
                   <ColorAdjust brightness="-1.0" contrast="1.0" hue="-0.02" saturation="-1.0" />

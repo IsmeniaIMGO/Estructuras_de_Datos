@@ -1,8 +1,12 @@
 package Laboratorio2.Services;
 
+import Laboratorio2.Exceptions.NuloVacioException;
+import Laboratorio2.Model.Libro;
+import Laboratorio2.Model.Usuario;
+
 public interface ITransaccionPrestamo {
 
-    public void prestarLibro(String idPrestamo, String cedulaUsuario);
+    public void prestarLibro(Libro libro, Usuario usuario) throws Exception;
 
-    public void devolverLibro(String idprestamo, String cedulaUsuario);
+    public void devolverLibro(Libro libro, Usuario usuario) throws Exception;
 }

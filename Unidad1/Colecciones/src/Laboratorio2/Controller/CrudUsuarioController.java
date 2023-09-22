@@ -4,11 +4,8 @@
 package Laboratorio2.Controller;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
-import java.util.Set;
-
 import Laboratorio2.Application.Aplicacion;
 import Laboratorio2.Model.Biblioteca;
 import Laboratorio2.Model.TipoUsuario;
@@ -169,6 +166,7 @@ public class CrudUsuarioController {
                 cbkEstudiante.setSelected(false);
               }
          });
+
 
     }
 

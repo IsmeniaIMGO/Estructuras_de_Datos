@@ -4,12 +4,15 @@
 package Laboratorio2.Controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import Laboratorio2.Application.Aplicacion;
 import Laboratorio2.Exceptions.LibroException;
 import Laboratorio2.Model.Biblioteca;
 import Laboratorio2.Model.Libro;
+import Laboratorio2.Model.Prestamo;
 import Laboratorio2.Model.Usuario;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -42,10 +45,14 @@ public class CrudLibroBiblioteca {
 
     //para la tabla del crud y los libros prestados
     private ObservableList<Libro> vistaListaLibros = FXCollections.observableArrayList();
+
+    private ObservableList<Libro> vistaLibrosPrestados = FXCollections.observableArrayList();
     //para el combobox
     private ObservableList<Usuario> vistaListaUsuarios = FXCollections.observableArrayList();
     //para el combobox filtros autor y fecha
     private ObservableList<String> vistaListaFiltros = FXCollections.observableArrayList();
+
+    private ObservableList<Prestamo> vistaListaPrestamos = FXCollections.observableArrayList();
 
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -160,13 +167,13 @@ public class CrudLibroBiblioteca {
     private Tab tabPrestamos;
 
     @FXML
-    private TableView<?> tblPrestamos;
+    private TableView<Prestamo> tblPrestamos;
 
     @FXML
-    private TableColumn<?, ?> col_idPrestamo;
+    private TableColumn<Prestamo, String> col_idPrestamo;
 
     @FXML
-    private TableColumn<?, ?> col_prestamo;
+    private TableColumn<Prestamo, Prestamo> col_prestamo;
 
     @FXML
     private Button btnCerrarSesionPrestamo;
@@ -179,7 +186,7 @@ public class CrudLibroBiblioteca {
     @FXML
     void CrearLibro(ActionEvent event) throws Exception {
         crearLibro();
-        observarDatos();
+        observarLibrosCreados();
         observarDatosAutor();
         observarDatosFecha();
         limpiarCampos();
@@ -194,7 +201,7 @@ public class CrudLibroBiblioteca {
     @FXML
     void EliminarLibro(ActionEvent event) throws LibroException {
         eliminarLibro();
-        observarDatos();
+        observarLibrosCreados();
         observarDatosAutor();
         observarDatosFecha();
         limpiarCampos();
@@ -204,7 +211,7 @@ public class CrudLibroBiblioteca {
     @FXML
     void ActualizarLibro(ActionEvent event) {
         actualizarLibro();
-        observarDatos();
+        observarLibrosCreados();
         observarDatosAutor();
         observarDatosFecha();
         limpiarCampos();
@@ -216,19 +223,40 @@ public class CrudLibroBiblioteca {
     }
 
     @FXML
-    void DevolverLibro(ActionEvent event) {
-
-    }
-
-    @FXML
     void cerrarSesionD(ActionEvent event) {
         singleton.mostrarLogin("/Laboratorio2/View/Login.fxml");
     }
 
     @FXML
-    void SolicitarPrestamo(ActionEvent event) {
+    void SolicitarPrestamo(ActionEvent event) throws Exception {
+
+        Libro libro = tblLibrosDisponibles.getSelectionModel().getSelectedItem();
+
+        Usuario usuario = cboxUsuarioPrestamo.getValue();
+
+        singleton.prestarLibro(libro, usuario);
+        observarLibrosDisponibles();
+
+        limpiarCampos();
 
     }
+
+    @FXML
+    void DevolverLibro(ActionEvent event) throws Exception {
+
+        Libro libro = tblLibrosPrestados.getSelectionModel().getSelectedItem();
+
+        Usuario usuario = cboxEstudiantes.getValue();
+
+        singleton.devolverLibro(libro, usuario);
+
+        observarLibrosPrestados(usuario.getCedula());
+        observarPrestamos();
+        limpiarCampos();
+
+
+    }
+
 
 
     @FXML
@@ -238,6 +266,8 @@ public class CrudLibroBiblioteca {
         }else{
             if (cboxOrden.getValue().equals("Fecha")) {
                 observarDatosFecha();
+            }else {
+                observarLibrosDisponibles();
             }
         }
 
@@ -260,9 +290,9 @@ public class CrudLibroBiblioteca {
         seleccionarElemento2();
         seleccionarElemento3();
 
-        observarDatos();
-        observarDatosAutor();
-        observarDatosFecha();
+        observarPrestamos();
+        observarLibrosCreados();
+        observarLibrosDisponibles();
         vistaListaFiltros.setAll("Autor", "Fecha");
         cboxOrden.setItems(vistaListaFiltros);
 
@@ -287,6 +317,8 @@ public class CrudLibroBiblioteca {
     public Button getBtnSolicitarPrestamo() {
         return btnSolicitarPrestamo;
     }
+
+    public  ComboBox<Usuario> getCboxEstudiante(){return cboxUsuarioPrestamo;}
 
 
     //---------------------------Metodos de crear LIBRO--------------//
@@ -333,7 +365,7 @@ public class CrudLibroBiblioteca {
 
 
     //---------------------------Metodos adicionales--------------//
-    public void observarDatos() {
+    public void observarLibrosCreados() {
         //para tab: crear Libro
         col_IdLibroC.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNombreLibroC.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -342,18 +374,17 @@ public class CrudLibroBiblioteca {
 
         vistaListaLibros.setAll(singleton.listaLibros());
         tblLibrosCreados.setItems(vistaListaLibros);
+
     }
 
-    public void observarLibrosPrestados(String cedula) {
-        //para tab: prestamos
-        col_IdLibroP.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colNombreLibroP.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        colAutorLibroP.setCellValueFactory(new PropertyValueFactory<>("autor"));
-        colFechaLibroP.setCellValueFactory(new PropertyValueFactory<>("fechaPublicacion"));
+    public void observarLibrosDisponibles(){
+        col_idLibroD.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNombreLibroD.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colAutorLibroD.setCellValueFactory(new PropertyValueFactory<>("autor"));
+        colFechaLibroD.setCellValueFactory(new PropertyValueFactory<>("fechaPublicacion"));
 
-        vistaListaLibros.setAll(singleton.listaLibrosPrestados(cedula));
-        tblLibrosPrestados.setItems(vistaListaLibros);
-
+        vistaListaLibros.setAll(singleton.listaLibros());
+        tblLibrosDisponibles.setItems(vistaListaLibros);
     }
 
     public void observarDatosAutor(){
@@ -374,6 +405,30 @@ public class CrudLibroBiblioteca {
 
         vistaListaLibros.setAll(singleton.obtenerListaLibrosFecha());
         tblLibrosDisponibles.setItems(vistaListaLibros);
+
+    }
+
+    public void observarLibrosPrestados(String cedula) {
+        //para tab: prestamos
+        col_IdLibroP.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNombreLibroP.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colAutorLibroP.setCellValueFactory(new PropertyValueFactory<>("autor"));
+        colFechaLibroP.setCellValueFactory(new PropertyValueFactory<>("fechaPublicacion"));
+
+        vistaLibrosPrestados.setAll(singleton.listaLibrosPrestados(cedula));
+        tblLibrosPrestados.setItems(vistaLibrosPrestados);
+
+    }
+
+    private void observarPrestamos() {
+        col_idPrestamo.setCellValueFactory(new PropertyValueFactory<>("id"));
+        col_prestamo.setCellValueFactory(new PropertyValueFactory<>("listaDetallePrestamo"));
+
+
+        HashMap<String, Prestamo> listaPrestamos = singleton.listaPrestamos();
+        ArrayList<Prestamo> listaValorPrestamos = new ArrayList<>(listaPrestamos.values());
+        vistaListaPrestamos.setAll(listaValorPrestamos);
+        tblPrestamos.setItems(vistaListaPrestamos);
 
     }
 
@@ -423,6 +478,7 @@ public class CrudLibroBiblioteca {
      * metodo que limpia los campos de texto
      */
     public void limpiarCampos() {
+
         txtIdLibro.setText("");
         txtIdLibro.setPromptText("Id del libro");
         txtNombreLibro.setText("");
@@ -436,9 +492,13 @@ public class CrudLibroBiblioteca {
         cboxEstudiantes.setPromptText("Seleccione un estudiante");
         cboxOrden.setPromptText("Seleccione un filtro");
 
+
         tblLibrosCreados.getSelectionModel().clearSelection();
         tblLibrosPrestados.getSelectionModel().clearSelection();
         tblLibrosDisponibles.getSelectionModel().clearSelection();
+        tblPrestamos.getSelectionModel().clearSelection();
+
+
 
     }
 
