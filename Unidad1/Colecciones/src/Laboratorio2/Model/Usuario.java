@@ -97,7 +97,7 @@ public class Usuario implements Comparable<Usuario>{
     // Metodo toString
     @Override
     public String toString() {
-        return "nombre: " + nombre + " cedula: " + cedula;
+        return "nombre: " + nombre + " - cedula: " + cedula;
     }
 
     // Metodo compareTo
