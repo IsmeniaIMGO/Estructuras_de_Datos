@@ -144,7 +144,8 @@
                         <TableView fx:id="tblPrestamos" layoutX="75.0" layoutY="60.0" prefHeight="494.0" prefWidth="446.0">
                           <columns>
                             <TableColumn fx:id="col_idPrestamo" prefWidth="106.0" text="Id" />
-                            <TableColumn fx:id="col_prestamo" prefWidth="369.0" text="Prestamo" />
+                            <TableColumn fx:id="col_usuarioPrestamo" prefWidth="195.0" text="Usuario" />
+                              <TableColumn fx:id="col_prestamo" prefWidth="144.0" text="Prestamo" />
                           </columns>
                         </TableView>
                         <Label layoutX="232.0" text="Prestamos" wrapText="true">

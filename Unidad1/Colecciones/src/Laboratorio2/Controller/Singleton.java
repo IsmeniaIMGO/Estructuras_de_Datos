@@ -197,6 +197,7 @@ public class Singleton {
      */
     public TreeSet<Usuario> obtenerListaUsuariosEstudiantes() {
         return biblioteca.getListaEstudiantes();
+        //return biblioteca.getListaLogin;
     }
 
     /**
@@ -302,7 +303,7 @@ public class Singleton {
      * metodo que retorna la lista de prestamos
      * @return HashMap
      */
-    public HashMap listaPrestamos() {
+    public HashMap<String, Prestamo> listaPrestamos() {
         return biblioteca.getListaPrestamos();
     }
 
@@ -315,6 +316,19 @@ public class Singleton {
         biblioteca.devolverLibro(libro, usuario);
     }
 
+    /**
+     * metodo que retorna el usuario que inicio sesion
+     * @return
+     */
+    public ArrayList<Usuario> obtenerlistaLogin() {
+        return biblioteca.getListaLogin();
+    }
 
+    /**
+     * metodo que cierra sesion del usuario
+     */
+    public void cerrarSesion() {
+        biblioteca.cerrarSesion();
+    }
 
 }

@@ -10,10 +10,7 @@ import java.util.ResourceBundle;
 
 import Laboratorio2.Application.Aplicacion;
 import Laboratorio2.Exceptions.LibroException;
-import Laboratorio2.Model.Biblioteca;
-import Laboratorio2.Model.Libro;
-import Laboratorio2.Model.Prestamo;
-import Laboratorio2.Model.Usuario;
+import Laboratorio2.Model.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -54,6 +51,7 @@ public class CrudLibroBiblioteca {
 
     private ObservableList<Prestamo> vistaListaPrestamos = FXCollections.observableArrayList();
 
+    private ObservableList<Usuario> vistaLogin = FXCollections.observableArrayList();
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -173,7 +171,10 @@ public class CrudLibroBiblioteca {
     private TableColumn<Prestamo, String> col_idPrestamo;
 
     @FXML
-    private TableColumn<Prestamo, Prestamo> col_prestamo;
+    private TableColumn<Prestamo, DetallePrestamo> col_prestamo;
+
+    @FXML
+    private TableColumn<Prestamo, Usuario> col_usuarioPrestamo;
 
     @FXML
     private Button btnCerrarSesionPrestamo;
@@ -220,12 +221,16 @@ public class CrudLibroBiblioteca {
     @FXML
     void cerrarSesionP(ActionEvent event) {
         singleton.mostrarLogin("/Laboratorio2/View/Login.fxml");
+        singleton.cerrarSesion();
     }
+
 
     @FXML
     void cerrarSesionD(ActionEvent event) {
         singleton.mostrarLogin("/Laboratorio2/View/Login.fxml");
+        singleton.cerrarSesion();
     }
+
 
     @FXML
     void SolicitarPrestamo(ActionEvent event) throws Exception {
@@ -236,6 +241,8 @@ public class CrudLibroBiblioteca {
 
         singleton.prestarLibro(libro, usuario);
         observarLibrosDisponibles();
+        observarPrestamos();
+        observarLibrosPrestados(usuario.getCedula());
 
         limpiarCampos();
 
@@ -296,9 +303,10 @@ public class CrudLibroBiblioteca {
         vistaListaFiltros.setAll("Autor", "Fecha");
         cboxOrden.setItems(vistaListaFiltros);
 
-        vistaListaUsuarios.setAll(singleton.obtenerListaUsuariosEstudiantes());
-        cboxEstudiantes.setItems(vistaListaUsuarios);
-        cboxUsuarioPrestamo.setItems(vistaListaUsuarios);
+        vistaLogin.setAll(singleton.obtenerlistaLogin());
+        //vistaListaUsuarios.setAll(singleton.obtenerListaUsuariosEstudiantes());
+        cboxEstudiantes.setItems(vistaLogin);
+        cboxUsuarioPrestamo.setItems(vistaLogin);
 
 
 
@@ -421,14 +429,16 @@ public class CrudLibroBiblioteca {
     }
 
     private void observarPrestamos() {
-        col_idPrestamo.setCellValueFactory(new PropertyValueFactory<>("id"));
-        col_prestamo.setCellValueFactory(new PropertyValueFactory<>("listaDetallePrestamo"));
 
+        col_idPrestamo.setCellValueFactory(new PropertyValueFactory<>("id"));
+        col_usuarioPrestamo.setCellValueFactory(new PropertyValueFactory<>("usuario"));
+        col_prestamo.setCellValueFactory(new PropertyValueFactory<>("listaDetallePrestamo"));
 
         HashMap<String, Prestamo> listaPrestamos = singleton.listaPrestamos();
         ArrayList<Prestamo> listaValorPrestamos = new ArrayList<>(listaPrestamos.values());
         vistaListaPrestamos.setAll(listaValorPrestamos);
         tblPrestamos.setItems(vistaListaPrestamos);
+
 
     }
 

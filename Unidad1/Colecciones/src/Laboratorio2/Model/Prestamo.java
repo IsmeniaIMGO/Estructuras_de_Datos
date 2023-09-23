@@ -72,20 +72,7 @@ public class Prestamo implements Comparable<Prestamo>{
                 ", listaDetallePrestamo=" + listaDetallePrestamo +
                 '}';
     }
-
-
-
-    //Metodo para crear un detalle de prestamo
-    public void crearDetallePrestamo(String id, Libro libro){
-        DetallePrestamo detallePrestamo = new DetallePrestamo(id, libro);
-        listaDetallePrestamo.put(id, detallePrestamo);
-    }
-
-    //Metodo para eliminar un detalle de prestamo
-    public void eliminarDetallePrestamo(String id){
-        listaDetallePrestamo.remove(id);
-    }
-
+    
     //Metodo para buscar un detalle de prestamo
     public DetallePrestamo buscarDetallePrestamo(String id){
         return listaDetallePrestamo.get(id);

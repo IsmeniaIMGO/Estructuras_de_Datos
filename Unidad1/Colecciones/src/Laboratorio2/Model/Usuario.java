@@ -97,11 +97,7 @@ public class Usuario implements Comparable<Usuario>{
     // Metodo toString
     @Override
     public String toString() {
-        return "Usuario{" +
-                "nombre='" + nombre + '\'' +
-                ", cedula='" + cedula + '\'' +
-                ", tipoUsuario=" + tipoUsuario +
-                '}';
+        return "nombre: " + nombre + " cedula: " + cedula;
     }
 
     // Metodo compareTo

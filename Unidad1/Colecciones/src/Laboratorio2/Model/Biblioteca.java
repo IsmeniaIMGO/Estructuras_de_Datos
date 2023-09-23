@@ -18,6 +18,8 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
     private HashSet<Usuario> listaBibliotecarios = new HashSet<>();
     private HashMap<String, Prestamo> listaPrestamos = new HashMap<>();
 
+    private ArrayList<Usuario> listaLogin = new ArrayList<>();
+
 
     // Constructor sin atributos
     public Biblioteca() {
@@ -31,7 +33,8 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
                       ArrayList<Usuario> listaUsuarios,
                       TreeSet<Usuario> listaEstudiantes,
                       HashSet<Usuario> listaBibliotecarios,
-                      HashMap<String, Prestamo> listaPrestamos) {
+                      HashMap<String, Prestamo> listaPrestamos,
+                      ArrayList<Usuario> listaLogin) {
         this.nit = nit;
         this.nombre = nombre;
         this.ListaLibros = listaLibros;
@@ -41,6 +44,7 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
         this.listaEstudiantes = listaEstudiantes;
         this.listaBibliotecarios = listaBibliotecarios;
         this.listaPrestamos = listaPrestamos;
+        this.listaLogin = listaLogin;
     }
 
     // Getters y Setters
@@ -114,6 +118,14 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
 
     public void setListaPrestamos(HashMap<String, Prestamo> listaPrestamos) {
         this.listaPrestamos = listaPrestamos;
+    }
+
+    public ArrayList<Usuario> getListaLogin() {
+        return listaLogin;
+}
+
+    public void setListaLogin(ArrayList<Usuario> listaLogin) {
+        this.listaLogin = listaLogin;
     }
 
     // Metodos hashCode y equals
@@ -353,6 +365,7 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
         Usuario usuario = buscarUsser(usser);
 
         if ((usuario != null) && (usuario.getPassword().equals(password)) && (usuario.getTipoUsuario() == TipoUsuario.ESTUDIANTE)) {
+            listaLogin.add(usuario);
             return true;
         }
         return false;
@@ -408,5 +421,9 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
             }
         }
          return librosPrestados;
+    }
+
+    public void cerrarSesion() {
+        listaLogin.clear();
     }
 }

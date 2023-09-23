@@ -53,10 +53,7 @@ public class DetallePrestamo implements Comparable<DetallePrestamo>{
     // Metodo toString
     @Override
     public String toString() {
-        return "DetallePrestamo{" +
-                "id='" + id + '\'' +
-                ", libro=" + libro +
-                '}';
+        return libro.getNombre();
     }
 
     @Override
