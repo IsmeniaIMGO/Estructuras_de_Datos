@@ -218,7 +218,7 @@ public class CrudUsuarioController {
 
     private void actualizarUsuario() throws Exception {
         String usser = txtUsser.getText();
-        String password = txtNombreUsuario.getText();
+        String password = txtPassword.getText();
         String nombre = txtNombreUsuario.getText();
         String cedula = txtCedula.getText();
         TipoUsuario tipoUsuario = null;

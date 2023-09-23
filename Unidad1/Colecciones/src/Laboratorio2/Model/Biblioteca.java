@@ -186,8 +186,10 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
     }
     @Override
     public boolean existeUsser(String usser) throws Exception{
-        for (Usuario usuario : listaUsuarios) {
-            if(usuario.getUsser().equals(usser)){
+        Iterator<Usuario> iterator = listaUsuarios.iterator();
+        while (iterator.hasNext()) {
+            Usuario usuario = iterator.next();
+            if (usuario.getUsser().equals(usser)) {
                 return true;
             }
         }
@@ -196,8 +198,10 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
 
     @Override
     public Usuario buscarUsuario(String cedula) {
-        for (Usuario usuario : listaUsuarios) {
-            if(usuario.getCedula().equals(cedula)){
+        Iterator<Usuario> iterator = listaUsuarios.iterator();
+        while (iterator.hasNext()) {
+            Usuario usuario = iterator.next();
+            if (usuario.getCedula().equals(cedula)) {
                 return usuario;
             }
         }
@@ -211,24 +215,30 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
         if (!existeUsuario(cedula))
             throw new UsuarioException("El usuario con ID " + cedula + " no se encuentra registrado dentro de la empresa");
 
-        for (Usuario u : listaUsuarios) {
+        Iterator<Usuario> iterator = listaUsuarios.iterator();
+        while (iterator.hasNext()) {
+            Usuario u = iterator.next();
             if (u.getCedula().equals(cedula)) {
-                listaUsuarios.remove(u);
-                break;
+                iterator.remove();  // Elimina el usuario actual de la lista
+                break;  // Termina el bucle después de eliminar el usuario
             }
         }
 
-        for (Usuario u : listaEstudiantes) {
+        Iterator<Usuario> iterator2 = listaEstudiantes.iterator();
+        while (iterator2.hasNext()) {
+            Usuario u = iterator2.next();
             if (u.getCedula().equals(cedula)) {
-                listaEstudiantes.remove(u);
-                break;
+                iterator2.remove();  // Elimina el estudiante actual del TreeSet
+                break;  // Termina el bucle después de eliminar el estudiante
             }
         }
 
-        for (Usuario u : listaBibliotecarios) {
+        Iterator<Usuario> iterator3 = listaBibliotecarios.iterator();
+        while (iterator3.hasNext()) {
+            Usuario u = iterator3.next();
             if (u.getCedula().equals(cedula)) {
-                listaBibliotecarios.remove(u);
-                break;
+                iterator3.remove();  // Elimina el bibliotecario actual del HashSet
+                break;  // Termina el bucle después de eliminar el bibliotecario
             }
         }
 
@@ -238,12 +248,14 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
     public void actualizarUsuario(String nuevoUsser, String nuevaPassword, String nuevoNombre, String cedula, TipoUsuario nuevoTipo) {
         if(!cedula.equals("")){
 
-            for(Usuario u : listaUsuarios){
-                if(u != null && u.getCedula() != null && u.getCedula().equals(cedula)){
-                    if(!nuevoUsser.equals("")) u.setUsser(nuevoUsser);
-                    if(!nuevaPassword.equals("")) u.setPassword(nuevaPassword);
-                    if(!nuevoNombre.equals("")) u.setNombre(nuevoNombre);
-                    if(nuevoTipo != null) u.setTipoUsuario(nuevoTipo);
+            Iterator<Usuario> iterator = listaUsuarios.iterator();
+            while (iterator.hasNext()) {
+                Usuario u = iterator.next();
+                if (u != null && u.getCedula() != null && u.getCedula().equals(cedula)) {
+                    if (!nuevoUsser.equals("")) u.setUsser(nuevoUsser);
+                    if (!nuevaPassword.equals("")) u.setPassword(nuevaPassword);
+                    if (!nuevoNombre.equals("")) u.setNombre(nuevoNombre);
+                    if (nuevoTipo != null) u.setTipoUsuario(nuevoTipo);
                 }
             }
 
@@ -252,8 +264,10 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
 
     @Override
     public boolean existeUsuario(String cedula) {
-        for (Usuario usuario : listaUsuarios) {
-            if(usuario.getCedula().equals(cedula)){
+        Iterator<Usuario> iterator = listaUsuarios.iterator();
+        while (iterator.hasNext()) {
+            Usuario usuario = iterator.next();
+            if (usuario.getCedula().equals(cedula)) {
                 return true;
             }
         }
@@ -282,8 +296,10 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
 
     @Override
     public Libro buscarLibro(String id) {
-        for (Libro libro : ListaLibros) {
-            if(libro.getId().equals(id)){
+        Iterator<Libro> iterator = ListaLibros.iterator();
+        while (iterator.hasNext()) {
+            Libro libro = iterator.next();
+            if (libro.getId().equals(id)) {
                 return libro;
             }
         }
@@ -295,23 +311,29 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
         if (!existeLibro(id))
             throw new LibroException("El libro con ID " + id + " no se encuentra registrado dentro de la empresa");
 
-        for (Libro libro : ListaLibros) {
-            if(libro.getId().equals(id)){
-                ListaLibros.remove(libro);
+        Iterator<Libro> iterator = ListaLibros.iterator();
+        while (iterator.hasNext()) {
+            Libro libro = iterator.next();
+            if (libro.getId().equals(id)) {
+                iterator.remove();
                 break;
             }
         }
 
-        for (Libro libro : librosPorAutor) {
-            if(libro.getId().equals(id)){
-                librosPorAutor.remove(libro);
+        Iterator<Libro> iterator2 = librosPorAutor.iterator();
+        while (iterator2.hasNext()) {
+            Libro libro = iterator2.next();
+            if (libro.getId().equals(id)) {
+                iterator2.remove();
                 break;
             }
         }
 
-        for (Libro libro : librosPorFecha) {
-            if(libro.getId().equals(id)){
-                librosPorFecha.remove(libro);
+        Iterator<Libro> iterator3 = librosPorFecha.iterator();
+        while (iterator3.hasNext()) {
+            Libro libro = iterator3.next();
+            if (libro.getId().equals(id)) {
+                iterator3.remove();
                 break;
             }
         }
@@ -321,11 +343,13 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
     public void actualizarLibro(String id, String nombre, String autor, int fechaPublicacion) {
         if(!id.equals("")){
 
-            for(Libro l : ListaLibros){
-                if(l != null && l.getId() != null && l.getId().equals(id)){
-                    if(!nombre.equals("")) l.setNombre(nombre);
-                    if(!autor.equals("")) l.setAutor(autor);
-                    if(fechaPublicacion != 0) l.setFechaPublicacion(fechaPublicacion);
+            Iterator<Libro> iterator = ListaLibros.iterator();
+            while (iterator.hasNext()) {
+                Libro libro = iterator.next();
+                if (libro != null && libro.getId() != null && libro.getId().equals(id)) {
+                    if (!nombre.equals("")) libro.setNombre(nombre);
+                    if (!autor.equals("")) libro.setAutor(autor);
+                    if (fechaPublicacion != 0) libro.setFechaPublicacion(fechaPublicacion);
                 }
             }
 
@@ -334,8 +358,10 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
 
     @Override
     public boolean existeLibro(String id) {
-        for (Libro libro : ListaLibros) {
-            if(libro.getId().equals(id)){
+        Iterator<Libro> iterator = ListaLibros.iterator();
+        while (iterator.hasNext()) {
+            Libro libro = iterator.next();
+            if (libro.getId().equals(id)) {
                 return true;
             }
         }
@@ -352,8 +378,10 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
     }
 
     private Usuario buscarUsser(String usser) {
-        for (Usuario usuario : listaUsuarios) {
-            if(usuario.getUsser().equals(usser)){
+        Iterator<Usuario> iterator = listaUsuarios.iterator();
+        while (iterator.hasNext()) {
+            Usuario usuario = iterator.next();
+            if (usuario.getUsser().equals(usser)) {
                 return usuario;
             }
         }
@@ -401,7 +429,9 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
 
 
 
-        for (Usuario u : listaUsuarios) {
+        Iterator<Usuario> iterator = listaUsuarios.iterator();
+        while (iterator.hasNext()) {
+            Usuario u = iterator.next();
             if (u.getCedula().equals(usuario.getCedula())) {
                 u.getListaPrestamos().remove(libro);
                 break;
@@ -414,13 +444,15 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
 
     public ArrayList<Libro> listaLibrosPrestados(String cedula) {
         ArrayList<Libro> librosPrestados = new ArrayList<>();
-
-        for (Usuario usuario : listaUsuarios) {
-            if(usuario.getCedula().equals(cedula)){
+        Iterator<Usuario> iterator = listaUsuarios.iterator();
+        while (iterator.hasNext()) {
+            Usuario usuario = iterator.next();
+            if (usuario.getCedula().equals(cedula)) {
                 librosPrestados = usuario.getListaPrestamos();
+                break;
             }
         }
-         return librosPrestados;
+        return librosPrestados;
     }
 
     public void cerrarSesion() {
