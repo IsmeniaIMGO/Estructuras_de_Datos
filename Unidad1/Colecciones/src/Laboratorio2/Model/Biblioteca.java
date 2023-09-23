@@ -401,6 +401,7 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
 
     @Override
     public void prestarLibro(Libro libro, Usuario usuario) throws Exception {
+        Random random = new Random();
 
         if (libro == null)
             throw new NuloVacioException("Elija un libro para el prestamo");
@@ -409,9 +410,13 @@ public class Biblioteca implements ICrudUsuario, ICrudLibro, ILogin, ITransaccio
             throw new NuloVacioException("Elija su usuario para hacer el prestamo");
 
         HashMap<String, DetallePrestamo> listaDetallePrestamo = new HashMap<>();
+        String id = libro.getId();
+        if (listaPrestamos.containsKey(id))
+            id = String.valueOf(random.nextInt(100)) ;
+
         listaDetallePrestamo.put(libro.getId(), new DetallePrestamo(libro.getId(), libro));
 
-        Prestamo prestamo = new Prestamo(libro.getId(), usuario, listaDetallePrestamo);
+        Prestamo prestamo = new Prestamo(id, usuario, listaDetallePrestamo);
 
         usuario.getListaPrestamos().add(libro);
         listaPrestamos.put(prestamo.getId(), prestamo);
