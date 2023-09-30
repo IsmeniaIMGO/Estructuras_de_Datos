@@ -226,11 +226,9 @@ public class ListaSimple<T> implements Iterable<T> {
 		return -1;
 	}
 
-	/*
-		anterior(L,p) Devuelve la posición/dirección del nodo anterior a p.
-		primero(L) Devuelve la posición/dirección del primer nodo de la lista L.
-		anula(L) Vacía la lista L.
-	 */
+	public void vaciar() {
+		nodoPrimero = null;
+	}
 
 
 	/**
