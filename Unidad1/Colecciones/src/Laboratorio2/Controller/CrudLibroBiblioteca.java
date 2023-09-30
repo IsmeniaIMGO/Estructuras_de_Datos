@@ -187,6 +187,7 @@ public class CrudLibroBiblioteca {
     @FXML
     void CrearLibro(ActionEvent event) throws Exception {
         crearLibro();
+        observarLibrosDisponibles();
         observarLibrosCreados();
         observarDatosAutor();
         observarDatosFecha();
