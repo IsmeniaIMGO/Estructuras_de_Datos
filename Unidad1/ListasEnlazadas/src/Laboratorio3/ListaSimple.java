@@ -52,7 +52,7 @@ public class ListaSimple<T> implements Iterable<T> {
 	public String toString() {
 		return "ListaSimple{" +
 				"nodoPrimero=" + nodoPrimero +
-				", nodoUltimo=" + nodoUltimo +
+				/*", nodoUltimo=" + nodoUltimo +*/
 				", size=" + size +
 				'}';
 	}
@@ -103,42 +103,35 @@ public class ListaSimple<T> implements Iterable<T> {
 	 * @param dato
 	 * @return
 	 */
-	public T eliminar(T dato){
+	public T eliminar(T dato) {
 		Nodo<T> nodo = nodoPrimero;
 		Nodo<T> previo = null;
-		Nodo<T> siguiente = null;
-		boolean encontrado = false;
 
-		//buscar el nodo previo
-		while(nodo!=null) {
-			if( nodo.getValorNodo() == dato ) {
-				encontrado = true;
-				break;
+		// Buscar el nodo a eliminar
+		while (nodo != null) {
+			if (nodo.getValorNodo().equals(dato)) {
+				if (previo == null) {
+					// El nodo a eliminar es el primero
+					nodoPrimero = nodo.getSiguienteNodo();
+				} else {
+					// El nodo a eliminar está en medio o al final
+					previo.setSiguienteNodo(nodo.getSiguienteNodo());
+				}
+
+				// Liberar el nodo eliminado
+				nodo.setSiguienteNodo(null);
+				size--;
+				return dato;
 			}
+
 			previo = nodo;
 			nodo = nodo.getSiguienteNodo();
 		}
 
-		if(encontrado) {
-			siguiente = nodo.getSiguienteNodo();
-			if( previo==null ) {
-				nodoPrimero = siguiente;
-			}else {
-				previo.setSiguienteNodo(siguiente);
-			}
-
-			if(siguiente==null) {
-//				nodoUltimo = previo;
-			}else {
-				nodo.setSiguienteNodo(null);
-			}
-
-			nodo = null;
-			size--;
-			return dato;
-		}
-		throw new RuntimeException("El elemento no existe");
+		// El elemento no fue encontrado
+		throw new RuntimeException("El elemento no existe: " + dato);
 	}
+
 
 
 	/**
