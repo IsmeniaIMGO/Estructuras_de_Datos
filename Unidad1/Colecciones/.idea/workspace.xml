@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5d730c84-a4c0-48d6-b661-8cec45ca6f8a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Controller/CrudLibroBiblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Controller/CrudLibroBiblioteca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Application/Aplicacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Application/Aplicacion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,6 +113,9 @@
       <workItem from="1695510201151" duration="1511000" />
       <workItem from="1695592371986" duration="2864000" />
       <workItem from="1695949991073" duration="101000" />
+      <workItem from="1696217430572" duration="1262000" />
+      <workItem from="1696441569822" duration="1594000" />
+      <workItem from="1696981927658" duration="134000" />
     </task>
     <servers />
   </component>

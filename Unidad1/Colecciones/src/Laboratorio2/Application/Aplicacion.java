@@ -123,7 +123,6 @@ public class Aplicacion extends Application {
 
             crudLibroBiblioteca.getTabCrudLibro().getTabs().remove(1);
 
-
             crudLibroBiblioteca.getBtnSolicitarPrestamo().setDisable(true);
             crudLibroBiblioteca.getBtnDevolverLibro().setDisable(true);
             crudLibroBiblioteca.getCboxEstudiante().setDisable(true);

@@ -48,7 +48,14 @@ public class ListaSimple<T> implements Iterable<T> {
 		this.size = size;
 	}
 
-
+	@Override
+	public String toString() {
+		return "ListaSimple{" +
+				"nodoPrimero=" + nodoPrimero +
+				", nodoUltimo=" + nodoUltimo +
+				", size=" + size +
+				'}';
+	}
 
 	//-------------------Metodos basicos-------------------
 
@@ -162,25 +169,17 @@ public class ListaSimple<T> implements Iterable<T> {
 	 * @return
 	 */
 	public T obtenerValorNodo(int indice) {
-		
-		Nodo<T> nodoTemporal = null;
-		int contador = 0;
-		
-		if(indiceValido(indice))
-		{
-			nodoTemporal = nodoPrimero;
-			
-			while (contador < indice) {
-				
-				nodoTemporal = nodoTemporal.getSiguienteNodo();
-				contador++;
-			}
+		if (indice < 0 || indice >= size) {
+			throw new IndexOutOfBoundsException("Índice fuera de rango: " + indice);
 		}
-		
-		if(nodoTemporal != null)
-			return nodoTemporal.getValorNodo();
-		else
-			return null;
+
+		Nodo<T> actual = nodoPrimero;
+		for (int i = 0; i < indice; i++) {
+			actual = actual.getSiguienteNodo();
+		}
+
+		return actual.getValorNodo();
+
 	}
 
 
