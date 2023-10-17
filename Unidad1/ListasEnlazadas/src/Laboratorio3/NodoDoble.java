@@ -68,7 +68,12 @@ public class NodoDoble<T> {
 	public void setAnteriorNodo(NodoDoble<T> anteriorNodo) {
 		this.anteriorNodo = anteriorNodo;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return /*"NodoDoble{" +
+				"siguienteNodo=" + siguienteNodo +
+				", anteriorNodo=" + anteriorNodo +
+				*/", valorNodo=" + valorNodo + '}';
+	}
 }

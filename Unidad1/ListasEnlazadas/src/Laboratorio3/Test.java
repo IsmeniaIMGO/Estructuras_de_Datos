@@ -93,14 +93,49 @@ public class Test {
         System.out.println("8. Lista de personas con cédula par: "+ cedulasPares2+"\n");
 
         //------------------------Ejercicio 9----------------------------
+        //Escribir el método insertar y buscar de una lista circular.
+        //ejercicio resuelto dentro de la clase lista simple y doble circular
 
+        //------------------------Ejercicio 10----------------------------
+
+        //Escribir un método que permita “concatenar” dos listas enlazadas simples, el método debe recibir como parámetro dos objetos de tipo Lista, unirlas y retornar una lista que contenga a ambas.
+
+        ListaSimple<Integer> listaNumeros6 = new ListaSimple<Integer>();
+        listaNumeros6.agregarfinal(3);
+        listaNumeros6.agregarfinal(4);
+        listaNumeros6.agregarfinal(5);
+
+        ListaSimple<Integer> listaNumeros7 = new ListaSimple<Integer>();
+        listaNumeros7.agregarfinal(6);
+        listaNumeros7.agregarfinal(7);
+        listaNumeros7.agregarfinal(8);
+
+        ListaSimple<Integer> listaConcatenada = new ListaSimple<Integer>();
+        listaConcatenada = concatenarListas(listaNumeros6, listaNumeros7);
+
+        System.out.println("10. Lista concatenada: "+ listaConcatenada+"\n");
+
+
+        //------------------------Ejercicio 11----------------------------
+        Polinomio polinomio = new Polinomio();
+        polinomio.agregarTermino(3, 4);
+        polinomio.agregarTermino(-4, 2);
+        polinomio.agregarTermino(11, 0);
+
+        System.out.println("11. Tabla de valores del polinomio:");
+        polinomio.imprimirPolinomio();
+        System.out.println("\n x\tPolinomio(x)");
+
+        for (double x = 0.0; x <= 5.0; x += 0.5) {
+            double resultado = polinomio.evaluar(x);
+            System.out.println(x + "\t" + resultado);
+        }
 
 
 
         
 
     }
-
 
     /**
      * 1. Obtener los números de las posiciones impares de una lista enlazada simple de números
@@ -202,7 +237,7 @@ public class Test {
      * Obtener la lista de personas tengan cédula con cantidad de elementos par
      * de una lista enlazada doble de personas.
      * @param listaPersonas2
-     * @return
+     * @return listaAux
      */
     private static ListaDoble<Persona> obtenerCedulasPares2(ListaDoble<Persona> listaPersonas2) {
 
@@ -214,6 +249,32 @@ public class Test {
             }
         }
         return listaAux;
+
+    }
+
+
+    /**
+     * Escribir un método que permita “concatenar” dos listas enlazadas simples,
+     * el método debe recibir como parámetro dos objetos de tipo Lista, unirlas
+     * y retornar una lista que contenga a ambas.
+     * @param listaNumeros6
+     * @param listaNumeros7
+     * @return listaAux
+     */
+    private static ListaSimple<Integer> concatenarListas(ListaSimple<Integer> listaNumeros6, ListaSimple<Integer> listaNumeros7) {
+
+        ListaSimple<Integer> listaAux = new ListaSimple<Integer>();
+
+        for (int i = 0; i < listaNumeros6.getSize(); i++) {
+            listaAux.agregarfinal(listaNumeros6.obtenerValorNodo(i));
+        }
+
+        for (int i = 0; i < listaNumeros7.getSize(); i++) {
+            listaAux.agregarfinal(listaNumeros7.obtenerValorNodo(i));
+        }
+
+        return listaAux;
+
 
     }
 
