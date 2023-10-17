@@ -31,7 +31,7 @@ public class NodoSimple<T> {
 	public NodoSimple(T dato, NodoSimple<T> siguiente) {
 		super();
 		this.valorNodo = dato;
-		this.siguienteNodoSimple = siguiente;
+		this.siguienteNodoSimple = null;
 	}
 	
 

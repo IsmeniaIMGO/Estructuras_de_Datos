@@ -1,5 +1,9 @@
 package Laboratorio3;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Test {
 
     public static void main(String[] args) {
@@ -74,9 +78,10 @@ public class Test {
         listaNumeros5.imprimirLista();
         System.out.println("Lista de números hacia atrás: ");
         listaNumeros5.imprimirAtras();
+        System.out.println("\n");
 
         //------------------------Ejercicio 7----------------------------
-        //ejercicio resuelto dentro de la clase lista doble
+        System.out.println("7. ejercicio resuelto dentro de la clase lista doble \n");
 
 
         //------------------------Ejercicio 8----------------------------
@@ -94,7 +99,7 @@ public class Test {
 
         //------------------------Ejercicio 9----------------------------
         //Escribir el método insertar y buscar de una lista circular.
-        //ejercicio resuelto dentro de la clase lista simple y doble circular
+        System.out.println("9. ejercicio resuelto dentro de la clase lista simple y doble circular \n");
 
         //------------------------Ejercicio 10----------------------------
 
@@ -132,15 +137,25 @@ public class Test {
         }
 
 
+        //------------------------Ejercicio 12----------------------------
 
+        ListaCalculo lista = leerArchivo();
+        double media = obtenerMedia(lista);
+        double desviacionEstandar = obtenerDesviacionEstandar(lista, media);
+
+
+        System.out.println("\n 12. Calculos");
+        System.out.println("Media: " + media);
+        System.out.println("Desviación estándar: " + desviacionEstandar);
         
 
     }
 
+
     /**
      * 1. Obtener los números de las posiciones impares de una lista enlazada simple de números
      * @param listaNumeros
-     * @return
+     * @return listaAux
      */
     public static ListaSimple<Integer> obtenerPosImpares(ListaSimple<Integer> listaNumeros) {
 
@@ -160,7 +175,7 @@ public class Test {
     /**
      * 2. Obtener la lista de personas tengan cédula con cantidad de números par de una lista
      * @param listaPersonas
-     * @return
+     * @return listaAux
      */
     private static ListaSimple<Persona> obtenerCedulasPares(ListaSimple<Persona> listaPersonas) {
 
@@ -179,7 +194,7 @@ public class Test {
     /**
      * 3. Obtener los números pares de una lista enlazada simple de números y eliminarlos de la lista
      * @param listaNumeros2
-     * @return
+     * @return listaAux
      */
     private static ListaSimple<Integer> obtenerPares(ListaSimple<Integer> listaNumeros2) {
 
@@ -200,7 +215,7 @@ public class Test {
     /**
      * 4. Obtener una lista enlazada con los valores impares de una lista enlazada simple de números
      * @param listaNumeros3
-     * @return
+     * @return listaAux
      */
     private static ListaSimple<Integer> obtenerValorImpares(ListaSimple<Integer> listaNumeros3) {
 
@@ -219,7 +234,7 @@ public class Test {
      * 5. Escribir un método que retorne la cantidad de veces que se repite un valor en una lista enlazada.
      * @param listaNumeros4
      * @param valor
-     * @return
+     * @return cantidad
      */
     private static int obtenerCantidad(ListaSimple<Integer> listaNumeros4, int valor) {
 
@@ -233,8 +248,9 @@ public class Test {
         return cantidad;
     }
 
+
     /**
-     * Obtener la lista de personas tengan cédula con cantidad de elementos par
+     * 8. Obtener la lista de personas tengan cédula con cantidad de elementos par
      * de una lista enlazada doble de personas.
      * @param listaPersonas2
      * @return listaAux
@@ -254,7 +270,7 @@ public class Test {
 
 
     /**
-     * Escribir un método que permita “concatenar” dos listas enlazadas simples,
+     * 10. Escribir un método que permita “concatenar” dos listas enlazadas simples,
      * el método debe recibir como parámetro dos objetos de tipo Lista, unirlas
      * y retornar una lista que contenga a ambas.
      * @param listaNumeros6
@@ -274,7 +290,66 @@ public class Test {
         }
 
         return listaAux;
+    }
 
+    /**
+     * 12.1 metodo que lee un archivo con numeros y los guarda en una lista
+     * @param
+     * @return listaAux
+     */
+    private static ListaCalculo leerArchivo() {
+
+        ListaCalculo listaAux = new ListaCalculo();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("src/Laboratorio3/numeros.txt"));
+            String linea = br.readLine();
+            while (linea != null) {
+                double valor = Double.parseDouble(linea);
+                listaAux.agregar(valor);
+                linea = br.readLine();
+            }
+            br.close();
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo");
+        }
+
+        return listaAux;
+    }
+
+    /**
+     * 12.2 metodo que obtiene la media de una lista
+     * @param lista
+     * @return media
+     */
+    private static double obtenerMedia(ListaCalculo lista) {
+        double size = lista.obtenersize();
+
+        double suma = lista.obtenerSuma();
+        double media = suma / size;
+
+        return media;
+
+    }
+
+    /**
+     * 12.3 metodo que obtiene la desviacion estandar de una lista
+     * @param lista
+     * @param media
+     * @return desviacionEstandar
+     */
+    private static double obtenerDesviacionEstandar(ListaCalculo lista, double media) {
+        double size = lista.obtenersize();
+        double sumaDiferenciasCuadrado = 0.0;
+        NodoCalculo actual = lista.cabeza;
+
+        while (actual != null) {
+            sumaDiferenciasCuadrado += Math.pow(actual.valor - media, 2);
+            actual = actual.siguiente;
+        }
+
+        double desviacionEstandar = Math.sqrt(sumaDiferenciasCuadrado / (size-1));
+
+        return desviacionEstandar;
 
     }
 
