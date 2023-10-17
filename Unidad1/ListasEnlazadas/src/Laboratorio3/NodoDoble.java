@@ -3,22 +3,24 @@ package Laboratorio3;
 
 /**
  * Clase nodo aplicando Generics
- * @param <T>
+ * 
+ * 
+ * 
  * **/
 
 
-public class Nodo<T> {
+public class NodoDoble<T> {
 
+	private NodoDoble<T> siguienteNodo;
+	private NodoDoble<T> anteriorNodo;
 	private T valorNodo;
-	private Nodo<T> siguienteNodo;
-
 	
 	
 	/**
 	 * Constructor de la clase Nodo
-	 * dato Elemento que se guarda en el Nodo
+	 * @param dato Elemento que se guarda en el Nodo
 	 */
-	public Nodo(T valorNodo) {
+	public NodoDoble(T valorNodo) {
 		this.valorNodo = valorNodo;
 	}
 	
@@ -28,21 +30,22 @@ public class Nodo<T> {
 	 * @param dato Elemento que se guarda en el Nodo
 	 * @param siguiente Enlace al siguiente Nodo
 	 */
-	public Nodo(T dato, Nodo<T> siguiente) {
+	public NodoDoble(T dato, NodoDoble<T> siguiente,NodoDoble<T> anterior) {
 		super();
 		this.valorNodo = dato;
 		this.siguienteNodo = siguiente;
+		this.anteriorNodo = anterior;
 	}
 	
 
 	//Metodos get y set de la clase Nodo
 	
-	public Nodo<T> getSiguienteNodo() {
+	public NodoDoble<T> getSiguienteNodo() {
 		return siguienteNodo;
 	}
 
 
-	public void setSiguienteNodo(Nodo<T> siguienteNodo) {
+	public void setSiguienteNodo(NodoDoble<T> siguienteNodo) {
 		this.siguienteNodo = siguienteNodo;
 	}
 
@@ -56,9 +59,16 @@ public class Nodo<T> {
 		this.valorNodo = valorNodo;
 	}
 
-	@Override
-	public String toString() {
-		return "valorNodo=" + valorNodo +
-				", siguienteNodo=" + siguienteNodo;
+
+	public NodoDoble<T> getAnteriorNodo() {
+		return anteriorNodo;
 	}
+
+
+	public void setAnteriorNodo(NodoDoble<T> anteriorNodo) {
+		this.anteriorNodo = anteriorNodo;
+	}
+	
+	
+	
 }

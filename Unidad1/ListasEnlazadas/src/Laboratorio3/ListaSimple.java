@@ -11,33 +11,33 @@ import java.util.Iterator;
 
 public class ListaSimple<T> implements Iterable<T> {
 	
-	private Nodo<T> nodoPrimero;
-	private Nodo<T> nodoUltimo;
+	private NodoSimple<T> nodoSimplePrimero;
+	private NodoSimple<T> nodoSimpleUltimo;
 	private int size;
 	
 
 	public ListaSimple() {
-		nodoPrimero = null;
-		nodoUltimo = null;
+		nodoSimplePrimero = null;
+		nodoSimpleUltimo = null;
 		size = 0;
 	}
 
 	//Metodos get y set de la clase ListaSimple
 
-	public Nodo<T> getNodoPrimero() {
-		return nodoPrimero;
+	public NodoSimple<T> getNodoPrimero() {
+		return nodoSimplePrimero;
 	}
 
-	public void setNodoPrimero(Nodo<T> nodoPrimero) {
-		this.nodoPrimero = nodoPrimero;
+	public void setNodoPrimero(NodoSimple<T> nodoSimplePrimero) {
+		this.nodoSimplePrimero = nodoSimplePrimero;
 	}
 
-	public Nodo<T> getNodoUltimo() {
-		return nodoUltimo;
+	public NodoSimple<T> getNodoUltimo() {
+		return nodoSimpleUltimo;
 	}
 
-	public void setNodoUltimo(Nodo<T> nodoUltimo) {
-		this.nodoUltimo = nodoUltimo;
+	public void setNodoUltimo(NodoSimple<T> nodoSimpleUltimo) {
+		this.nodoSimpleUltimo = nodoSimpleUltimo;
 	}
 
 	public int getSize() {
@@ -51,7 +51,7 @@ public class ListaSimple<T> implements Iterable<T> {
 	@Override
 	public String toString() {
 		return "ListaSimple{" +
-				"nodoPrimero=" + nodoPrimero +
+				"nodoPrimero=" + nodoSimplePrimero +
 				/*", nodoUltimo=" + nodoUltimo +*/
 				", size=" + size +
 				'}';
@@ -65,16 +65,16 @@ public class ListaSimple<T> implements Iterable<T> {
 	 */
 	public void agregarInicio(T valorNodo) {
 		
-		Nodo<T> nuevoNodo = new Nodo<>(valorNodo);
+		NodoSimple<T> nuevoNodoSimple = new NodoSimple<>(valorNodo);
 		
 		if(estaVacia())
 		{
-			nodoPrimero = nuevoNodo;
+			nodoSimplePrimero = nuevoNodoSimple;
 		}
 		else
 		{
-			nuevoNodo.setSiguienteNodo(nodoPrimero);
-			nodoPrimero = nuevoNodo;
+			nuevoNodoSimple.setSiguienteNodo(nodoSimplePrimero);
+			nodoSimplePrimero = nuevoNodoSimple;
 		}
 		size++;
 	}
@@ -86,13 +86,13 @@ public class ListaSimple<T> implements Iterable<T> {
 	 */
 	public void agregarfinal(T valorNodo) {
 		
-		Nodo<T> nodo = new Nodo<>(valorNodo);
+		NodoSimple<T> nodoSimple = new NodoSimple<>(valorNodo);
 		
 		if( estaVacia() ) {
-			nodoPrimero = nodoUltimo = nodo;
+			nodoSimplePrimero = nodoSimpleUltimo = nodoSimple;
 		}else {
-			nodoUltimo.setSiguienteNodo(nodo);
-			nodoUltimo = nodo;
+			nodoSimpleUltimo.setSiguienteNodo(nodoSimple);
+			nodoSimpleUltimo = nodoSimple;
 		}
 		
 		size++;
@@ -104,28 +104,28 @@ public class ListaSimple<T> implements Iterable<T> {
 	 * @return
 	 */
 	public T eliminar(T dato) {
-		Nodo<T> nodo = nodoPrimero;
-		Nodo<T> previo = null;
+		NodoSimple<T> nodoSimple = nodoSimplePrimero;
+		NodoSimple<T> previo = null;
 
 		// Buscar el nodo a eliminar
-		while (nodo != null) {
-			if (nodo.getValorNodo().equals(dato)) {
+		while (nodoSimple != null) {
+			if (nodoSimple.getValorNodo().equals(dato)) {
 				if (previo == null) {
 					// El nodo a eliminar es el primero
-					nodoPrimero = nodo.getSiguienteNodo();
+					nodoSimplePrimero = nodoSimple.getSiguienteNodo();
 				} else {
 					// El nodo a eliminar está en medio o al final
-					previo.setSiguienteNodo(nodo.getSiguienteNodo());
+					previo.setSiguienteNodo(nodoSimple.getSiguienteNodo());
 				}
 
 				// Liberar el nodo eliminado
-				nodo.setSiguienteNodo(null);
+				nodoSimple.setSiguienteNodo(null);
 				size--;
 				return dato;
 			}
 
-			previo = nodo;
-			nodo = nodo.getSiguienteNodo();
+			previo = nodoSimple;
+			nodoSimple = nodoSimple.getSiguienteNodo();
 		}
 
 		// El elemento no fue encontrado
@@ -141,12 +141,12 @@ public class ListaSimple<T> implements Iterable<T> {
 	public T eliminarPrimero() {
 
 		if( !estaVacia() ) {
-			Nodo<T> n = nodoPrimero;
+			NodoSimple<T> n = nodoSimplePrimero;
 			T valor = n.getValorNodo();
-			nodoPrimero = n.getSiguienteNodo();
+			nodoSimplePrimero = n.getSiguienteNodo();
 
-			if(nodoPrimero==null) {
-				nodoUltimo = null;
+			if(nodoSimplePrimero ==null) {
+				nodoSimpleUltimo = null;
 			}
 
 			size--;
@@ -166,7 +166,7 @@ public class ListaSimple<T> implements Iterable<T> {
 			throw new IndexOutOfBoundsException("Índice fuera de rango: " + indice);
 		}
 
-		Nodo<T> actual = nodoPrimero;
+		NodoSimple<T> actual = nodoSimplePrimero;
 		for (int i = 0; i < indice; i++) {
 			actual = actual.getSiguienteNodo();
 		}
@@ -181,17 +181,17 @@ public class ListaSimple<T> implements Iterable<T> {
 	 * @param indice
 	 * @return
 	 */
-	private Nodo<T> obtenerNodo(int indice) {
+	private NodoSimple<T> obtenerNodo(int indice) {
 		
 		if(indice>=0 && indice< size) {
 		
-			Nodo<T> nodo = nodoPrimero;
+			NodoSimple<T> nodoSimple = nodoSimplePrimero;
 			
 			for (int i = 0; i < indice; i++) {
-				nodo = nodo.getSiguienteNodo();
+				nodoSimple = nodoSimple.getSiguienteNodo();
 			}
 		
-			return nodo;			
+			return nodoSimple;
 		}
 		
 		return null;
@@ -208,7 +208,7 @@ public class ListaSimple<T> implements Iterable<T> {
 
 		int i = 0;
 		
-		for( Nodo<T> aux = nodoPrimero ; aux!=null ; aux = aux.getSiguienteNodo() ) {
+		for(NodoSimple<T> aux = nodoSimplePrimero; aux!=null ; aux = aux.getSiguienteNodo() ) {
 			if( aux.getValorNodo().equals(dato) ) {
 				return i;
 			}
@@ -219,7 +219,7 @@ public class ListaSimple<T> implements Iterable<T> {
 	}
 
 	public void vaciar() {
-		nodoPrimero = null;
+		nodoSimplePrimero = null;
 	}
 
 
@@ -231,8 +231,8 @@ public class ListaSimple<T> implements Iterable<T> {
 	public void modificarNodo(int indice, T nuevo) {
 
 		if( indiceValido(indice) ) {
-			Nodo<T> nodo = obtenerNodo(indice);
-			nodo.setValorNodo(nuevo);
+			NodoSimple<T> nodoSimple = obtenerNodo(indice);
+			nodoSimple.setValorNodo(nuevo);
 		}
 
 	}
@@ -243,7 +243,7 @@ public class ListaSimple<T> implements Iterable<T> {
 	 */
 	public void imprimirLista() {
 
-		Nodo<T> aux = nodoPrimero;
+		NodoSimple<T> aux = nodoSimplePrimero;
 
 		while(aux!=null) {
 			System.out.print( aux.getValorNodo()+"\t" );
@@ -270,39 +270,39 @@ public class ListaSimple<T> implements Iterable<T> {
 	 * @return
 	 */
 	public boolean estaVacia() {
-		return(nodoPrimero == null)?true:false;
+		return(nodoSimplePrimero == null)?true:false;
 	}
 
 
 	@Override
 	public Iterator<T> iterator() {
 		
-		return new IteradorListaSimple (nodoPrimero);
+		return new IteradorListaSimple (nodoSimplePrimero);
 	}
 	
 	public class IteradorListaSimple implements Iterator<T>{
 
-		private Nodo<T> nodo;
+		private NodoSimple<T> nodoSimple;
 		private int posicion;
 		
 		/**
 		 * Constructor de la clase Iterador
 		 * aux Primer Nodo de la lista
 		 */
-		public IteradorListaSimple(Nodo<T> nodo) {
-			this.nodo = nodo;
+		public IteradorListaSimple(NodoSimple<T> nodoSimple) {
+			this.nodoSimple = nodoSimple;
 			this.posicion = 0;
 		}
 		
 		@Override
 		public boolean hasNext() {
-			return nodo!=null;
+			return nodoSimple !=null;
 		}
 
 		@Override
 		public T next() {
-			T valor = nodo.getValorNodo();
-			nodo = nodo.getSiguienteNodo();
+			T valor = nodoSimple.getValorNodo();
+			nodoSimple = nodoSimple.getSiguienteNodo();
 			posicion++;
 			return valor;
 		}
