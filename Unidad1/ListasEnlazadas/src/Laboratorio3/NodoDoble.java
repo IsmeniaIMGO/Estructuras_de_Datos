@@ -3,11 +3,7 @@ package Laboratorio3;
 
 /**
  * Clase nodo aplicando Generics
- * 
- * 
- * 
  * **/
-
 
 public class NodoDoble<T> {
 
@@ -18,7 +14,7 @@ public class NodoDoble<T> {
 	
 	/**
 	 * Constructor de la clase Nodo
-	 * @param dato Elemento que se guarda en el Nodo
+	 * @param
 	 */
 	public NodoDoble(T valorNodo) {
 		this.valorNodo = valorNodo;
@@ -30,7 +26,7 @@ public class NodoDoble<T> {
 	 * @param dato Elemento que se guarda en el Nodo
 	 * @param siguiente Enlace al siguiente Nodo
 	 */
-	public NodoDoble(T dato, NodoDoble<T> siguiente,NodoDoble<T> anterior) {
+	public NodoDoble(T dato, NodoDoble<T> siguiente, NodoDoble<T> anterior) {
 		super();
 		this.valorNodo = dato;
 		this.siguienteNodo = siguiente;

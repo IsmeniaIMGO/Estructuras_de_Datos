@@ -171,7 +171,6 @@ public class Test {
 
     }
 
-
     /**
      * 2. Obtener la lista de personas tengan cédula con cantidad de números par de una lista
      * @param listaPersonas
@@ -194,7 +193,7 @@ public class Test {
     /**
      * 3. Obtener los números pares de una lista enlazada simple de números y eliminarlos de la lista
      * @param listaNumeros2
-     * @return listaAux
+     * @return listaAux**
      */
     private static ListaSimple<Integer> obtenerPares(ListaSimple<Integer> listaNumeros2) {
 
@@ -340,11 +339,11 @@ public class Test {
     private static double obtenerDesviacionEstandar(ListaCalculo lista, double media) {
         double size = lista.obtenersize();
         double sumaDiferenciasCuadrado = 0.0;
-        NodoCalculo actual = lista.cabeza;
+        NodoCalculo actual = lista.nodoPrimero;
 
         while (actual != null) {
-            sumaDiferenciasCuadrado += Math.pow(actual.valor - media, 2);
-            actual = actual.siguiente;
+            sumaDiferenciasCuadrado += Math.pow(actual.getValor() - media, 2);
+            actual = actual.getSiguiente();
         }
 
         double desviacionEstandar = Math.sqrt(sumaDiferenciasCuadrado / (size-1));

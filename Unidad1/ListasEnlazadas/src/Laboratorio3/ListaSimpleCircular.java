@@ -6,52 +6,63 @@ import java.util.Iterator;
 
 /**
  * 
- * Definici�n de la clase lista Simple de tipo Generics
+ * Definici�n de la clase lista Simple Circular de tipo Generics
  * @param <T>
  * 
  * **/
 
 public class ListaSimpleCircular<T> implements Iterable<T> {
-	
+
 	private NodoSimple<T> nodoPrimero;
 	private NodoSimple<T> nodoUltimo;
 	private int size;
-	
 
+
+	/**
+	 * Constructor de la clase ListaSimpleCircular
+	 */
 	public ListaSimpleCircular() {
 		nodoPrimero = null;
 		nodoUltimo = null;
 		size = 0;
 	}
 
-	//Metodos get y set de la clase ListaSimple
-
-
+	//Metodos get y set de la clase ListaSimpleCircular
 	public NodoSimple<T> getNodoPrimero() {
 		return nodoPrimero;
 	}
-
 
 	public void setNodoPrimero(NodoSimple nodoPrimero) {
 		this.nodoPrimero = nodoPrimero;
 	}
 
-
 	public int getSize() {
 		return size;
 	}
-
 
 	public void setSize(int size) {
 		this.size = size;
 	}
 
+	/**
+	 * Metodo toString de la clase ListaSimpleCircular
+	 * @return
+	 */
+	@Override
+	public String toString() {
+		return "ListaSimpleCircular{" +
+				"nodoPrimero=" + nodoPrimero /*+
+				", nodoUltimo=" + nodoUltimo*/ +
+				", size=" + size +
+				'}';
+	}
 
+//Metodos basicos
 
-	//Metodos basicos
-	
-	
-	//Agregar al inicio de la lista
+	/**
+	 * Agregar un nodo al inicio de la lista
+	 * @param valorNodo
+	 */
 	public void agregarInicio(T valorNodo) {
 		
 		NodoSimple<T> nuevoNodo = new NodoSimple<>(valorNodo);
@@ -69,9 +80,12 @@ public class ListaSimpleCircular<T> implements Iterable<T> {
 		}
 		size++;
 	}
-	
-	
-	//Agregar al final de la lista
+
+
+	/**
+	 * Agregar un nodo al final de la lista
+	 * @param valorNodo
+	 */
 	public void agregarfinal(T valorNodo) {
 		
 		NodoSimple<T> nuevoNodo = new NodoSimple<>(valorNodo);
@@ -89,8 +103,12 @@ public class ListaSimpleCircular<T> implements Iterable<T> {
 		}
 		size++;
 	}
-	
-	//Obtener Nodo el valor de un Nodo
+
+	/**
+	 * Obtener el valor de un Nodo dado su indice
+	 * @param indice
+	 * @return
+	 */
 	public T obtenerValorNodo(int indice) {
 		
 		NodoSimple<T> nodoTemporal = null;
@@ -112,18 +130,25 @@ public class ListaSimpleCircular<T> implements Iterable<T> {
 		else
 			return null;
 	}
-	
-	
-	//Verificar si indice es valido
+
+
+	/**
+	 * Verificar si indice es valido
+	 * @param indice
+	 * @return
+	 */
 	private boolean indiceValido(int indice) {		
 		if( indice>=0 && indice< size) {
 			return true;
 		}			
 		throw new RuntimeException("Indice no valido");
 	}
-	
-	
-	//Verificar si la lista esta vacia
+
+
+	/**
+	 * Verificar si la lista esta vacia
+	 * @return
+	 */
 	public boolean estaVacia() {
 		return(nodoPrimero == null)?true:false;
 	}
@@ -143,8 +168,12 @@ public class ListaSimpleCircular<T> implements Iterable<T> {
 		
 		System.out.println();
 	}
-	
-	//Eliminar dado el valor de un nodo
+
+	/**
+	 * Elimina un nodo dado su valor
+	 * @param dato
+	 * @return
+	 */
 	public T eliminar(T dato){
 		NodoSimple<T> nodo = nodoPrimero;
 		NodoSimple<T> previo = null;
@@ -181,9 +210,12 @@ public class ListaSimpleCircular<T> implements Iterable<T> {
 		}
 		throw new RuntimeException("El elemento no existe");
 	}
-	
-	
-	//Elimina el primer nodo de la lista
+
+
+	/**
+	 * Elimina el primer nodo de la lista
+	 * @return
+	 */
 	public T eliminarPrimero() {
 		
 		if( !estaVacia() ) {
@@ -202,7 +234,10 @@ public class ListaSimpleCircular<T> implements Iterable<T> {
 		throw new RuntimeException("Lista vac�a");		
 	}
 
-	
+	/**
+	 * Elimina el ultimo nodo de la lista
+	 * @return
+	 */
 	public T eliminarUltimo() {
 		
 		if( !estaVacia() ) {			
@@ -221,8 +256,14 @@ public class ListaSimpleCircular<T> implements Iterable<T> {
 		}
 		
 		throw new RuntimeException("Lista vac�a");
-	}	
-	
+	}
+
+
+	/**
+	 * obtiene el nodo de una posicion dada
+	 * @param indice
+	 * @return
+	 */
 	private NodoSimple<T> obtenerNodo(int indice) {
 		
 		if(indice>=0 && indice< size) {

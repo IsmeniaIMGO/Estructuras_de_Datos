@@ -12,8 +12,6 @@ public class NodoSimple<T> {
 	private T valorNodo;
 	private NodoSimple<T> siguienteNodoSimple;
 
-	
-	
 	/**
 	 * Constructor de la clase Nodo
 	 * dato Elemento que se guarda en el Nodo
@@ -21,7 +19,6 @@ public class NodoSimple<T> {
 	public NodoSimple(T valorNodo) {
 		this.valorNodo = valorNodo;
 	}
-	
 	
 	/**
 	 * Constructor de la clase Nodo
@@ -36,7 +33,6 @@ public class NodoSimple<T> {
 	
 
 	//Metodos get y set de la clase Nodo
-	
 	public NodoSimple<T> getSiguienteNodo() {
 		return siguienteNodoSimple;
 	}
@@ -56,9 +52,13 @@ public class NodoSimple<T> {
 		this.valorNodo = valorNodo;
 	}
 
+	/**
+	 * Metodo toString de la clase Nodo
+	 * @return
+	 */
 	@Override
 	public String toString() {
-		return "valorNodo=" + valorNodo +
-				", siguienteNodo=" + siguienteNodoSimple;
+		return "valorNodo=" + valorNodo /*+
+				", siguienteNodo=" + siguienteNodoSimple*/;
 	}
 }

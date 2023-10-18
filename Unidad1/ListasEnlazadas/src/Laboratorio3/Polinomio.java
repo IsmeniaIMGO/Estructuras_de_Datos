@@ -1,12 +1,16 @@
 package Laboratorio3;
 
 public class Polinomio {
-    NodoTermino primerTermino;
+    private NodoTermino primerTermino;
 
+    /**
+     * Constructor por defecto de la clase Polinomio
+     */
     public Polinomio() {
         this.primerTermino = null;
     }
 
+    //metodos get y set
     public NodoTermino getPrimerTermino() {
         return primerTermino;
     }
@@ -15,7 +19,10 @@ public class Polinomio {
         this.primerTermino = primerTermino;
     }
 
-
+    /**
+     * Metodo toString de la clase Polinomio
+     * @return
+     */
     @Override
     public String toString() {
         return "Polinomio{" +
@@ -23,6 +30,13 @@ public class Polinomio {
                 '}';
     }
 
+    //metodos basicos
+
+    /**
+     * Metodo que agrega un termino al polinomio
+     * @param coeficiente
+     * @param exponente
+     */
     public void agregarTermino(double coeficiente, int exponente) {
         NodoTermino nuevoTermino = new NodoTermino(coeficiente, exponente);
 
@@ -30,41 +44,49 @@ public class Polinomio {
             this.primerTermino = nuevoTermino;
         } else {
             NodoTermino actual = this.primerTermino;
-            while (actual.siguiente != null) {
-                actual = actual.siguiente;
+            while (actual.getSiguiente() != null) {
+                actual = actual.getSiguiente();
             }
-            actual.siguiente = nuevoTermino;
+            actual.setSiguiente(nuevoTermino);
         }
     }
 
+    /**
+     * Metodo que evalua el polinomio en un valor x
+     * @param x
+     * @return
+     */
     public double evaluar(double x) {
         double resultado = 0.0;
         NodoTermino actual = this.primerTermino;
 
         while (actual != null) {
-            resultado += actual.coeficiente * Math.pow(x, actual.exponente);
-            actual = actual.siguiente;
+            resultado += actual.getCoeficiente() * Math.pow(x, actual.getExponente());
+            actual = actual.getSiguiente();
         }
 
         return resultado;
     }
 
 
+    /**
+     * Metodo que imprime el polinomio
+     */
    public void imprimirPolinomio() {
         NodoTermino actual = this.primerTermino;
         while (actual != null) {
-            if (actual.coeficiente != 0) {
-                if (actual.coeficiente > 0) {
-                    System.out.print("+" + actual.coeficiente);
+            if (actual.getCoeficiente() != 0) {
+                if (actual.getCoeficiente() > 0) {
+                    System.out.print("+" + actual.getCoeficiente());
                 } else {
-                    System.out.print(actual.coeficiente);
+                    System.out.print(actual.getCoeficiente());
                 }
 
-                if (actual.exponente != 0) {
-                    System.out.print("x^" + actual.exponente);
+                if (actual.getExponente() != 0) {
+                    System.out.print("x^" + actual.getExponente());
                 }
             }
-            actual = actual.siguiente;
+            actual = actual.getSiguiente();
         }
         System.out.println();
     }

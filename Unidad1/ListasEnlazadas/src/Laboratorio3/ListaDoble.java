@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 /**
  *
- * Definici�n de la clase lista Simple de tipo Generics
+ * Definicion de la clase lista Simple de tipo Generics
  * @param <T>
  *
  * **/
@@ -17,17 +17,19 @@ public class ListaDoble<T> implements Iterable<T> {
 	private int size;
 
 
+	/**
+	 * Constructor de la clase ListaDooble
+	 */
 	public ListaDoble() {
 		nodoPrimero = null;
-		nodoPrimero = null;
+		nodoUltimo = null;
 		size = 0;
 	}
 
-	//set y get
+	//Metodos set y get
 	public NodoDoble<T> getNodoPrimero() {
 		return nodoPrimero;
 	}
-
 
 	public void setNodoPrimero(NodoDoble<T> nodoPrimero) {
 		this.nodoPrimero = nodoPrimero;
@@ -54,6 +56,10 @@ public class ListaDoble<T> implements Iterable<T> {
 	}
 
 
+	/**
+	 * Metodo toString de la clase ListaDoble
+	 * @return
+	 */
 	@Override
 	public String toString() {
 		return "ListaDoble{" +
@@ -63,10 +69,13 @@ public class ListaDoble<T> implements Iterable<T> {
 				'}';
 	}
 
-//Metodos basicos
 
+	//Metodos basicos
 
-	//Agregar al inicio de la lista
+	/**
+	 * Agrega un nodo al inicio de la lista
+	 * @param valorNodo
+	 */
 	public void agregarInicio(T valorNodo) {
 
 		NodoDoble<T> nuevoNodo = new NodoDoble<>(valorNodo);
@@ -84,7 +93,10 @@ public class ListaDoble<T> implements Iterable<T> {
 	}
 
 
-	//Agregar al final de la lista
+	/**
+	 * Agrega un nodo al final de la lista
+	 * @param valorNodo
+	 */
 	public void agregarfinal(T valorNodo) {
 
 		NodoDoble<T> nuevoNodo = new NodoDoble<>(valorNodo);
@@ -139,7 +151,11 @@ public class ListaDoble<T> implements Iterable<T> {
 	}
 
 
-	//Obtener Nodo el valor de un Nodo
+	/**
+	 * Obtiene el valor de un nodo dado su indice
+	 * @param indice
+	 * @return
+	 */
 	public T obtenerValorNodo(int indice) {
 
 		NodoDoble<T> nodoTemporal = null;
@@ -163,7 +179,11 @@ public class ListaDoble<T> implements Iterable<T> {
 	}
 
 
-	//Verificar si indice es valido
+	/**
+	 * Verifica si el indice es valido
+	 * @param indice
+	 * @return
+	 */
 	private boolean indiceValido(int indice) {
 		if( indice>=0 && indice< size) {
 			return true;
@@ -171,8 +191,10 @@ public class ListaDoble<T> implements Iterable<T> {
 		throw new RuntimeException("�ndice no v�lido");
 	}
 
-
-	//Verificar si la lista esta vacia
+	/**
+	 * Verifica si la lista esta vacia
+	 * @return
+	 */
 	public boolean estaVacia() {
 		//		return(nodoPrimero == null)?true:false;
 		return nodoPrimero == null && nodoUltimo == null;
@@ -194,6 +216,9 @@ public class ListaDoble<T> implements Iterable<T> {
 		System.out.println();
 	}
 
+	/**
+	 * Imprime en consola la lista enlazada hacia atras
+	 */
 	public void imprimirAtras() {
 
 		NodoDoble<T> aux = nodoUltimo;
@@ -207,10 +232,8 @@ public class ListaDoble<T> implements Iterable<T> {
 
 	}
 
-
-	//Eliminar dado el valor de un nodo
 	/**
-	 * Elimina un elemento de la lista
+	 * Elimina un elemento de la lista dado su valor
 	 * @param dato dato a eliminar
 	 * @return El dato que se elimina
 	 */
@@ -245,7 +268,10 @@ public class ListaDoble<T> implements Iterable<T> {
 	}
 
 
-	//Elimina el primer nodo de la lista
+	/**
+	 * Elimina el primer nodo de la lista
+	 * @return
+	 */
 	public T eliminarPrimero() {
 
 		if( !estaVacia() ) {
@@ -269,6 +295,10 @@ public class ListaDoble<T> implements Iterable<T> {
 	}
 
 
+	/**
+	 * Elimina el ultimo nodo de la lista
+	 * @return
+	 */
 	public T eliminarUltimo() {
 
 		if( !estaVacia() ) {
@@ -292,7 +322,7 @@ public class ListaDoble<T> implements Iterable<T> {
 
 	/**
 	 * Devuelve el Nodo de una lista dada su posici�n
-	 * @param indice �ndice para obtener el Nodo
+	 * @param indice indice para obtener el Nodo
 	 * @return Nodo objeto
 	 */
 	private NodoDoble<T> obtenerNodo(int indice) {
@@ -312,7 +342,7 @@ public class ListaDoble<T> implements Iterable<T> {
 	}
 
 	/**
-	 * Devuelve un nodo que contenga un dato espec�fico
+	 * Devuelve un nodo que contenga un dato especifico
 	 * @param dato Dato a buscar
 	 * @return Nodo
 	 */
@@ -330,8 +360,6 @@ public class ListaDoble<T> implements Iterable<T> {
 		return null;
 	}
 
-
-
 	/**
 	 * Cambia el valor de un nodo dada su posici�n en la lista
 	 * @param indice posici�n donde se va a cambiar el dato
@@ -345,7 +373,6 @@ public class ListaDoble<T> implements Iterable<T> {
 		}
 
 	}
-
 
 	/**
 	 * Retorna la primera posici�n donde est� guardado el dato
@@ -365,30 +392,6 @@ public class ListaDoble<T> implements Iterable<T> {
 
 		return -1;
 	}
-
-
-	/**
-	 * Devuelve un elemento de la lista dado su �ndice
-	 * @param indice �ndice de la lista
-	 * @return dato guardado en el �ndice especificado
-	 */
-	public T obtener(int indice) {
-
-		if( indiceValido(indice) ) {
-			NodoDoble<T> n = obtenerNodo(indice);
-
-			if(n!=null) {
-				return n.getValorNodo();
-			}
-		}
-
-		return null;
-	}
-
-
-
-
-
 
 	@Override
 	public Iterator<T> iterator() {

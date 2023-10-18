@@ -2,16 +2,22 @@ package Laboratorio3;
 
 import java.util.Objects;
 
+/**
+ * Definicion de la clase Persona
+ */
 public class Persona {
-
     private String nombre;
     private int cedula;
 
+    /**
+     * Constructor por defecto de la clase Persona
+     */
     public Persona(String nombre, int cedula) {
         this.nombre = nombre;
         this.cedula = cedula;
     }
 
+    //metodos get y set
     public String getNombre() {
         return nombre;
     }
@@ -28,6 +34,11 @@ public class Persona {
         this.cedula = cedula;
     }
 
+    /**
+     * Metodo equals de la clase Persona
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -36,11 +47,19 @@ public class Persona {
         return cedula == persona.cedula;
     }
 
+    /**
+     * Metodo hashCode de la clase Persona
+     * @return
+     */
     @Override
     public int hashCode() {
         return Objects.hash(cedula);
     }
 
+    /**
+     * Metodo toString de la clase Persona
+     * @return
+     */
     @Override
     public String toString() {
         return "Persona{" +

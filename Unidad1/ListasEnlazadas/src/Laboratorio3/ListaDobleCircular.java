@@ -4,13 +4,56 @@ public class ListaDobleCircular<T> {
 
 	private NodoDoble<T> nodoPrimero;
 	private NodoDoble<T> nodoUltimo;
-	private int tamanio;
+	private int size;
 
+	/**
+	 * Constructor de la clase ListaDobleCircular
+	 */
 	public ListaDobleCircular() {
 		nodoPrimero = null;
 		nodoUltimo = null;
-		tamanio = 0;
+		size = 0;
 	}
+
+	//Metodos get y set de la clase ListaDobleCircular
+	public NodoDoble<T> getNodoPrimero() {
+		return nodoPrimero;
+	}
+
+	public void setNodoPrimero(NodoDoble<T> nodoPrimero) {
+		this.nodoPrimero = nodoPrimero;
+	}
+
+	public NodoDoble<T> getNodoUltimo() {
+		return nodoUltimo;
+	}
+
+	public void setNodoUltimo(NodoDoble<T> nodoUltimo) {
+		this.nodoUltimo = nodoUltimo;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	/**
+	 * Metodo toString de la clase ListaDobleCircular
+	 * @return
+	 */
+	@Override
+	public String toString() {
+		return "ListaDobleCircular{" +
+				"nodoPrimero=" + nodoPrimero /*+
+				", nodoUltimo=" + nodoUltimo*/ +
+				", size=" + size +
+				'}';
+	}
+
+	//metodos basicos
 
 	/**
 	 * Agrega un nuevo nodo en la posici�n dada
@@ -20,7 +63,7 @@ public class ListaDobleCircular<T> {
 	public void insertar( T valor, int posicion ) {
 		int cont = 0;
 
-		for( NodoDoble<T> aux = nodoPrimero; cont < tamanio; cont++, aux = aux.getSiguienteNodo() ) {
+		for(NodoDoble<T> aux = nodoPrimero; cont < size; cont++, aux = aux.getSiguienteNodo() ) {
 			if( cont == posicion ) {
 				NodoDoble<T> aux2 = aux.getAnteriorNodo();
 				NodoDoble<T> nuevo = new NodoDoble<>( valor );
@@ -28,13 +71,13 @@ public class ListaDobleCircular<T> {
 				nuevo.setSiguienteNodo( aux );
 				nuevo.setAnteriorNodo( aux2 );
 				aux.setAnteriorNodo( nuevo );
-				tamanio ++;
+				size++;
 			}
 		}
 	}
 
 	/**
-	 * Busca y retorna la posici�n de un nodo que tenga el valor ingresado por par�metro
+	 * Busca y retorna la posici�n de un nodo que tenga el valor ingresado por parametro
 	 * @param valor a buscar
 	 * @return posici�n donde se encontr� el nodo
 	 */
@@ -42,7 +85,7 @@ public class ListaDobleCircular<T> {
 		int cont = 0;
 		int pos = -1;
 
-		for( NodoDoble<T> aux = nodoPrimero; cont < tamanio; cont++, aux = aux.getSiguienteNodo() ) {
+		for(NodoDoble<T> aux = nodoPrimero; cont < size; cont++, aux = aux.getSiguienteNodo() ) {
 			if( aux.getValorNodo().equals( valor ) ) {
 				pos = cont;
 			}
@@ -50,6 +93,10 @@ public class ListaDobleCircular<T> {
 		return pos;
 	}
 
+	/**
+	 * Agrega un nuevo nodo al final de la lista
+	 * @param valorNodo
+	 */
 	public void agregarFinal(T valorNodo) {
 
 		NodoDoble<T> nuevoNodo = new NodoDoble<>( valorNodo );
@@ -64,10 +111,13 @@ public class ListaDobleCircular<T> {
 			nuevoNodo.setAnteriorNodo( nodoUltimo );
 			nodoPrimero = nuevoNodo;
 		}
-		tamanio++;
+		size++;
 	}
 
-	//Verificar si la lista esta vacia
+	/**
+	 * verifica si la lista esta vacia
+	 * @return
+	 */
 	public boolean estaVacia() {
 		return nodoPrimero == null && nodoUltimo == null;
 	}
@@ -80,7 +130,7 @@ public class ListaDobleCircular<T> {
 		NodoDoble<T> aux = nodoPrimero;
 		int cont = 0;
 
-		while( aux!=null && cont != tamanio ) {
+		while( aux!=null && cont != size) {
 			System.out.print( aux.getValorNodo()+"\t" );
 			aux = aux.getSiguienteNodo();
 			cont ++;

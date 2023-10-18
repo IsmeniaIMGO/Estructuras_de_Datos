@@ -1,16 +1,23 @@
 package Laboratorio3;
 
+/**
+ * Definicion de la clase NodoTermino
+ */
 public class NodoTermino {
-    double coeficiente;
-    int exponente;
-    NodoTermino siguiente;
+    private double coeficiente;
+    private int exponente;
+    private NodoTermino siguiente;
 
+    /**
+     * Constructor por defecto de la clase NodoTermino
+     */
     public NodoTermino(double coeficiente, int exponente) {
         this.coeficiente = coeficiente;
         this.exponente = exponente;
         this.siguiente = null;
     }
 
+    //metodos get y set
     public double getCoeficiente() {
         return coeficiente;
     }
@@ -35,6 +42,10 @@ public class NodoTermino {
         this.siguiente = siguiente;
     }
 
+    /**
+     * Metodo toString de la clase NodoTermino
+     * @return
+     */
     @Override
     public String toString() {
         return "NodoTermino{" +
