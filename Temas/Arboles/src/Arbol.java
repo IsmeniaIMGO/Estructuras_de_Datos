@@ -1,8 +1,6 @@
-import java.util.ArrayList;
+public class Arbol<T> {
 
-public class Arbol {
-
-    private NodoArbol raiz;
+    private NodoArbol<T> raiz;
     private int peso;
     private int altura;
     private int nivel;
@@ -14,11 +12,11 @@ public class Arbol {
         this.nivel = 0;
     }
 
-    public NodoArbol getRaiz() {
+    public NodoArbol<T> getRaiz() {
         return raiz;
     }
 
-    public void setRaiz(NodoArbol raiz) {
+    public void setRaiz(NodoArbol<T> raiz) {
         this.raiz = raiz;
     }
 
@@ -46,14 +44,40 @@ public class Arbol {
         this.nivel = nivel;
     }
 
-
     @Override
     public String toString() {
         return "Arbol{" +
                 "raiz=" + raiz +
                 '}';
     }
-    //-------------------Metodos basicos-------------------
+
+    //-------------------Métodos básicos-------------------
+
+    public boolean estaVacío() {
+        return raiz == null;
+    }
+
+    public void agregarDato(T dato) {
+        if (estaVacío()) {
+            raiz = new NodoArbol<>(dato);
+            nivel = 0; // Establecer el nivel inicial como 0 para la raíz
+        } else {
+            if (dato.hashCode() < raiz.getDato().hashCode()) {
+                if (raiz.getHijoIzquierdo() == null) {
+                    raiz.setHijoIzquierdo(new Arbol<>());
+                }
+                raiz.getHijoIzquierdo().agregarDato(dato);
+                raiz.getHijoIzquierdo().setNivel(nivel + 1); // Incrementar el nivel en el subárbol izquierdo
+            } else {
+                if (raiz.getHijoDerecho() == null) {
+                    raiz.setHijoDerecho(new Arbol<>());
+                }
+                raiz.getHijoDerecho().agregarDato(dato);
+                raiz.getHijoDerecho().setNivel(nivel + 1); // Incrementar el nivel en el subárbol derecho
+            }
+        }
+        peso++;
+    }
 
     public void recorrerInorden(){
         if (!estaVacío()){
@@ -91,51 +115,24 @@ public class Arbol {
         }
     }
 
-    public boolean estaVacío(){
-        return raiz == null;
-    }
-
-    public void agregarDato(int dato){
+    public <T> void existeDato(T dato) {
         if (estaVacío()) {
-            raiz = new NodoArbol(dato);
-            nivel = 0; // Establecer el nivel inicial como 0 para la raíz
-            peso++;
-        } else {
-            if (dato < raiz.getDato()) {
-                if (raiz.getHijoIzquierdo() == null) {
-                    raiz.setHijoIzquierdo(new Arbol());
-                }
-                raiz.getHijoIzquierdo().agregarDato(dato);
-                raiz.getHijoIzquierdo().setNivel(nivel + 1); // Incrementar el nivel en el subárbol izquierdo
-            } else {
-                if (raiz.getHijoDerecho() == null) {
-                    raiz.setHijoDerecho(new Arbol());
-                }
-                raiz.getHijoDerecho().agregarDato(dato);
-                raiz.getHijoDerecho().setNivel(nivel + 1); // Incrementar el nivel en el subárbol derecho
-            }
-        }
-        peso++;
-    }
-
-    public void existeDatos(int dato){
-        if (estaVacío()){
             System.out.println("El dato no existe");
-        }else{
-            if (dato == raiz.getDato()){
+        } else {
+            if (dato.equals(raiz.getDato())) {
                 System.out.println("El dato existe");
-            }else{
-                if (dato < raiz.getDato()){
-                    if (raiz.getHijoIzquierdo() == null){
+            } else {
+                if (dato.hashCode() < raiz.getDato().hashCode()) {
+                    if (raiz.getHijoIzquierdo() == null) {
                         System.out.println("El dato no existe");
-                    }else{
-                        raiz.getHijoIzquierdo().existeDatos(dato);
+                    } else {
+                        raiz.getHijoIzquierdo().existeDato(dato);
                     }
-                }else{
-                    if (raiz.getHijoDerecho() == null){
+                } else {
+                    if (raiz.getHijoDerecho() == null) {
                         System.out.println("El dato no existe");
-                    }else{
-                        raiz.getHijoDerecho().existeDatos(dato);
+                    } else {
+                        raiz.getHijoDerecho().existeDato(dato);
                     }
                 }
             }
@@ -147,32 +144,50 @@ public class Arbol {
     }
 
     public int obtenerAltura(){
-        return getAltura();
-    }
-
-    public int obtenerNivel(int dato){
         if (estaVacío()){
             return 0;
         }else{
-            if (dato == raiz.getDato()){
-                return getNivel();
+            if (raiz.getHijoIzquierdo() == null && raiz.getHijoDerecho() == null){
+                return 0;
             }else{
-                if (dato < raiz.getDato()){
-                    if (raiz.getHijoIzquierdo() == null){
-                        return 0;
-                    }else{
-                        return raiz.getHijoIzquierdo().obtenerNivel(dato);
-                    }
+                if (raiz.getHijoIzquierdo() == null){
+                    return raiz.getHijoDerecho().obtenerAltura() + 1;
                 }else{
                     if (raiz.getHijoDerecho() == null){
-                        return 0;
+                        return raiz.getHijoIzquierdo().obtenerAltura() + 1;
                     }else{
+                        return Math.max(raiz.getHijoIzquierdo().obtenerAltura(), raiz.getHijoDerecho().obtenerAltura()) + 1;
+                    }
+                }
+            }
+        }
+    }
+
+    public <T> int obtenerNivel(T dato) {
+        if (estaVacío()) {
+            return 0;
+        } else {
+            if (dato.equals(raiz.getDato())) {
+                return getNivel();
+            } else {
+                if (dato.hashCode() < raiz.getDato().hashCode()) {
+                    if (raiz.getHijoIzquierdo() == null) {
+                        return 0;
+                    } else {
+                        return raiz.getHijoIzquierdo().obtenerNivel(dato);
+                    }
+                } else {
+                    if (raiz.getHijoDerecho() == null) {
+                        return 0;
+                    } else {
                         return raiz.getHijoDerecho().obtenerNivel(dato);
                     }
                 }
             }
         }
     }
+
+
 
     public int contarHojas(){
         if (estaVacío()){
@@ -190,6 +205,182 @@ public class Arbol {
                         return raiz.getHijoIzquierdo().contarHojas() + raiz.getHijoDerecho().contarHojas();
                     }
                 }
+            }
+        }
+    }
+
+    public NodoArbol obtenerNodoMenor(){
+        if (estaVacío()){
+            return null;
+        }else{
+            if (raiz.getHijoIzquierdo() == null){
+                return raiz;
+            }else{
+                return raiz.getHijoIzquierdo().obtenerNodoMenor();
+            }
+        }
+    }
+
+    public NodoArbol obtenerNodoMayor(){
+        if (estaVacío()){
+            return null;
+        }else{
+            if (raiz.getHijoDerecho() == null){
+                return raiz;
+            }else{
+                return raiz.getHijoDerecho().obtenerNodoMayor();
+            }
+        }
+    }
+
+    public NodoArbol<T> obtenerNodo(T dato) {
+        if (estaVacío()) {
+            return null;
+        } else {
+            if (dato.equals(raiz.getDato())) {
+                return raiz;
+            } else {
+                if (dato.hashCode() < raiz.getDato().hashCode()) {
+                    if (raiz.getHijoIzquierdo() == null) {
+                        return null;
+                    } else {
+                        return raiz.getHijoIzquierdo().obtenerNodo(dato);
+                    }
+                } else {
+                    if (raiz.getHijoDerecho() == null) {
+                        return null;
+                    } else {
+                        return raiz.getHijoDerecho().obtenerNodo(dato);
+                    }
+                }
+            }
+        }
+    }
+
+    public void eliminarNodo(T dato) {
+        Arbol<T> padre = null;
+        Arbol<T> actual = this;
+
+        while (actual != null && !actual.getRaiz().getDato().equals(dato)) {
+            padre = actual;
+
+            if (dato.hashCode() < actual.getRaiz().getDato().hashCode()) {
+                actual = actual.getRaiz().getHijoIzquierdo();
+            } else {
+                actual = actual.getRaiz().getHijoDerecho();
+            }
+        }
+
+        if (actual == null) {
+            // El dato no se encontró en el árbol
+            return;
+        }
+
+        // Caso 1: Nodo a eliminar es un nodo hoja (sin hijos)
+        if (actual.getRaiz().getHijoIzquierdo() == null && actual.getRaiz().getHijoDerecho() == null) {
+            if (padre == null) {
+                // El nodo a eliminar es la raíz del árbol
+                setRaiz(null);
+            } else {
+                // Eliminar el nodo hoja
+                if (padre.getRaiz().getHijoIzquierdo().getRaiz().equals(actual.getRaiz())) {
+                    padre.getRaiz().setHijoIzquierdo(null);
+                } else {
+                    padre.getRaiz().setHijoDerecho(null);
+                }
+            }
+        }
+        // Caso 2: Nodo a eliminar tiene un solo hijo
+        else if (actual.getRaiz().getHijoIzquierdo() == null) {
+            if (padre == null) {
+                // El nodo a eliminar es la raíz del árbol
+                setRaiz(actual.getRaiz().getHijoDerecho().getRaiz());
+            } else {
+                // Conectar el hijo derecho del nodo a eliminar con el padre
+                if (padre.getRaiz().getHijoIzquierdo().getRaiz().equals(actual.getRaiz())) {
+                    padre.getRaiz().setHijoIzquierdo(actual.getRaiz().getHijoDerecho());
+                } else {
+                    padre.getRaiz().setHijoDerecho(actual.getRaiz().getHijoDerecho());
+                }
+            }
+        } else if (actual.getRaiz().getHijoDerecho() == null) {
+            if (padre == null) {
+                // El nodo a eliminar es la raíz del árbol
+                setRaiz(actual.getRaiz().getHijoIzquierdo().getRaiz());
+            } else {
+                // Conectar el hijo izquierdo del nodo a eliminar con el padre
+                if (padre.getRaiz().getHijoIzquierdo().getRaiz().equals(actual.getRaiz())) {
+                    padre.getRaiz().setHijoIzquierdo(actual.getRaiz().getHijoIzquierdo());
+                } else {
+                    padre.getRaiz().setHijoDerecho(actual.getRaiz().getHijoIzquierdo());
+                }
+            }
+        }
+        // Caso 3: Nodo a eliminar tiene dos hijos
+        else {
+            NodoArbol<T> sucesor = obtenerNodoSucesor(actual.getRaiz().getHijoDerecho());
+            actual.getRaiz().setDato(sucesor.getDato());
+            actual.getRaiz().getHijoDerecho().eliminarNodo(sucesor.getDato());
+        }
+    }
+
+    private NodoArbol<T> obtenerNodoSucesor(Arbol<T> subarbol) {
+        NodoArbol<T> sucesor = subarbol.getRaiz();
+        while (sucesor.getHijoIzquierdo() != null) {
+            sucesor = sucesor.getHijoIzquierdo().getRaiz();
+        }
+        return sucesor;
+    }
+
+    public void borrarArbol() {
+        raiz=null;
+    }
+
+    //-------------------Métodos de mostrar arbol-------------------
+    public void imprimirArbol() {
+        if (raiz != null) {
+            System.out.println("Raíz");
+            imprimir(raiz, "", false);
+        } else {
+            System.out.println("El árbol está vacío.");
+        }
+    }
+
+    public void imprimir(NodoArbol nodo, String prefijo, boolean esHijoIzquierdo) {
+        if (nodo != null) {
+            System.out.println(prefijo + (esHijoIzquierdo ? "I── " : "D── ") + nodo.getDato());
+            if (nodo.getHijoIzquierdo() != null) {
+                imprimir(nodo.getHijoIzquierdo().getRaiz(), prefijo + (esHijoIzquierdo ? "    " : "|   "), true);
+            }
+            if (nodo.getHijoDerecho() != null) {
+                imprimir(nodo.getHijoDerecho().getRaiz(), prefijo + (esHijoIzquierdo ? "    " : "|   "), false);
+            }
+        }
+    }
+
+    //-------------------Metodos opcionales-------------------
+    //son opcionales por que solo funciona si el arbol es de enteros
+/*
+    public int obtenerDatoMenor(){
+        if (estaVacío()){
+            return 0;
+        }else{
+            if (raiz.getHijoIzquierdo() == null){
+                return raiz.getDato();
+            }else{
+                return raiz.getHijoIzquierdo().obtenerDatoMenor();
+            }
+        }
+    }
+
+    public int obtenerDatoMayor(){
+        if (estaVacío()){
+            return 0;
+        }else{
+            if (raiz.getHijoDerecho() == null){
+                return raiz.getDato();
+            }else{
+                return raiz.getHijoDerecho().obtenerDatoMayor();
             }
         }
     }
@@ -219,144 +410,47 @@ public class Arbol {
             }
         }
     }
-
-    public int obtenerDatoMenor(){
+    public void eliminarDato(int dato){
         if (estaVacío()){
-            return 0;
-        }else{
-            if (raiz.getHijoIzquierdo() == null){
-                return raiz.getDato();
-            }else{
-                return raiz.getHijoIzquierdo().obtenerDatoMenor();
-            }
-        }
-    }
-
-    public int obtenerDatoMayor(){
-        if (estaVacío()){
-            return 0;
-        }else{
-            if (raiz.getHijoDerecho() == null){
-                return raiz.getDato();
-            }else{
-                return raiz.getHijoDerecho().obtenerDatoMayor();
-            }
-        }
-    }
-
-    public NodoArbol obtenerNodoMenor(){
-        if (estaVacío()){
-            return null;
-        }else{
-            if (raiz.getHijoIzquierdo() == null){
-                return raiz;
-            }else{
-                return raiz.getHijoIzquierdo().obtenerNodoMenor();
-            }
-        }
-    }
-
-    public NodoArbol obtenerNodoMayor(){
-        if (estaVacío()){
-            return null;
-        }else{
-            if (raiz.getHijoDerecho() == null){
-                return raiz;
-            }else{
-                return raiz.getHijoDerecho().obtenerNodoMayor();
-            }
-        }
-    }
-
-    public NodoArbol obtenerNodo(int dato){
-        if (estaVacío()){
-            return null;
+            System.out.println("El arbol esta vacio");
         }else{
             if (dato == raiz.getDato()){
-                return raiz;
+                if (raiz.getHijoIzquierdo() == null && raiz.getHijoDerecho() == null){
+                    raiz = null;
+                }else{
+                    if (raiz.getHijoIzquierdo() == null){
+                        raiz = raiz.getHijoDerecho().getRaiz();
+                        raiz.getHijoDerecho().borrarArbol();
+                    }else{
+                        if (raiz.getHijoDerecho() == null){
+                            raiz = raiz.getHijoIzquierdo().getRaiz();
+                            raiz.getHijoIzquierdo().borrarArbol();
+                        }else{
+                            raiz.setDato(raiz.getHijoDerecho().obtenerDatoMenor());
+                            raiz.getHijoDerecho().eliminarDato(raiz.getDato());
+                        }
+                    }
+                }
             }else{
                 if (dato < raiz.getDato()){
                     if (raiz.getHijoIzquierdo() == null){
-                        return null;
+                        System.out.println("El dato no existe");
                     }else{
-                        return raiz.getHijoIzquierdo().obtenerNodo(dato);
+                        raiz.getHijoIzquierdo().eliminarDato(dato);
                     }
                 }else{
                     if (raiz.getHijoDerecho() == null){
-                        return null;
+                        System.out.println("El dato no existe");
                     }else{
-                        return raiz.getHijoDerecho().obtenerNodo(dato);
+                        raiz.getHijoDerecho().eliminarDato(dato);
                     }
                 }
             }
         }
+
     }
+*/
 
-    public void eliminarDato(){
-        if (estaVacío()){
-            System.out.println("El dato no existe");
-        }else{
-            if (raiz.getHijoIzquierdo() == null && raiz.getHijoDerecho() == null){
-                raiz = null;
-            }else{
-                if (raiz.getHijoIzquierdo() == null){
-                    raiz = raiz.getHijoDerecho().getRaiz();
-                }else{
-                    if (raiz.getHijoDerecho() == null){
-                        raiz = raiz.getHijoIzquierdo().getRaiz();
-                    }else{
-                        NodoArbol nodoMenor = raiz.getHijoDerecho().obtenerNodoMenor();
-                        raiz.setDato(nodoMenor.getDato());
-                        raiz.getHijoDerecho().eliminarDato();
-                    }
-                }
-            }
-        }
-    }
-
-
-    public void borrarArbol() {
-        if (estaVacío()) {
-            System.out.println("El arbol ya esta vacio");
-        } else {
-            if (raiz.getHijoIzquierdo() == null && raiz.getHijoDerecho() == null) {
-                raiz = null;
-            } else {
-                if (raiz.getHijoIzquierdo() == null) {
-                    raiz = raiz.getHijoDerecho().getRaiz();
-                    raiz.getHijoDerecho().borrarArbol();
-                } else {
-                    if (raiz.getHijoDerecho() == null) {
-                        raiz = raiz.getHijoIzquierdo().getRaiz();
-                        raiz.getHijoIzquierdo().borrarArbol();
-
-                    }
-                }
-            }
-        }
-    }
-
-
-    public void imprimirArbolEnConsola(NodoArbol nodo, String prefijo, boolean esHijoIzquierdo) {
-        if (nodo != null) {
-            System.out.println(prefijo + (esHijoIzquierdo ? "I── " : "D── ") + nodo.getDato());
-            if (nodo.getHijoIzquierdo() != null) {
-                imprimirArbolEnConsola(nodo.getHijoIzquierdo().getRaiz(), prefijo + (esHijoIzquierdo ? "    " : "|   "), true);
-            }
-            if (nodo.getHijoDerecho() != null) {
-                imprimirArbolEnConsola(nodo.getHijoDerecho().getRaiz(), prefijo + (esHijoIzquierdo ? "    " : "|   "), false);
-            }
-        }
-    }
-
-    public void imprimirArbolEnConsola() {
-        if (raiz != null) {
-            System.out.println("Raíz");
-            imprimirArbolEnConsola(raiz, "", false);
-        } else {
-            System.out.println("El árbol está vacío.");
-        }
-    }
 
 
 /*

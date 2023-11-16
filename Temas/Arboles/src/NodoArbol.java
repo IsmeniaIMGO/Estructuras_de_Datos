@@ -1,36 +1,35 @@
-public class NodoArbol {
+public class NodoArbol<T> {
+    private T dato;
+    private Arbol<T> hijoIzquierdo;
+    private Arbol<T> hijoDerecho;
 
-    private int dato;
-    private Arbol hijoIzquierdo;
-    private Arbol hijoDerecho;
-
-    public NodoArbol( int dato) {
+    public NodoArbol(T dato) {
         this.dato = dato;
         this.hijoDerecho = null;
         this.hijoIzquierdo = null;
     }
 
-    public int getDato() {
+    public T getDato() {
         return dato;
     }
 
-    public void setDato(int dato) {
+    public void setDato(T dato) {
         this.dato = dato;
     }
 
-    public Arbol getHijoIzquierdo() {
+    public Arbol<T> getHijoIzquierdo() {
         return hijoIzquierdo;
     }
 
-    public void setHijoIzquierdo(Arbol hijoIzquierdo) {
+    public void setHijoIzquierdo(Arbol<T> hijoIzquierdo) {
         this.hijoIzquierdo = hijoIzquierdo;
     }
 
-    public Arbol getHijoDerecho() {
+    public Arbol<T> getHijoDerecho() {
         return hijoDerecho;
     }
 
-    public void setHijoDerecho(Arbol hijoDerecho) {
+    public void setHijoDerecho(Arbol<T> hijoDerecho) {
         this.hijoDerecho = hijoDerecho;
     }
 
@@ -38,10 +37,12 @@ public class NodoArbol {
     public String toString() {
         return "NodoArbol{" +
                 "dato=" + dato +
-                ", hijoIzquierdo=" + hijoIzquierdo.getRaiz().getDato() +
-                ", hijoDerecho=" + hijoDerecho.getRaiz().getDato() +
+                ", hijoIzquierdo=" + (hijoIzquierdo != null ? hijoIzquierdo.getRaiz().getDato() : "null") +
+                ", hijoDerecho=" + (hijoDerecho != null ? hijoDerecho.getRaiz().getDato() : "null") +
                 '}';
     }
-
-
 }
+
+
+
+
