@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d730c84-a4c0-48d6-b661-8cec45ca6f8a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Arboles/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Arboles/src/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laboratorio2/Application/Aplicacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laboratorio2/Application/Aplicacion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +24,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="2VYEdcNzMsYF8VEHtMPAOvl1sRl" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -38,6 +45,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.ide.FileNotInSourceRootChecker.no.check&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/marce/OneDrive/Documents/MARCELA/Ing. Sistemas/7mo semestre/Estructura de Datos/Temas/Colecciones&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -116,6 +124,8 @@
       <workItem from="1696217430572" duration="1262000" />
       <workItem from="1696441569822" duration="1594000" />
       <workItem from="1696981927658" duration="134000" />
+      <workItem from="1700066326045" duration="1104000" />
+      <workItem from="1700094038469" duration="27000" />
     </task>
     <servers />
   </component>
