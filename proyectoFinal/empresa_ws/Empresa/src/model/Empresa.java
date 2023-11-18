@@ -115,9 +115,11 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
                 ", nombre='" + nombre ;
     }
 
-    //----------------------------------------------------------------------------------
-    // Metodos implementados de las interfaces
-    //----------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------
+    //--------- Metodos implementados de las interfaces---------------------------
+    //----------------------------------------------------------------------------
+    //--------------------Usuario-------------------------------------------------
+    //----------------------------------------------------------------------------
 
     @Override
     public void crearUsuario(String usser, String password, String nombre, String cedula, TipoUsuario tipoUsuario) throws Exception {
@@ -149,17 +151,9 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         return false;
     }
 
-    @Override
-    public boolean verificarRegular(String usser, String password) {
-        return false;
-    }
-
-    @Override
-    public boolean verificarPremium(String usser, String password) {
-        return false;
-    }
-
-
+    //----------------------------------------------------------------------------
+    //--------------------Proceso-------------------------------------------------
+    //----------------------------------------------------------------------------
     @Override
     public void crearProceso(String id, String nombre) throws Exception {
 
@@ -185,6 +179,9 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         return false;
     }
 
+    //----------------------------------------------------------------------------
+    //--------------------Actividad-------------------------------------------------
+    //----------------------------------------------------------------------------
 
     @Override
     public void crearActividad(String nombre, String descripcion, TipoCumplimiento tipoCumplimiento) throws Exception {
@@ -211,7 +208,9 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         return false;
     }
 
-
+    //----------------------------------------------------------------------------
+    //--------------------Tarea-------------------------------------------------
+    //----------------------------------------------------------------------------
     @Override
     public void crearTarea(String nombre, String descripcion, int tiempo, TipoEstado estado, TipoCumplimiento cumplimiento) throws Exception {
 
@@ -238,5 +237,26 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
     }
 
 
+    //----------------------------------------------------------------------------
+    //--------------------LOGIN-------------------------------------------------
+    //----------------------------------------------------------------------------
 
+    @Override
+    public boolean verificarRegular(String usser, String password) {
+        return false;
+    }
+
+    @Override
+    public boolean verificarPremium(String usser, String password) {
+        return false;
+    }
+
+    //----------------------------------------------------------------------------
+    //--------------------NOTIFICACION-------------------------------------------------
+    //----------------------------------------------------------------------------
+
+    @Override
+    public String notificarTareaPendiente() {
+        return null;
+    }
 }
