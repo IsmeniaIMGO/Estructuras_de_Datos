@@ -11,8 +11,7 @@ public class Proceso {
     private int tiempoMinimo;
 
     // Relacion con otras clases
-    private Usuario usuario;
-    private ArrayList<DetalleActividad> listaDetalleActividad = new ArrayList<>();
+    private ArrayList<DetalleProceso> listaDetalleProceso = new ArrayList<>();
 
     // Constructor vacio
     public Proceso() {
@@ -21,13 +20,12 @@ public class Proceso {
     // Constructor con atributos
 
 
-    public Proceso(String id, String nombre, int tiempoMaximo, int tiempoMinimo, Usuario usuario, ArrayList<DetalleActividad> listaDetalleActividad) {
+    public Proceso(String id, String nombre, int tiempoMaximo, int tiempoMinimo, ArrayList<DetalleProceso> listaDetalleProceso) {
         this.id = id;
         this.nombre = nombre;
         this.tiempoMaximo = tiempoMaximo;
         this.tiempoMinimo = tiempoMinimo;
-        this.usuario = usuario;
-        this.listaDetalleActividad = listaDetalleActividad;
+        this.listaDetalleProceso = listaDetalleProceso;
     }
 
     // Getters y Setters
@@ -65,23 +63,15 @@ public class Proceso {
         this.tiempoMinimo = tiempoMinimo;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public ArrayList<DetalleProceso> getListaDetalleProceso() {
+        return listaDetalleProceso;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setListaDetalleProceso(ArrayList<DetalleProceso> listaDetalleProceso) {
+        this.listaDetalleProceso = listaDetalleProceso;
     }
 
-    public ArrayList<DetalleActividad> getListaDetalleActividad() {
-        return listaDetalleActividad;
-    }
-
-    public void setListaDetalleActividad(ArrayList<DetalleActividad> listaDetalleActividad) {
-        this.listaDetalleActividad = listaDetalleActividad;
-    }
-
-    // Metodo hashCode
+// Metodo hashCode
 
     @Override
     public boolean equals(Object o) {
@@ -105,12 +95,10 @@ public class Proceso {
                 ", nombre='" + nombre + '\'' +
                 ", tiempoMaximo=" + tiempoMaximo +
                 ", tiempoMinimo=" + tiempoMinimo +
-                ", usuario=" + usuario +
-                ", listaDetalleActividad=" + listaDetalleActividad +
+                ", listaDetalleProceso=" + listaDetalleProceso +
                 '}';
     }
 
-    // Metodo para agregar detalle de actividad
 
 
 }

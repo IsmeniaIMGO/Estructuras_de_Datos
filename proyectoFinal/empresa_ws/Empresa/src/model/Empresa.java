@@ -160,11 +160,54 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
     }
 
 
+    @Override
+    public void crearProceso(String id, String nombre) throws Exception {
+
+    }
+
+    @Override
+    public void buscarProceso(String id) {
+
+    }
+
+    @Override
+    public void eliminarProceso(String id) throws Exception {
+
+    }
+
+    @Override
+    public void actualizarProceso(String id, String nuevoNombre) {
+
+    }
+
+    @Override
+    public boolean existeProceso(String id) {
+        return false;
+    }
 
 
+    @Override
+    public void crearActividad(String nombre, String descripcion) throws Exception {
 
+    }
 
+    @Override
+    public void buscarActividad(String nombre) {
 
+    }
 
+    @Override
+    public void eliminarActividad(String nombre) throws Exception {
 
+    }
+
+    @Override
+    public void actualizarActividad(String nombre, String nuevoNombre, String nuevaDescripcion) {
+
+    }
+
+    @Override
+    public boolean existeActividad(String nombre) {
+        return false;
+    }
 }
