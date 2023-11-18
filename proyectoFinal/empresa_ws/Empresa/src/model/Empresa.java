@@ -155,11 +155,31 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
 
     @Override
     public void eliminarUsuario(String cedula) throws Exception {
+        if (cedula == null || cedula.equals(""))
+            throw new NuloVacioException("el id del cliente es nulo o vacio");
 
+        if(!existeUsuario(cedula))
+            throw new CedulaNoExisteException("Esta cedula no se encuentra registrada");
+
+        Iterator<Usuario> iterator = listaUsuarios.iterator();
+        while (iterator.hasNext()) {
+            Usuario usuario = iterator.next();
+            if (usuario.getCedula().equals(cedula)) {
+                iterator.remove();
+            }
+        }
     }
 
     @Override
     public void actualizarUsuario(String nuevoUsser, String nuevaPassword, String nuevoNombre, String cedula, TipoUsuario nuevoTipo) {
+        for (Usuario usuario: listaUsuarios) {
+            if(usuario.getCedula().equals(cedula)){
+                usuario.setUsser(nuevoUsser);
+                usuario.setPassword(nuevaPassword);
+                usuario.setNombre(nuevoNombre);
+                usuario.setTipoUsuario(nuevoTipo);
+            }
+        }
 
     }
 
@@ -295,4 +315,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
     public String notificarTareaPendiente() {
         return null;
     }
+
+
 }
