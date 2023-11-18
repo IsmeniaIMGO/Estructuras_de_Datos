@@ -187,7 +187,7 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
 
 
     @Override
-    public void crearActividad(String nombre, String descripcion) throws Exception {
+    public void crearActividad(String nombre, String descripcion, TipoCumplimiento tipoCumplimiento) throws Exception {
 
     }
 
@@ -202,7 +202,7 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
     }
 
     @Override
-    public void actualizarActividad(String nombre, String nuevoNombre, String nuevaDescripcion) {
+    public void actualizarActividad(String nombre, String nuevoNombre, String nuevaDescripcion, TipoCumplimiento tipoCumplimiento) {
 
     }
 
@@ -210,4 +210,32 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
     public boolean existeActividad(String nombre) {
         return false;
     }
+
+
+    @Override
+    public void crearTarea(String nombre, String descripcion, int tiempo, TipoEstado estado, TipoCumplimiento cumplimiento) throws Exception {
+
+    }
+
+    @Override
+    public void buscarTarea(String nombre) {
+
+    }
+
+    @Override
+    public void eliminarTarea(String nombre) throws Exception {
+
+    }
+
+    @Override
+    public void actualizarTarea(String nombre, String nuevoNombre, String nuevaDescripcion, int nuevoTiempo, TipoEstado nuevoEstado, TipoCumplimiento nuevoCumplimiento) {
+
+    }
+
+    @Override
+    public boolean existeTarea(String nombre) {
+        return false;
+    }
+
+
 }

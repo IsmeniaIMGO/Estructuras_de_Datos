@@ -11,6 +11,7 @@ public class Actividad {
     private int tiempoMinimo;
 
     //relacion con otras clases
+    private TipoCumplimiento tipoCumplimiento;
     private ArrayList<DetalleActividad> listaDetalleActividad = new ArrayList<>();
 
     //Constructor vacio
@@ -20,12 +21,13 @@ public class Actividad {
     //Constructor con atributos
 
 
-    public Actividad(String nombre, String descripcion, int tiempoMaximo, int tiempoMinimo, ArrayList<DetalleActividad> listaDetalleActividad) {
+    public Actividad(String nombre, String descripcion, int tiempoMaximo, int tiempoMinimo, TipoCumplimiento tipoCumplimiento, ArrayList<DetalleActividad> listaDetalleActividad) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tiempoMaximo = tiempoMaximo;
         this.tiempoMinimo = tiempoMinimo;
         this.listaDetalleActividad = listaDetalleActividad;
+        this.tipoCumplimiento = tipoCumplimiento;
     }
 
 
@@ -63,6 +65,14 @@ public class Actividad {
         this.tiempoMinimo = tiempoMinimo;
     }
 
+    public TipoCumplimiento getTipoCumplimiento() {
+        return tipoCumplimiento;
+    }
+
+    public void setTipoCumplimiento(TipoCumplimiento tipoCumplimiento) {
+        this.tipoCumplimiento = tipoCumplimiento;
+    }
+
     public ArrayList<DetalleActividad> getListaDetalleActividad() {
         return listaDetalleActividad;
     }
@@ -70,6 +80,7 @@ public class Actividad {
     public void setListaDetalleActividad(ArrayList<DetalleActividad> listaDetalleActividad) {
         this.listaDetalleActividad = listaDetalleActividad;
     }
+
 
     //metodo equals
     @Override
@@ -86,7 +97,6 @@ public class Actividad {
     }
 
     //Metodo toString
-
     @Override
     public String toString() {
         return "Actividad{" +
@@ -94,6 +104,7 @@ public class Actividad {
                 ", descripcion='" + descripcion + '\'' +
                 ", tiempoMaximo=" + tiempoMaximo +
                 ", tiempoMinimo=" + tiempoMinimo +
+                ", tipoCumplimiento=" + tipoCumplimiento +
                 ", listaDetalleActividad=" + listaDetalleActividad +
                 '}';
     }
