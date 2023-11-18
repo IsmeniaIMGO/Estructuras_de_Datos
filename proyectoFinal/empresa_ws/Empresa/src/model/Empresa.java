@@ -1,9 +1,11 @@
 package model;
 
 import estructures.*;
+import exceptions.*;
 import services.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Objects;
 
 public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICrudTarea, INotificacion, ILogin{
@@ -12,8 +14,8 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
     private String nombre;
 
     //relacion con otras clases
-    private ArrayList<Proceso> procesos = new ArrayList<>();
-    private ArrayList<Usuario> usuarios = new ArrayList<>();
+    private ArrayList<Proceso> listaProcesos = new ArrayList<>();
+    private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
     private ListaDoble<Actividad> listaActividades = new ListaDoble<>();
     private Cola<Tarea> listaTareas = new Cola<>();
     private ArrayList<Usuario> listaLogin = new ArrayList<>();
@@ -23,11 +25,11 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
     }
 
     //Constructor con atributos
-    public Empresa(String nit, String nombre, ArrayList<Proceso> procesos, ArrayList<Usuario> usuarios, ListaDoble<Actividad> listaActividades, Cola<Tarea> listaTareas, ArrayList<Usuario> listaLogin) {
+    public Empresa(String nit, String nombre, ArrayList<Proceso> listaProcesos, ArrayList<Usuario> listaUsuarios, ListaDoble<Actividad> listaActividades, Cola<Tarea> listaTareas, ArrayList<Usuario> listaLogin) {
         this.nit = nit;
         this.nombre = nombre;
-        this.procesos = procesos;
-        this.usuarios = usuarios;
+        this.listaProcesos = listaProcesos;
+        this.listaUsuarios = listaUsuarios;
         this.listaActividades = listaActividades;
         this.listaTareas = listaTareas;
         this.listaLogin = listaLogin;
@@ -51,20 +53,20 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         this.nombre = nombre;
     }
 
-    public ArrayList<Proceso> getProcesos() {
-        return procesos;
+    public ArrayList<Proceso> getListaProcesos() {
+        return listaProcesos;
     }
 
-    public void setProcesos(ArrayList<Proceso> procesos) {
-        this.procesos = procesos;
+    public void setListaProcesos(ArrayList<Proceso> listaProcesos) {
+        this.listaProcesos = listaProcesos;
     }
 
-    public ArrayList<Usuario> getUsuarios() {
-        return usuarios;
+    public ArrayList<Usuario> getListaUsuarios() {
+        return listaUsuarios;
     }
 
-    public void setUsuarios(ArrayList<Usuario> usuarios) {
-        this.usuarios = usuarios;
+    public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
     }
 
     public ListaDoble<Actividad> getListaActividades() {
@@ -123,11 +125,31 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
 
     @Override
     public void crearUsuario(String usser, String password, String nombre, String cedula, TipoUsuario tipoUsuario) throws Exception {
+        if (cedula == null || cedula.equals(""))
+            throw new NuloVacioException("el id del cliente es nulo o vacio");
 
+        if(existeUsuario(cedula))
+            throw new CedulaYaExisteException("Esta cedula ya se encuentra registrada");
+
+        if(existeUsser(usser))
+            throw new UsserYaExisteException("Este usuario ya se encuentra registrado");
+
+        if(nombre.equals("") || tipoUsuario.equals("") || usser.equals("") || password.equals(""))
+            throw new ParametroVacioException("Alguno de los parámetros indicados es está vacío");
+        ArrayList<Proceso> listaProcesos = new ArrayList<Proceso>();
+
+        Usuario usuario = new Usuario(nombre, cedula, usser, password, tipoUsuario, listaProcesos);
+
+        this.listaUsuarios.add(usuario);
     }
 
     @Override
     public Usuario buscarUsuario(String cedula) {
+        for (Usuario usuario: listaUsuarios) {
+            if(usuario.getCedula().equals(cedula)){
+                return usuario;
+            }
+        }
         return null;
     }
 
@@ -143,11 +165,25 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
 
     @Override
     public boolean existeUsuario(String cedula) {
+        Iterator<Usuario> iterator = listaUsuarios.iterator();
+        while (iterator.hasNext()) {
+            Usuario usuario = iterator.next();
+            if (usuario.getCedula().equals(cedula)) {
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public boolean existeUsser(String usser) throws Exception {
+        Iterator<Usuario> iterator = listaUsuarios.iterator();
+        while (iterator.hasNext()) {
+            Usuario usuario = iterator.next();
+            if (usuario.getUsser().equals(usser)) {
+                return true;
+            }
+        }
         return false;
     }
 
