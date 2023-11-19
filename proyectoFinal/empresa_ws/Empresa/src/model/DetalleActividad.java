@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class DetalleActividad {
     //atributos
-    private String id;
     private Tarea tarea;
 
     //Constructor vacio
@@ -12,18 +11,11 @@ public class DetalleActividad {
     }
 
     //Constructor con atributos
-    public DetalleActividad(String id, Tarea tarea) {
-        this.id = id;
+    public DetalleActividad(Tarea tarea) {
         this.tarea = tarea;
     }
 
     //Getters y Setters
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
-        this.id = id;
-    }
     public Tarea getTarea() {
         return tarea;
     }
@@ -33,28 +25,26 @@ public class DetalleActividad {
 
     //metodo equals
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DetalleActividad that = (DetalleActividad) o;
-        return Objects.equals(id, that.id);
+        return Objects.equals(tarea, that.tarea);
     }
 
-    //Metodo hashCode
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(tarea);
     }
 
     //Metodo toString
+
     @Override
     public String toString() {
         return "DetalleActividad{" +
-                "id='" + id + '\'' +
-                ", tarea=" + tarea +
+                "tarea=" + tarea +
                 '}';
     }
-
-
 }

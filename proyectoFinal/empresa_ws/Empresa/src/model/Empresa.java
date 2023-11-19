@@ -129,13 +129,14 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
             throw new NuloVacioException("el id del cliente es nulo o vacio");
 
         if(existeUsuario(cedula))
-            throw new CedulaYaExisteException("Esta cedula ya se encuentra registrada");
+            throw new CedulaException("Esta cedula ya se encuentra registrada");
 
         if(existeUsser(usser))
-            throw new UsserYaExisteException("Este usuario ya se encuentra registrado");
+            throw new UsuarioException("Este usuario ya se encuentra registrado");
 
         if(nombre.equals("") || tipoUsuario.equals("") || usser.equals("") || password.equals(""))
-            throw new ParametroVacioException("Alguno de los parámetros indicados es está vacío");
+            throw new NuloVacioException("Alguno de los parámetros indicados es está vacío");
+
         ArrayList<Proceso> listaProcesos = new ArrayList<Proceso>();
 
         Usuario usuario = new Usuario(nombre, cedula, usser, password, tipoUsuario, listaProcesos);
@@ -159,7 +160,7 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
             throw new NuloVacioException("el id del cliente es nulo o vacio");
 
         if(!existeUsuario(cedula))
-            throw new CedulaNoExisteException("Esta cedula no se encuentra registrada");
+            throw new CedulaException("Esta cedula no se encuentra registrada");
 
         Iterator<Usuario> iterator = listaUsuarios.iterator();
         while (iterator.hasNext()) {
@@ -212,63 +213,174 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
     //----------------------------------------------------------------------------
     @Override
     public void crearProceso(String id, String nombre) throws Exception {
+        if (id == null || id.equals(""))
+            throw new NuloVacioException("el id del proceso es nulo o vacio");
+        if (nombre == null || nombre.equals(""))
+            throw new NuloVacioException("el nombre del proceso es nulo o vacio");
+
+        int tiempoMaximo = 0;
+        int tiempoMinimo = 0;
+        ArrayList<DetalleProceso> listaDetalleProceso = new ArrayList<DetalleProceso>();
+
+        Proceso proceso = new Proceso(id, nombre, tiempoMaximo, tiempoMinimo, listaDetalleProceso);
+        this.listaProcesos.add(proceso);
 
     }
 
     @Override
-    public void buscarProceso(String id) {
+    public Proceso buscarProceso(String id) {
+        for (Proceso proceso: listaProcesos) {
+            if(proceso.getId().equals(id)){
+                return proceso;
+            }
+        }
+        return null;
+
 
     }
 
     @Override
     public void eliminarProceso(String id) throws Exception {
+        if (id == null || id.equals(""))
+            throw new NuloVacioException("el id del proceso es nulo o vacio");
+
+        if(!existeProceso(id))
+            throw new ProcesoException("Este proceso no se encuentra registrado");
+
+        Iterator<Proceso> iterator = listaProcesos.iterator();
+        while (iterator.hasNext()) {
+            Proceso proceso = iterator.next();
+            if (proceso.getId().equals(id)) {
+                iterator.remove();
+            }
+        }
 
     }
 
     @Override
     public void actualizarProceso(String id, String nuevoNombre) {
+        for (Proceso proceso: listaProcesos) {
+            if(proceso.getId().equals(id)){
+                proceso.setNombre(nuevoNombre);
+            }
+        }
 
     }
 
     @Override
     public boolean existeProceso(String id) {
+        Iterator<Proceso> iterator = listaProcesos.iterator();
+        while (iterator.hasNext()) {
+            Proceso proceso = iterator.next();
+            if (proceso.getId().equals(id)) {
+                return true;
+            }
+        }
         return false;
+
     }
+
 
     //----------------------------------------------------------------------------
     //--------------------Actividad-------------------------------------------------
     //----------------------------------------------------------------------------
 
     @Override
-    public void crearActividad(String nombre, String descripcion, TipoCumplimiento tipoCumplimiento) throws Exception {
+    public void crearActividad(Proceso proceso, String nombre, String descripcion, TipoCumplimiento tipoCumplimiento) throws Exception {
+        if (nombre == null || nombre.equals(""))
+            throw new NuloVacioException("el nombre de la actividad es nulo o vacio");
+
+        if(existeActividad(nombre))
+            throw new ActividadException("Esta actividad ya se encuentra registrada");
+
+        if(descripcion.equals("") || tipoCumplimiento.equals(""))
+            throw new NuloVacioException("Alguno de los parámetros indicados es está vacío");
+
+        int tiempoMaximo = 0;
+        int tiempoMinimo = 0;
+        ArrayList<DetalleActividad> listaDetalleActividad = new ArrayList<DetalleActividad>();
+        Actividad actividad = new Actividad(nombre, descripcion, tiempoMaximo, tiempoMinimo, tipoCumplimiento, listaDetalleActividad);
+
+        for (int i = 0; i < listaProcesos.size(); i++) {
+            Proceso aux = listaProcesos.get(i);
+            if (aux.getId().equals(proceso.getId())) {
+                aux.getListaDetalleProceso().add(new DetalleProceso(actividad));
+            }
+        }
+
+        this.listaActividades.agregarInicio(actividad);
 
     }
 
     @Override
-    public void buscarActividad(String nombre) {
+    public Actividad buscarActividad(String nombreActividad) throws Exception{
+        if (nombreActividad == null || nombreActividad.equals(""))
+            throw new NuloVacioException("el nombre de la actividad es nulo o vacio");
+
+        for (int i = 0; i < listaActividades.getSize(); i++) {
+            Actividad actividad = listaActividades.obtenerValorNodo(i);
+            if (actividad.getNombre().equals(nombreActividad)) {
+                return actividad;
+            }
+        }
+        return null;
 
     }
 
     @Override
-    public void eliminarActividad(String nombre) throws Exception {
+    public void eliminarActividad(Actividad actividad) {
+        this.listaActividades.eliminar(actividad);
+    }
+
+    @Override
+    public void actualizarActividad(Proceso proceso, String nombre, String nuevoNombre, String nuevaDescripcion, TipoCumplimiento nuevoTipoCumplimiento) throws Exception {
+
+        Actividad actividadExistente = buscarActividad(nombre);
+
+        ArrayList<DetalleActividad> listaDetalleActividad = actividadExistente.getListaDetalleActividad();
+        int tiempoMaximo = actividadExistente.getTiempoMaximo();
+        int tiempoMinimo = actividadExistente.getTiempoMinimo();
+
+        Actividad actividadNueva = new Actividad(nuevoNombre, nuevaDescripcion,tiempoMaximo,tiempoMinimo, nuevoTipoCumplimiento, listaDetalleActividad);
+
+        listaActividades.eliminar(actividadExistente);
+        listaActividades.agregarInicio(actividadNueva);
+
+        for (int i = 0; i < listaProcesos.size(); i++) {
+            Proceso aux = listaProcesos.get(i);
+            if (aux.getId().equals(proceso.getId())) {
+                DetalleProceso detalleExistente = new DetalleProceso(actividadExistente);
+                if (aux.getListaDetalleProceso().contains(detalleExistente)) {
+                    aux.getListaDetalleProceso().remove(detalleExistente);
+                    aux.getListaDetalleProceso().add(new DetalleProceso(actividadExistente));
+                }
+            }
+        }
 
     }
 
     @Override
-    public void actualizarActividad(String nombre, String nuevoNombre, String nuevaDescripcion, TipoCumplimiento tipoCumplimiento) {
+    public boolean existeActividad(String nombre) throws Exception {
+        if (nombre == null || nombre.equals(""))
+            throw new NuloVacioException("el nombre de la actividad es nulo o vacio");
 
-    }
-
-    @Override
-    public boolean existeActividad(String nombre) {
+        for (int i = 0; i < listaActividades.getSize(); i++) {
+            Actividad actividad = listaActividades.obtenerValorNodo(i);
+            if (actividad.getNombre().equals(nombre)) {
+                return true;
+            }
+        }
         return false;
     }
+
+
 
     //----------------------------------------------------------------------------
     //--------------------Tarea-------------------------------------------------
     //----------------------------------------------------------------------------
     @Override
-    public void crearTarea(String nombre, String descripcion, int tiempo, TipoEstado estado, TipoCumplimiento cumplimiento) throws Exception {
+    public void crearTarea(Proceso proceso,Actividad actividad,String nombre, String descripcion, int tiempo, TipoEstado estado, TipoCumplimiento cumplimiento) throws Exception {
+
 
     }
 

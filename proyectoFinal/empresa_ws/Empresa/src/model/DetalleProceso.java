@@ -6,7 +6,6 @@ import java.util.Objects;
 
 public class DetalleProceso {
     // Atributos
-    private String id;
     private Actividad actividad;
 
     // Constructor vacio
@@ -14,20 +13,12 @@ public class DetalleProceso {
     }
 
     // Constructor con atributos
-    public DetalleProceso(String id, Actividad actividad) {
-        this.id = id;
+    public DetalleProceso( Actividad actividad) {
         this.actividad = actividad;
     }
 
     // Getters y Setters
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public Actividad getActividad() {
         return actividad;
@@ -39,27 +30,26 @@ public class DetalleProceso {
 
     //metodo equals
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DetalleProceso that = (DetalleProceso) o;
-        return Objects.equals(id, that.id);
+        return Objects.equals(actividad, that.actividad);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(actividad);
     }
 
     //Metodo toString
+
     @Override
     public String toString() {
         return "DetalleProceso{" +
-                "id='" + id + '\'' +
-                ", actividad=" + actividad +
+                "actividad=" + actividad +
                 '}';
     }
-
-
 }

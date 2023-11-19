@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="715.0" prefWidth="1148.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane layoutX="-2.0" layoutY="-8.0" prefHeight="720.0" prefWidth="1150.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab fx:id="tabMisActividades" text="Mis Actividades">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="815.0" prefWidth="1141.0" style="-fx-background-color: EDF4FF;">
+                     <children>
+                        <ImageView fitHeight="610.0" fitWidth="1078.0" layoutX="35.0" layoutY="26.0">
+                           <image>
+                              <Image url="@Imagenes/fondoP.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="36.0" fitWidth="121.0" layoutX="35.0" layoutY="103.0">
+                           <image>
+                              <Image url="@Imagenes/Solid_white.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="35.0" layoutY="107.0" text="Mis Procesos">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Label>
+                        <TableView fx:id="tblActividades" layoutX="35.0" layoutY="246.0" prefHeight="367.0" prefWidth="806.0">
+                          <columns>
+                            <TableColumn fx:id="colActividades" prefWidth="805.0" text="Actividades" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnCerrarSesion" layoutX="35.0" layoutY="26.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #153D79;" text="Cerrar Sesión" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Button>
+                        <Button fx:id="btnRegresarMisProcesos" layoutX="975.0" layoutY="26.0" mnemonicParsing="false" onAction="#regresarMisProcesos" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #153D79;" text="Regresar" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Button>
+                        <Button fx:id="btnAbrirCrearActividad" layoutX="911.0" layoutY="246.0" mnemonicParsing="false" onAction="#abrirCrearActividad" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Crear Actividad" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Button>
+                        <Button fx:id="btnAbrirActualizarActividad" layoutX="911.0" layoutY="410.0" mnemonicParsing="false" onAction="#abrirActualizarActividad" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Actualizar información" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Button>
+                        <Button fx:id="btnEliminarActividad" layoutX="911.0" layoutY="490.0" mnemonicParsing="false" onAction="#eliminarActividad" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Eliminar Actividad" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Button>
+                        <Button fx:id="btnVerInformacionActividad" layoutX="911.0" layoutY="330.0" mnemonicParsing="false" onAction="#verInformcionActividad" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Ver información" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Button>
+                        <Button fx:id="btnVerMisTareas" layoutX="911.0" layoutY="572.0" mnemonicParsing="false" onAction="#verMisTareas" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Ver Mis Tareas" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Button>
+                        <ComboBox fx:id="cboxSeleccionarProceso" layoutX="35.0" layoutY="160.0" prefHeight="39.0" prefWidth="372.0" promptText="Seleccionar proceso" />
+                        <ImageView fitHeight="36.0" fitWidth="200.0" layoutX="475.0" layoutY="30.0">
+                           <image>
+                              <Image url="@Imagenes/Solid_white.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="494.0" layoutY="32.0" text="Mis Actividades">
+                           <font>
+                              <Font name="Cambria Math" size="24.0" />
+                           </font></Label>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="tabCrearActividades" text="Crear Actividades">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="503.0" prefWidth="1150.0" style="-fx-background-color: EDF4FF;">
+                     <children>
+                        <ImageView fitHeight="610.0" fitWidth="1078.0" layoutX="35.0" layoutY="26.0">
+                           <image>
+                              <Image url="@Imagenes/fondoP.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="29.0" fitWidth="81.0" layoutX="35.0" layoutY="130.0">
+                           <image>
+                              <Image url="@Imagenes/Solid_white.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="29.0" fitWidth="99.0" layoutX="35.0" layoutY="186.0">
+                           <image>
+                              <Image url="@Imagenes/Solid_white.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="29.0" fitWidth="134.0" layoutX="35.0" layoutY="244.0">
+                           <image>
+                              <Image url="@Imagenes/Solid_white.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="29.0" fitWidth="134.0" layoutX="33.0" layoutY="301.0">
+                           <image>
+                              <Image url="@Imagenes/Solid_white.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="29.0" fitWidth="73.0" layoutX="35.0" layoutY="362.0">
+                           <image>
+                              <Image url="@Imagenes/Solid_white.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="35.0" fitWidth="139.0" layoutX="132.0" layoutY="361.0">
+                           <image>
+                              <Image url="@Imagenes/Solid_white.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="35.0" fitWidth="139.0" layoutX="317.0" layoutY="361.0">
+                           <image>
+                              <Image url="@Imagenes/Solid_white.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="35.0" layoutY="134.0" text="Nombre:">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Label>
+                        <Label layoutX="35.0" layoutY="190.0" text="Descripción:">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Label>
+                        <TextField fx:id="txtNombreActividad" layoutX="143.0" layoutY="128.0" prefHeight="39.0" prefWidth="432.0" text="Ingrese el nombre de la actividad">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></TextField>
+                        <TextField fx:id="txtDescripcionActividad" layoutX="143.0" layoutY="184.0" prefHeight="39.0" prefWidth="432.0" text="Ingrese la descripción de la actividad">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></TextField>
+                        <Button fx:id="btnCerrarSesion" layoutX="35.0" layoutY="26.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #153D79;" text="Cerrar Sesión" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Button>
+                        <Button fx:id="btnRegresarMisActividades" layoutX="975.0" layoutY="26.0" mnemonicParsing="false" onAction="#regresarMisActividades" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #153D79;" text="Regresar" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Button>
+                        <Label layoutX="35.0" layoutY="248.0" text="Tiempo máximo:">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Label>
+                        <TextField fx:id="txtTiempoMaximoActividad" layoutX="198.0" layoutY="242.0" prefHeight="39.0" prefWidth="376.0" text="Tiempo máximo de entrega">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></TextField>
+                        <Label layoutX="35.0" layoutY="305.0" text="Tiempo mínimo:">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Label>
+                        <TextField fx:id="txtTiempoMinimoActividad" layoutX="198.0" layoutY="299.0" prefHeight="39.0" prefWidth="376.0" text="Tiempo mínimo de entrega">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></TextField>
+                        <Button fx:id="btnCrearActividad" layoutX="35.0" layoutY="442.0" mnemonicParsing="false" onAction="#crearActividad" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #153D79;" text="Crear" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Button>
+                        <Button fx:id="btnActualizarActividad" layoutX="437.0" layoutY="442.0" mnemonicParsing="false" onAction="#actualizarActividad" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #153D79;" text="Actualizar" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Button>
+                        <Label layoutX="35.0" layoutY="366.0" text="Estado:">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></Label>
+                        <CheckBox fx:id="cbkObligatorio" layoutX="143.0" layoutY="366.0" mnemonicParsing="false" text="Obligatorio">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font></CheckBox>
+                        <CheckBox fx:id="cbkOpcional" layoutX="331.0" layoutY="366.0" mnemonicParsing="false" text="Opcional">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </CheckBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
