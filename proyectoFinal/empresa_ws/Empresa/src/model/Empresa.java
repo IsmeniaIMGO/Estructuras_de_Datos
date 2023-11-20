@@ -137,9 +137,9 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         if(nombre.equals("") || tipoUsuario.equals("") || usser.equals("") || password.equals(""))
             throw new NuloVacioException("Alguno de los parámetros indicados es está vacío");
 
-        ArrayList<Proceso> listaProcesos = new ArrayList<Proceso>();
+        ArrayList<Proceso> Procesos = new ArrayList<Proceso>();
 
-        Usuario usuario = new Usuario(nombre, cedula, usser, password, tipoUsuario, listaProcesos);
+        Usuario usuario = new Usuario(nombre, cedula, usser, password, tipoUsuario, Procesos);
 
         this.listaUsuarios.add(usuario);
     }
@@ -329,6 +329,16 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
 
     @Override
     public void eliminarActividad(Actividad actividad) {
+        for (int i = 0; i < listaProcesos.size(); i++) {
+            Proceso aux = listaProcesos.get(i);
+            for (int j = 0; j < aux.getListaDetalleProceso().size(); j++) {
+                DetalleProceso detalleProceso = aux.getListaDetalleProceso().get(j);
+                if (detalleProceso.getActividad().getNombre().equals(actividad.getNombre())) {
+                    aux.getListaDetalleProceso().remove(detalleProceso);
+                }
+            }
+        }
+
         this.listaActividades.eliminar(actividad);
     }
 
@@ -380,28 +390,122 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
     //----------------------------------------------------------------------------
     @Override
     public void crearTarea(Proceso proceso,Actividad actividad,String nombre, String descripcion, int tiempo, TipoEstado estado, TipoCumplimiento cumplimiento) throws Exception {
+        if (nombre == null || nombre.equals(""))
+            throw new NuloVacioException("el nombre de la tarea es nulo o vacio");
+
+        if(existeTarea(nombre))
+            throw new TareaException("Esta tarea ya se encuentra registrada");
+
+        if(descripcion.equals("") || estado.equals("") || cumplimiento.equals(""))
+            throw new NuloVacioException("Alguno de los parámetros indicados es está vacío");
+
+        Tarea tarea = new Tarea(nombre, descripcion, tiempo, estado, cumplimiento);
+
+        for (int i = 0; i < listaProcesos.size(); i++) {
+            Proceso aux = listaProcesos.get(i);
+            if (aux.getId().equals(proceso.getId())) {
+                for (int j = 0; j < aux.getListaDetalleProceso().size(); j++) {
+                    DetalleProceso detalleProceso = aux.getListaDetalleProceso().get(j);
+                    if (detalleProceso.getActividad().getNombre().equals(actividad.getNombre())) {
+                        detalleProceso.getActividad().getListaDetalleActividad().add(new DetalleActividad(tarea));
+                    }
+                }
+            }
+        }
+
+        this.listaTareas.encolar(tarea);
+
+    }
+
+    @Override
+    public Tarea buscarTarea(String nombre) {
+        for (int i = 0; i < listaTareas.getTamano(); i++) {
+            Tarea tarea = listaTareas.desencolar();
+            if (tarea.getNombre().equals(nombre)) {
+                listaTareas.encolar(tarea); // vuelvo a encolar la tarea para no eliminarla de la lista
+                return tarea;
+            }
+            listaTareas.encolar(tarea); // vuelvo a encolar la tarea para no eliminarla de la lista
+        }
+        return null;
 
 
     }
 
     @Override
-    public void buscarTarea(String nombre) {
+    public void eliminarTarea(Tarea tarea) throws Exception {
 
-    }
+        Cola<Tarea> colaAuxiliar = new Cola<>(); // cola auxiliar para no perder tareas
+        boolean tareaEncontrada = false;
 
-    @Override
-    public void eliminarTarea(String nombre) throws Exception {
+        while (!listaTareas.estaVacia()) {
+            Tarea aux = listaTareas.desencolar();
+            if (aux.getNombre().equals(nombre)) {
+                tareaEncontrada = true;
+            } else {
+                colaAuxiliar.encolar(aux);
+            }
+        }
+
+        while (!colaAuxiliar.estaVacia()) {
+            listaTareas.encolar(colaAuxiliar.desencolar());
+        }
+
+        if (!tareaEncontrada) {
+            throw new TareaException("Tarea no encontrada");
+        }
+
 
     }
 
     @Override
     public void actualizarTarea(String nombre, String nuevoNombre, String nuevaDescripcion, int nuevoTiempo, TipoEstado nuevoEstado, TipoCumplimiento nuevoCumplimiento) {
 
+        Cola<Tarea> colaAuxiliar = new Cola<>(); // cola auxiliar para no perder tareas
+        boolean tareaEncontrada = false;
+
+        while (!listaTareas.estaVacia()) {
+            Tarea tarea = listaTareas.desencolar();
+            if (tarea.getNombre().equals(nombre)) {
+                tarea.setNombre(nuevoNombre);
+                tarea.setDescripcion(nuevaDescripcion);
+                tarea.setTiempo(nuevoTiempo);
+                tarea.setEstado(nuevoEstado);
+                tarea.setCumplimiento(nuevoCumplimiento);
+                tareaEncontrada = true;
+            }
+            colaAuxiliar.encolar(tarea);
+        }
+
+        while (!colaAuxiliar.estaVacia()) {
+            listaTareas.encolar(colaAuxiliar.desencolar());
+        }
+
+        if (!tareaEncontrada) {
+            System.out.println("Tarea no encontrada");
+        }
+
+        for (int i = 0; i < listaProcesos.size(); i++) {
+            Proceso aux = listaProcesos.get(i);
+            for (int j = 0; j < aux.getListaDetalleProceso().size(); j++) {
+                DetalleProceso detalleProceso = aux.getListaDetalleProceso().get(j);
+                for (int k = 0; k < detalleProceso.getActividad().getListaDetalleActividad().size(); k++) {
+                    DetalleActividad detalleActividad = detalleProceso.getActividad().getListaDetalleActividad().get(k);
+                    if (detalleActividad.getTarea().getNombre().equals(nombre)) {
+                        detalleActividad.getTarea().setNombre(nuevoNombre);
+                        detalleActividad.getTarea().setDescripcion(nuevaDescripcion);
+                        detalleActividad.getTarea().setTiempo(nuevoTiempo);
+                        detalleActividad.getTarea().setEstado(nuevoEstado);
+                        detalleActividad.getTarea().setCumplimiento(nuevoCumplimiento);
+                    }
+                }
+            }
+        }
     }
 
     @Override
     public boolean existeTarea(String nombre) {
-        return false;
+        return buscarTarea(nombre) != null;
     }
 
 
@@ -411,13 +515,44 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
 
     @Override
     public boolean verificarRegular(String usser, String password) {
+        Usuario usuario = buscarUsser(usser);
+
+        if ((usuario != null) && (usuario.getPassword().equals(password)) && (usuario.getTipoUsuario() == TipoUsuario.REGULAR)) {
+            listaLogin.add(usuario);
+            return true;
+        }
+        return false;
+
+    }
+    @Override
+    public boolean verificarPremium(String usser, String password) {
+        Usuario usuario = buscarUsser(usser);
+
+        if ((usuario != null) && (usuario.getPassword().equals(password)) && (usuario.getTipoUsuario() == TipoUsuario.PREMIUM)) {
+            listaLogin.add(usuario);
+            return true;
+        }
         return false;
     }
 
     @Override
-    public boolean verificarPremium(String usser, String password) {
-        return false;
+    public Usuario buscarUsser(String usser) {
+        Iterator<Usuario> iterator = listaUsuarios.iterator();
+        while (iterator.hasNext()) {
+            Usuario usuario = iterator.next();
+            if (usuario.getUsser().equals(usser)) {
+                return usuario;
+            }
+        }
+        return null;
     }
+
+    @Override
+    public void cerrarSesion() {
+        listaLogin.clear();
+    }
+
+
 
     //----------------------------------------------------------------------------
     //--------------------NOTIFICACION-------------------------------------------------
@@ -425,7 +560,16 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
 
     @Override
     public String notificarTareaPendiente() {
-        return null;
+
+        for (int i = 0; i < listaTareas.getTamano(); i++) {
+            Tarea tarea = listaTareas.desencolar();
+            if (tarea.getEstado() == TipoEstado.PENDIENTE) {
+                listaTareas.encolar(tarea);
+                return "Tarea pendiente: " + tarea.getNombre();
+            }
+            listaTareas.encolar(tarea);
+        }
+        return "No hay tareas pendientes";
     }
 
 
