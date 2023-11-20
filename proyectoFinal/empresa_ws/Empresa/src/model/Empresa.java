@@ -258,7 +258,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
             Proceso proceso = iterator.next();
             if (proceso.getId().equals(id)) {
                 iterator.remove();
-                return;
             }
         }
 
@@ -268,7 +267,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
                 Proceso proceso = iterator2.next();
                 if (proceso.getId().equals(id)) {
                     iterator2.remove();
-                    return;
                 }
             }
         }
@@ -282,7 +280,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
                 for(Proceso proceso: aux.getProcesos()){
                     if(proceso.getId().equals(id)){
                         proceso.setNombre(nuevoNombre);
-                        return;
                     }
                 }
             }
@@ -291,7 +288,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         for (Proceso proceso: listaProcesos) {
             if(proceso.getId().equals(id)){
                 proceso.setNombre(nuevoNombre);
-                return;
             }
         }
 
@@ -316,27 +312,39 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
     //----------------------------------------------------------------------------
 
     @Override
-    public void crearActividad(Usuario usuario, Proceso proceso, String nombre, String descripcion, TipoCumplimiento tipoCumplimiento) throws Exception {
+    public void crearActividad(Usuario usuario, Proceso proceso, String nombre, String descripcion, TipoCumplimiento tipoCumplimiento, String posicion, Actividad actividadAntigua) throws Exception {
         if (nombre == null || nombre.equals(""))
             throw new NuloVacioException("el nombre de la actividad es nulo o vacio");
 
         if(existeActividad(nombre))
             throw new ActividadException("Esta actividad ya se encuentra registrada");
 
-        if(descripcion.equals("") || tipoCumplimiento.equals(""))
+        if(descripcion.isEmpty() || tipoCumplimiento.equals("") || posicion.isEmpty())
             throw new NuloVacioException("Alguno de los parámetros indicados es está vacío");
 
         int tiempoMaximo = 0;
         int tiempoMinimo = 0;
         ArrayList<DetalleActividad> listaDetalleActividad = new ArrayList<DetalleActividad>();
-        Actividad actividad = new Actividad(nombre, descripcion, tiempoMaximo, tiempoMinimo, tipoCumplimiento, listaDetalleActividad);
+        Actividad actividadNueva = new Actividad(nombre, descripcion, tiempoMaximo, tiempoMinimo, tipoCumplimiento, listaDetalleActividad);
+
+        if (posicion.equals("despues")){
+            if (actividadAntigua ==null){
+                throw new NuloVacioException("No se ha seleccionado una actividad");
+            }else {
+                int pos = listaActividades.obtenerPosicionNodo(actividadAntigua);
+                this.listaActividades.agregarDespuesDe(actividadNueva, pos);
+            }
+        }
+
+        if (posicion.equals("final"))
+            this.listaActividades.agregarFinal(actividadNueva);
+
 
         for(Usuario aux: listaUsuarios){
             if(aux.getCedula().equals(usuario.getCedula())){
                 for(Proceso aux2: aux.getProcesos()){
                     if(aux2.getId().equals(proceso.getId())){
-                        aux2.getListaDetalleProceso().add(new DetalleProceso(actividad));
-                        return;
+                        aux2.getListaDetalleProceso().add(new DetalleProceso(actividadNueva));
                     }
                 }
             }
@@ -345,12 +353,11 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         for (int i = 0; i < listaProcesos.size(); i++) {
             Proceso aux = listaProcesos.get(i);
             if (aux.getId().equals(proceso.getId())) {
-                aux.getListaDetalleProceso().add(new DetalleProceso(actividad));
-                return;
+                aux.getListaDetalleProceso().add(new DetalleProceso(actividadNueva));
             }
         }
 
-        this.listaActividades.agregarInicio(actividad);
+
 
     }
 
@@ -376,7 +383,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
             for(DetalleProceso detalleProceso: aux.getListaDetalleProceso()){
                 if(detalleProceso.getActividad().getNombre().equals(actividad.getNombre())){
                     aux.getListaDetalleProceso().remove(detalleProceso);
-                    return;
                 }
             }
         }
@@ -386,7 +392,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
                 for(DetalleProceso detalleProceso: aux2.getListaDetalleProceso()){
                     if(detalleProceso.getActividad().getNombre().equals(actividad.getNombre())){
                         aux2.getListaDetalleProceso().remove(detalleProceso);
-                        return;
                     }
                 }
             }
@@ -453,7 +458,7 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
     //--------------------Tarea-------------------------------------------------
     //----------------------------------------------------------------------------
     @Override
-    public void crearTarea(Usuario usuario, Proceso proceso,Actividad actividad,String nombre, String descripcion, int tiempo, TipoEstado estado, TipoCumplimiento cumplimiento) throws Exception {
+    public void crearTarea(Usuario usuario, Proceso proceso,Actividad actividad,String nombre, String descripcion, int tiempo, TipoEstado estado, TipoCumplimiento cumplimiento, String posicion, Tarea tareaAntigua) throws Exception {
         if (nombre == null || nombre.equals(""))
             throw new NuloVacioException("el nombre de la tarea es nulo o vacio");
 
@@ -463,14 +468,27 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         if(descripcion.equals("") || estado.equals("") || cumplimiento.equals(""))
             throw new NuloVacioException("Alguno de los parámetros indicados es está vacío");
 
-        Tarea tarea = new Tarea(nombre, descripcion, tiempo, estado, cumplimiento);
+        Tarea tareaNueva = new Tarea(nombre, descripcion, tiempo, estado, cumplimiento);
+
+
+
+        if (posicion.equals("despues")){
+            if (tareaAntigua ==null){
+                throw new NuloVacioException("No se ha seleccionado una tarea");
+            }else {
+                listaTareas.agregarDespuesDe(tareaNueva,tareaAntigua);
+            }
+        }
+
+        if (posicion.equals("final"))
+            listaTareas.encolar(tareaNueva);
+
 
         for(Proceso aux: listaProcesos){
             if(aux.getId().equals(proceso.getId())){
                 for(DetalleProceso detalleProceso: aux.getListaDetalleProceso()){
                     if(detalleProceso.getActividad().getNombre().equals(actividad.getNombre())){
-                        detalleProceso.getActividad().getListaDetalleActividad().add(new DetalleActividad(tarea));
-                        return;
+                        detalleProceso.getActividad().getListaDetalleActividad().add(new DetalleActividad(tareaNueva));
                     }
                 }
             }
@@ -482,8 +500,7 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
                     if (aux2.getId().equals(proceso.getId())) {
                         for (DetalleProceso detalleProceso : aux2.getListaDetalleProceso()) {
                             if (detalleProceso.getActividad().getNombre().equals(actividad.getNombre())) {
-                                detalleProceso.getActividad().getListaDetalleActividad().add(new DetalleActividad(tarea));
-                                return;
+                                detalleProceso.getActividad().getListaDetalleActividad().add(new DetalleActividad(tareaNueva));
                             }
                         }
                     }
@@ -494,12 +511,11 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         for(int i = 0; i < listaActividades.getSize(); i++){
             Actividad aux = listaActividades.obtenerValorNodo(i);
             if(aux.getNombre().equals(actividad.getNombre())){
-                aux.getListaDetalleActividad().add(new DetalleActividad(tarea));
-                return;
+                aux.getListaDetalleActividad().add(new DetalleActividad(tareaNueva));
             }
         }
 
-        this.listaTareas.encolar(tarea);
+
 
     }
 

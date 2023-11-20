@@ -95,7 +95,7 @@ public class ListaDoble<Actividad> {
 	 *
 	 * @param valorNodo
 	 */
-	public void agregarfinal(Actividad valorNodo) {
+	public void agregarFinal(Actividad valorNodo) {
 
 		NodoDoble<Actividad> nuevoNodo = new NodoDoble<>(valorNodo);
 
@@ -116,7 +116,7 @@ public class ListaDoble<Actividad> {
 	 * @param indice �ndice donde se va a guardar el dato
 	 * @param dato   El valor a guardar
 	 */
-	public void agregar(Actividad dato, int indice) {
+	public void agregarDespuesDe(Actividad dato, int indice) {
 
 		if (indiceValido(indice)) {
 
@@ -126,10 +126,10 @@ public class ListaDoble<Actividad> {
 				NodoDoble<Actividad> nuevo = new NodoDoble<>(dato);
 				NodoDoble<Actividad> actual = obtenerNodo(indice);
 
-				nuevo.setSiguienteNodo(actual);
-				nuevo.setAnteriorNodo(actual.getAnteriorNodo());
-				actual.getAnteriorNodo().setSiguienteNodo(nuevo);
-				actual.setAnteriorNodo(nuevo);
+				nuevo.setAnteriorNodo(actual);
+				nuevo.setSiguienteNodo(actual.getSiguienteNodo());
+				actual.getSiguienteNodo().setAnteriorNodo(nuevo);
+				actual.setSiguienteNodo(nuevo);
 
 				size++;
 			}

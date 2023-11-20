@@ -2,11 +2,11 @@ package estructures;
 
 /**
  *
- * @param <T>
+ * @param <Tarea>
  */
-public class Cola<T> {
+public class Cola<Tarea> {
 
-	public Nodo<T> nodoPrimero, nodoUltimo;
+	public NodoDoble<Tarea> nodoPrimero, nodoUltimo;
 	public int tamanio;
 	
 
@@ -15,9 +15,9 @@ public class Cola<T> {
 	 * Agrega un elemento en la Cola
 	 * @param dato elemento a guardar en la Cola
 	 */
-	public void encolar(T dato) {
+	public void encolar(Tarea dato) {
 		
-		Nodo<T> nodo = new Nodo<>(dato);
+		NodoDoble<Tarea> nodo = new NodoDoble<>(dato);
 		
 		if(estaVacia()) {
 			nodoPrimero = nodoUltimo = nodo;
@@ -28,18 +28,61 @@ public class Cola<T> {
 		
 		tamanio++;
 	}
+	public void agregarDespuesDe(Tarea tareaExistente, Tarea nuevaTarea) {
+		if (tareaExistente == null || nuevaTarea == null) {
+			throw new IllegalArgumentException("Las tareas no pueden ser nulas");
+		}
+
+		// Encuentra el nodo de la tarea existente
+		NodoDoble<Tarea> nodoExistente = encontrarNodo(tareaExistente);
+
+		if (nodoExistente != null) {
+			// Crea un nuevo nodo para la nueva tarea
+			NodoDoble<Tarea> nuevoNodo = new NodoDoble<>(nuevaTarea);
+
+			// Actualiza los enlaces para insertar el nuevo nodo después del nodo existente
+			nuevoNodo.setSiguienteNodo(nodoExistente.getSiguienteNodo());
+			nuevoNodo.setAnteriorNodo(nodoExistente);
+			nodoExistente.setSiguienteNodo(nuevoNodo);
+
+			// Si la tarea existente no es la última en la cola, actualiza el enlace del siguiente nodo
+			if (nodoExistente.getSiguienteNodo() != null) {
+				nodoExistente.getSiguienteNodo().setAnteriorNodo(nuevoNodo);
+			} else {
+				// Si la tarea existente es la última, actualiza el nodoUltimo de la cola
+				nodoUltimo = nuevoNodo;
+			}
+
+			// Aumenta el tamaño de la cola
+			tamanio++;
+		}
+	}
+
+	// Método auxiliar para encontrar el nodo de una tarea en la cola
+	private NodoDoble<Tarea> encontrarNodo(Tarea tarea) {
+		NodoDoble<Tarea> actual = nodoPrimero;
+
+		while (actual != null) {
+			if (actual.getValorNodo().equals(tarea)) {
+				return actual;
+			}
+			actual = actual.getSiguienteNodo();
+		}
+
+		return null; // La tarea no se encontró en la cola
+	}
 	
 	/**
 	 * Retorna y elimina el elemento que est� al incio de la Cola
 	 * @return Primer elemento de la Cola
 	 */
-	public T desencolar() {
+	public Tarea desencolar() {
 		
 		if(estaVacia()) {
 			throw new RuntimeException("La Cola est� vac�a");
 		}
 		
-		T dato = nodoPrimero.getValorNodo();
+		Tarea dato = nodoPrimero.getValorNodo();
 		nodoPrimero = nodoPrimero.getSiguienteNodo();
 		
 		if(nodoPrimero==null) {
@@ -71,14 +114,14 @@ public class Cola<T> {
 	/**
 	 * @return the primero
 	 */
-	public Nodo<T> getPrimero() {
+	public NodoDoble<Tarea> getPrimero() {
 		return nodoPrimero;
 	}
 
 	/**
 	 * @return the ultimo
 	 */
-	public Nodo<T> getUltimo() {
+	public NodoDoble<Tarea> getUltimo() {
 		return nodoUltimo;
 	}
 
@@ -94,10 +137,10 @@ public class Cola<T> {
 	 * @param cola Cola a comparar
 	 * @return True si son iguales
 	 */
-	public boolean sonIdenticas(Cola<T> cola) {
+	public boolean sonIdenticas(Cola<Tarea> cola) {
 		
-		Cola<T> clon1 = clone();
-		Cola<T> clon2 = cola.clone();
+		Cola<Tarea> clon1 = clone();
+		Cola<Tarea> clon2 = cola.clone();
 		
 		if(clon1.getTamano() == clon2.getTamano()) {
 			
@@ -118,7 +161,7 @@ public class Cola<T> {
 	 * Imprime una cola en consola
 	 */
 	public void imprimir() {
-		Nodo<T> aux = nodoPrimero;
+		NodoDoble<Tarea> aux = nodoPrimero;
 		while(aux!=null) {
 			System.out.print(aux.getValorNodo()+"\t");
 			aux = aux.getSiguienteNodo();
@@ -127,10 +170,10 @@ public class Cola<T> {
 	}
 	
 	@Override
-	protected Cola<T> clone() {
+	protected Cola<Tarea> clone() {
 		
-		Cola<T> nueva = new Cola<>();
-		Nodo<T> aux = nodoPrimero;
+		Cola<Tarea> nueva = new Cola<>();
+		NodoDoble<Tarea> aux = nodoPrimero;
 		
 		while(aux!=null) {
 			nueva.encolar( aux.getValorNodo() );
@@ -139,6 +182,12 @@ public class Cola<T> {
 		
 		return nueva;		
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Cola{" +
+				"nodoPrimero=" + nodoPrimero +
+				", nodoUltimo=" + nodoUltimo +
+				'}';
+	}
 }
