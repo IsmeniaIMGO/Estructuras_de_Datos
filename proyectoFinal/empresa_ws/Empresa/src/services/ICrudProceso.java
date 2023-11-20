@@ -7,10 +7,10 @@ import model.Usuario;
 import java.util.ArrayList;
 
 public interface ICrudProceso {
-    public void crearProceso(String id, String nombre) throws Exception;
+    public void crearProceso( Usuario usuario, String id, String nombre) throws Exception;
     public Proceso buscarProceso(String id);
     public void eliminarProceso(String id) throws Exception;
-    public void actualizarProceso(String id, String nuevoNombre);
+    public void actualizarProceso( Usuario usuario, String id, String nuevoNombre);
     public boolean existeProceso(String id);
 
 
