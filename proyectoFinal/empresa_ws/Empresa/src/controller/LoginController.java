@@ -45,7 +45,7 @@ public class LoginController {
 
     @FXML
     void crearUsuario(ActionEvent event) {
-       // singleton.mostrarCrudUsuario("/Laboratorio2/View/CrudUsuario.fxml");
+       singleton.mostrarCrudUsuario("/view/CrudUsuario.fxml");
     }
 
 

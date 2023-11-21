@@ -1,7 +1,6 @@
 package application;
 
-import controller.LoginController;
-import controller.Singleton;
+import controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -39,6 +38,28 @@ public class Aplicacion extends Application {
             AnchorPane diseño = (AnchorPane)ventana.load();
             LoginController loginController = ventana.getController();
             loginController.setAplicacion(this);
+
+            Scene lugar = new Scene(diseño);
+            Escena.setScene(lugar);
+            Escena.show();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void mostrarCrudUsuario(String ruta) {
+        try {
+            FXMLLoader ventana = new FXMLLoader();
+            ventana.setLocation(Aplicacion.class.getResource(ruta));
+
+            ventana.setRoot(new AnchorPane());
+
+            AnchorPane diseño = (AnchorPane)ventana.load();
+            CrudUsuarioController crudUsuarioController = ventana.getController();
+            crudUsuarioController.setAplicacion(this);
 
             Scene lugar = new Scene(diseño);
             Escena.setScene(lugar);

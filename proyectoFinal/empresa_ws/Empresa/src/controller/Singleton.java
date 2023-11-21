@@ -1,7 +1,12 @@
 package controller;
 
+import model.DetalleProceso;
 import model.Empresa;
 import application.*;
+import model.TipoUsuario;
+import model.Usuario;
+
+import java.util.ArrayList;
 
 public class Singleton {
     /**
@@ -9,6 +14,7 @@ public class Singleton {
      */
     Empresa empresa;
     private Aplicacion aplicacion;
+
 
 
     private static class SingletonHolder{
@@ -34,7 +40,35 @@ public class Singleton {
         return empresa;
   }
     public Singleton(){
-       // inicializarDatos();
+       inicializarDatos();
+    }
+
+
+    //---------------------------Inicializacion de datos--------------//
+
+    /**
+     * metodo que inicializa los datos de la biblioteca
+     */
+    private void inicializarDatos (){
+        empresa = new Empresa();
+        empresa.setNombre("Software");
+
+        try {
+            this.empresa.crearUsuario("Marce", "123", "Marcela", "123", TipoUsuario.REGULAR);
+            this.empresa.crearUsuario("Sofi", "123", "Sofia", "456", TipoUsuario.PREMIUM);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            Usuario usuario = this.empresa.buscarUsuario("123");
+            this.empresa.crearProceso(usuario,"1" ,"Hacer Desayuno");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+        System.out.println("Empresa Inicializada "+ empresa.getNombre());
+
     }
 
     ///---------------------------Metodos de cambio de ventanas--------------//
@@ -51,7 +85,7 @@ public class Singleton {
      * @param ruta
      */
     public void mostrarCrudUsuario(String ruta) {
-       // aplicacion.mostrarCrudUsuario(ruta);
+       aplicacion.mostrarCrudUsuario(ruta);
     }
 
     /**
@@ -64,8 +98,7 @@ public class Singleton {
 
 
 
-    //------------------------------------------------------------
-    //----------Metodos que llaman a la empresa--------------------
+    //-------------------------------------------------------------------
     //--------------------Login-----------------------------
     /**
      * metodo que verifica si el usuario es regular
@@ -87,5 +120,63 @@ public class Singleton {
     public boolean verificarPremium(String usser, String password) {
         return empresa.verificarPremium(usser, password);
     }
+
+    //---------------------------Metodos de usuario--------------//
+
+    /**
+     * metodo que crea un usuario
+     * @param usser
+     * @param password
+     * @param nombre
+     * @param cedula
+     * @param tipoUsuario
+     * @throws Exception
+     */
+    public void crearUsuario(String usser, String password, String nombre, String cedula, TipoUsuario tipoUsuario) throws Exception {
+        empresa.crearUsuario(usser, password, nombre, cedula, tipoUsuario);
+    }
+
+    /**
+     *
+     * @param usser
+     * @param password
+     * @param nombre
+     * @param cedula
+     * @param tipoUsuario
+     */
+    public void actualizarUsuario(String usser, String password, String nombre, String cedula, TipoUsuario tipoUsuario) {
+        empresa.actualizarUsuario(usser, password, nombre, cedula, tipoUsuario);
+    }
+
+    /**
+     *
+     * @param cedula
+     * @throws Exception
+     */
+    public void eliminarUsuario(String cedula) throws Exception {
+        empresa.eliminarUsuario(cedula);
+    }
+
+    /**
+     * metodo que busca un usuario
+     * @param cedula
+     * @return Usuario
+     */
+    public Usuario buscarUsuario(String cedula) {
+        return empresa.buscarUsuario(cedula);
+    }
+
+    /**
+     * metodo que retorna la lista de usuarios
+     * @return ArrayList<Usuario>
+     */
+    public ArrayList<Usuario> listaUsuarios() {
+        return empresa.getListaUsuarios();
+
+    }
+
+
+
+
 
 }

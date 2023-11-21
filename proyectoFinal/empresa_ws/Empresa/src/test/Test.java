@@ -61,6 +61,7 @@ public class Test {
         empresa.getListaTareas().encolar(tarea1);
         actividad1.getListaDetalleActividad().add(new DetalleActividad(tarea1));
 
+
         //empresa.calcularTiemposUsuario(usuario);
         empresa.calcularTiempos();
 
