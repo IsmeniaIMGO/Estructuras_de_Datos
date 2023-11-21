@@ -6,77 +6,61 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="715.0" prefWidth="1148.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="906.0" prefWidth="943.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrudTareasController">
    <children>
-      <TabPane layoutX="-2.0" layoutY="-8.0" prefHeight="720.0" prefWidth="1150.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="-2.0" layoutY="-8.0" prefHeight="917.0" prefWidth="951.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab fx:id="tabMisTareas" text="Mis Tareas">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="815.0" prefWidth="1141.0" style="-fx-background-color: EDF4FF;">
                      <children>
-                        <ImageView fitHeight="610.0" fitWidth="1078.0" layoutX="35.0" layoutY="26.0">
+                        <ImageView fitHeight="846.0" fitWidth="1078.0" layoutX="35.0" layoutY="26.0">
                            <image>
                               <Image url="@Imagenes/fondoP.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="32.0" fitWidth="136.0" layoutX="490.0" layoutY="31.0">
+                        <ImageView fitHeight="32.0" fitWidth="136.0" layoutX="408.0" layoutY="31.0">
                            <image>
                               <Image url="@Imagenes/Solid_white.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="26.0" fitWidth="115.0" layoutX="35.0" layoutY="124.0">
-                           <image>
-                              <Image url="@Imagenes/Solid_white.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="26.0" fitWidth="137.0" layoutX="433.0" layoutY="124.0">
-                           <image>
-                              <Image url="@Imagenes/Solid_white.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="35.0" layoutY="127.0" text="Mis Procesos">
+                        <Label layoutX="41.0" layoutY="180.0" text="Mis Procesos">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Label>
-                        <TableView fx:id="tblTareas" layoutX="35.0" layoutY="246.0" prefHeight="367.0" prefWidth="806.0">
-                          <columns>
-                            <TableColumn fx:id="colTareas" prefWidth="805.0" text="Tareas" />
-                          </columns>
+                        <TableView fx:id="tblTareas" layoutX="35.0" layoutY="396.0" prefHeight="411.0" prefWidth="806.0">
+                           <columns>
+                              <TableColumn fx:id="col_NombreTarea" prefWidth="111.0" text="nombre" />
+                              <TableColumn fx:id="col_DescripcionTarea" prefWidth="202.0" text="descripcion" />
+                              <TableColumn fx:id="col_TiempoTarea" prefWidth="163.0" text="tiempo" />
+                              <TableColumn fx:id="col_EstadoTarea" prefWidth="168.0" text="estado" />
+                              <TableColumn fx:id="col_CumplimientoTarea" prefWidth="161.0" text="cumplimiento" />
+                           </columns>
                         </TableView>
-                        <Button fx:id="btnCerrarSesion" layoutX="35.0" layoutY="26.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #153D79;" text="Cerrar Sesión" textFill="WHITE">
+                        <Button fx:id="btnCerrarSesion" layoutX="35.0" layoutY="27.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #153D79;" text="Cerrar Sesión" textFill="WHITE">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Button>
-                        <Button fx:id="btnRegresarMisActividades" layoutX="975.0" layoutY="26.0" mnemonicParsing="false" onAction="#regresarMisActividades" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #153D79;" text="Regresar" textFill="WHITE">
+                        <Button fx:id="btnRegresarMisActividades" layoutX="716.0" layoutY="28.0" mnemonicParsing="false" onAction="#regresarMisActividades" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #153D79;" text="Regresar" textFill="WHITE">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Button>
-                        <Button fx:id="btnAbrirCrearTarea" layoutX="911.0" layoutY="247.0" mnemonicParsing="false" onAction="#abrirCrearTarea" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Crear Tarea" textFill="WHITE">
-                           <font>
-                              <Font name="Cambria Math" size="18.0" />
-                           </font></Button>
-                        <Button fx:id="btnAbrirActualizarTarea" layoutX="911.0" layoutY="410.0" mnemonicParsing="false" onAction="#abrirActualizarTarea" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Actualizar información" textFill="WHITE">
-                           <font>
-                              <Font name="Cambria Math" size="18.0" />
-                           </font></Button>
-                        <Button fx:id="btnEliminarTarea" layoutX="911.0" layoutY="489.0" mnemonicParsing="false" onAction="#eliminarTarea" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Eliminar Tarea" textFill="WHITE">
-                           <font>
-                              <Font name="Cambria Math" size="18.0" />
-                           </font></Button>
-                        <Button fx:id="btnVerInformacionTarea" layoutX="911.0" layoutY="329.0" mnemonicParsing="false" onAction="#verInformacionTarea" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Ver información" textFill="WHITE">
-                           <font>
-                              <Font name="Cambria Math" size="18.0" />
-                           </font></Button>
-                        <ComboBox fx:id="cboxSeleccionarProceso" layoutX="35.0" layoutY="160.0" prefHeight="39.0" prefWidth="372.0" promptText="Seleccionar proceso" />
-                        <Label layoutX="438.0" layoutY="127.0" text="Mis Actividades">
+                        <ComboBox fx:id="cboxSeleccionarProceso" layoutX="43.0" layoutY="212.0" prefHeight="39.0" prefWidth="372.0" promptText="Seleccionar proceso" />
+                        <Label layoutX="44.0" layoutY="282.0" text="Mis Actividades">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Label>
-                        <ComboBox fx:id="btnSeleccionarAtividad" layoutX="438.0" layoutY="160.0" prefHeight="39.0" prefWidth="372.0" promptText="Seleccionar actividad" />
-                        <Label layoutX="506.0" layoutY="32.0" text="Mis Tareas">
+                        <ComboBox fx:id="cboxSeleccionarAtividad" layoutX="43.0" layoutY="312.0" prefHeight="39.0" prefWidth="372.0" promptText="Seleccionar actividad" />
+                        <Label layoutX="420.0" layoutY="26.0" text="Mis Tareas">
                            <font>
                               <Font name="Cambria Math" size="24.0" />
                            </font></Label>
+                        <Label layoutX="41.0" layoutY="97.0" text="Verifique su usuario">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cboxSeleccionUsuario" layoutX="44.0" layoutY="123.0" prefWidth="150.0" />
                      </children>
                   </AnchorPane>
               </content>
@@ -85,120 +69,110 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="503.0" prefWidth="1150.0" style="-fx-background-color: EDF4FF;">
                      <children>
-                        <ImageView fitHeight="610.0" fitWidth="1078.0" layoutX="35.0" layoutY="26.0">
+                        <ImageView fitHeight="827.0" fitWidth="1078.0" layoutX="35.0" layoutY="26.0">
                            <image>
                               <Image url="@Imagenes/fondoP.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="27.0" fitWidth="80.0" layoutX="35.0" layoutY="131.0">
-                           <image>
-                              <Image url="@Imagenes/Solid_white.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="27.0" fitWidth="97.0" layoutX="35.0" layoutY="187.0">
-                           <image>
-                              <Image url="@Imagenes/Solid_white.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="27.0" fitWidth="76.0" layoutX="35.0" layoutY="245.0">
-                           <image>
-                              <Image url="@Imagenes/Solid_white.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="32.0" fitWidth="103.0" layoutX="34.0" layoutY="305.0">
-                           <image>
-                              <Image url="@Imagenes/Solid_white.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="32.0" fitWidth="126.0" layoutX="141.0" layoutY="305.0">
-                           <image>
-                              <Image url="@Imagenes/Solid_white.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="32.0" fitWidth="124.0" layoutX="297.0" layoutY="365.0">
-                           <image>
-                              <Image url="@Imagenes/Solid_white.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="32.0" fitWidth="110.0" layoutX="299.0" layoutY="306.0">
-                           <image>
-                              <Image url="@Imagenes/Solid_white.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="32.0" fitWidth="129.0" layoutX="137.0" layoutY="368.0">
-                           <image>
-                              <Image url="@Imagenes/Solid_white.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="27.0" fitWidth="76.0" layoutX="35.0" layoutY="368.0">
-                           <image>
-                              <Image url="@Imagenes/Solid_white.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="35.0" layoutY="134.0" text="Nombre:">
+                        <Label layoutX="35.0" layoutY="396.0" text="Nombre:">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Label>
-                        <Label layoutX="35.0" layoutY="190.0" text="Descripción:">
+                        <Label layoutX="35.0" layoutY="452.0" text="Descripción:">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Label>
-                        <TextField fx:id="txtNombreTarea" layoutX="144.0" layoutY="128.0" prefHeight="39.0" prefWidth="432.0" text="Ingrese el nombre de la tarea">
+                        <TextField fx:id="txtNombreTarea" layoutX="144.0" layoutY="390.0" prefHeight="39.0" prefWidth="432.0" text="Ingrese el nombre de la tarea">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></TextField>
-                        <TextField fx:id="txtDescripcionTarea" layoutX="144.0" layoutY="184.0" prefHeight="39.0" prefWidth="432.0" text="Ingrese la descripción de la tarea">
+                        <TextField fx:id="txtDescripcionTarea" layoutX="144.0" layoutY="446.0" prefHeight="39.0" prefWidth="432.0" text="Ingrese la descripción de la tarea">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></TextField>
-                        <Button fx:id="btnCerrarSesion" layoutX="35.0" layoutY="26.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #153D79;" text="Cerrar Sesión" textFill="WHITE">
-                           <font>
-                              <Font name="Cambria Math" size="18.0" />
-                           </font></Button>
-                        <Button fx:id="btnRegresarMisTareas" layoutX="976.0" layoutY="26.0" mnemonicParsing="false" onAction="#regresarMisTareas" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #153D79;" text="Regresar" textFill="WHITE">
-                           <font>
-                              <Font name="Cambria Math" size="18.0" />
-                           </font></Button>
-                        <Label layoutX="35.0" layoutY="248.0" text="Tiempo:">
+                        <Label layoutX="35.0" layoutY="510.0" text="Tiempo:">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Label>
-                        <TextField fx:id="txtTiempoTarea" layoutX="144.0" layoutY="242.0" prefHeight="39.0" prefWidth="432.0" text="Tiempo de entrega">
+                        <TextField fx:id="txtTiempoTarea" layoutX="144.0" layoutY="504.0" prefHeight="39.0" prefWidth="432.0" text="Tiempo de entrega">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></TextField>
-                        <Button fx:id="btnCrearTarea" layoutX="35.0" layoutY="442.0" mnemonicParsing="false" onAction="#crearTarea" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #153D79;" text="Crear" textFill="WHITE">
-                           <font>
-                              <Font name="Cambria Math" size="18.0" />
-                           </font></Button>
-                        <Button fx:id="btnActualizarTarea" layoutX="437.0" layoutY="442.0" mnemonicParsing="false" onAction="#actualizarTarea" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #153D79;" text="Actualizar" textFill="WHITE">
-                           <font>
-                              <Font name="Cambria Math" size="18.0" />
-                           </font></Button>
-                        <Label layoutX="35.0" layoutY="311.0" text="Importancia:">
+                        <Label layoutX="35.0" layoutY="573.0" text="Importancia:">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Label>
-                        <CheckBox fx:id="cbkObligatorio" layoutX="144.0" layoutY="309.0" mnemonicParsing="false" text="Obligatorio">
+                        <CheckBox fx:id="cbkObligatorio" layoutX="144.0" layoutY="571.0" mnemonicParsing="false" text="Obligatorio">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></CheckBox>
-                        <CheckBox fx:id="cbkOpcional" layoutX="303.0" layoutY="309.0" mnemonicParsing="false" text="Opcional">
+                        <CheckBox fx:id="cbkOpcional" layoutX="303.0" layoutY="571.0" mnemonicParsing="false" text="Opcional">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></CheckBox>
-                        <Label layoutX="38.0" layoutY="371.0" text="Estado:">
+                        <Label layoutX="40.0" layoutY="634.0" text="Estado:">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Label>
-                        <CheckBox fx:id="cbkPendiente" layoutX="144.0" layoutY="369.0" mnemonicParsing="false" text="Pendiente">
+                        <CheckBox fx:id="cbkPendiente" layoutX="144.0" layoutY="631.0" mnemonicParsing="false" text="Pendiente">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></CheckBox>
-                        <CheckBox fx:id="cbkFinalizado" layoutX="303.0" layoutY="369.0" mnemonicParsing="false" text="Finalizado">
+                        <CheckBox fx:id="cbkFinalizado" layoutX="303.0" layoutY="631.0" mnemonicParsing="false" text="Finalizado">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></CheckBox>
+                        <Button fx:id="btnBuscarTarea" layoutX="684.0" layoutY="317.0" mnemonicParsing="false" onAction="#buscarTarea" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Ver información" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnEliminarTarea" layoutX="684.0" layoutY="477.0" mnemonicParsing="false" onAction="#eliminarTarea" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Eliminar Tarea" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnActualizarTarea" layoutX="684.0" layoutY="398.0" mnemonicParsing="false" onAction="#actualizarTarea" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Actualizar información" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnCrearTarea" layoutX="684.0" layoutY="235.0" mnemonicParsing="false" onAction="#crearTarea" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Crear Tarea" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Button>
+                        <ComboBox fx:id="cboxVerificarUsuario" layoutX="38.0" layoutY="118.0" prefWidth="150.0" />
+                        <Label layoutX="35.0" layoutY="92.0" text="Verifique su usuario">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="btnVerificarAtividad" layoutX="37.0" layoutY="307.0" prefHeight="39.0" prefWidth="372.0" />
+                        <Label layoutX="38.0" layoutY="277.0" text="Mis Actividades">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cboxVerificarProceso" layoutX="37.0" layoutY="207.0" prefHeight="39.0" prefWidth="372.0" />
+                        <Label layoutX="35.0" layoutY="175.0" text="Mis Procesos">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="41.0" layoutY="703.0" text="Seleccione una posicion">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="cbkFinal" layoutX="46.0" layoutY="738.0" mnemonicParsing="false" text="Al Final" />
+                        <CheckBox fx:id="cbkDespues" layoutX="224.0" layoutY="738.0" mnemonicParsing="false" text="Despues de: " />
+                        <ComboBox fx:id="cboxTareas" layoutX="341.0" layoutY="733.0" prefWidth="150.0" />
+                        <Label layoutX="435.0" layoutY="26.0" text="CREAR TAREA">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
               </content>
@@ -206,4 +180,4 @@
          </tabs>
       </TabPane>
    </children>
-</AnchorPane>
+</fx:root>

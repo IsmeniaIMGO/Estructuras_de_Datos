@@ -131,5 +131,21 @@ public class Aplicacion extends Application {
     }
 
     public void mostrarTareas(String ruta) {
+        try {
+            FXMLLoader ventana = new FXMLLoader();
+            ventana.setLocation(Aplicacion.class.getResource(ruta));
+
+            ventana.setRoot(new AnchorPane());
+
+            AnchorPane diseño = (AnchorPane) ventana.load();
+            CrudTareasController crudTareasController = ventana.getController();
+            crudTareasController.setAplicacion(this);
+
+            Scene lugar = new Scene(diseño);
+            Escena.setScene(lugar);
+            Escena.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
