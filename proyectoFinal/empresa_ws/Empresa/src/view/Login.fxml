@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="387.0" prefWidth="565.0" style="-fx-background-radius: 20; -fx-border-radius: 40;" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Laboratorio2.Controller.LoginController">
+<fx:root prefHeight="387.0" prefWidth="565.0" style="-fx-background-radius: 20; -fx-border-radius: 40;" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
     <children>
       <ImageView fitHeight="406.0" fitWidth="574.0" pickOnBounds="true" smooth="false">
          <image>
