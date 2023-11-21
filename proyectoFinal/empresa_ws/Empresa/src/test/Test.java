@@ -26,53 +26,53 @@ public class Test {
         String cedula = "123";
         TipoUsuario tipoUsuario = TipoUsuario.REGULAR;
 
-        empresa.crearUsuario(usser, password, nombre, cedula, tipoUsuario);
 
-        System.out.println("Usuario: " + empresa.getListaUsuarios());
+        ArrayList<Proceso>procesos = new ArrayList<>();
+
+        Usuario usuario = new Usuario("usser", "password", "nombre", "cedula", TipoUsuario.PREMIUM, procesos);
+        empresa.getListaUsuarios().add(usuario);
 
 
         String idProceso = "1";
         String nombreProceso = "Proceso 1";
+        int tiempoMaximo = 0;
+        int tiempoMinimo = 0;
+        ArrayList<DetalleProceso> listaDetalleProceso = new ArrayList<>();
 
-        ArrayList<Proceso>prueba = new ArrayList<>();
-        Usuario usuario = new Usuario("usser", "password", "nombre", "cedula", TipoUsuario.PREMIUM, prueba);
-        empresa.crearProceso(usuario, idProceso, nombreProceso);
+        Proceso proceso1 = new Proceso(idProceso, nombreProceso, tiempoMaximo, tiempoMinimo, listaDetalleProceso);
+        empresa.getListaProcesos().add(proceso1);
 
-        System.out.println("Proceso: " + empresa.getListaProcesos());
 
         String nombreActividad = "Actividad 1";
         String descripcionActividad = "Descripcion 1";
         TipoCumplimiento tipoCumplimiento = TipoCumplimiento.OBLIGATORIO;
         ArrayList<DetalleActividad> listaDetalleActividad = new ArrayList<>();
+        Actividad actividad1 = new Actividad(nombreActividad, descripcionActividad, 0, 0, tipoCumplimiento, listaDetalleActividad);
+        empresa.getListaActividades().agregarInicio(actividad1);
+        proceso1.getListaDetalleProceso().add(new DetalleProceso(actividad1));
 
-        String idProcesoprueba = "1";
-        String nombreProcesoprueba = "Proceso 1";
-        int tiempoMaximo = 1;
-        int tiempoMinimo = 1;
-        ArrayList<DetalleProceso> listaDetalleProceso = new ArrayList<>();
-        Proceso proceso = new Proceso(idProcesoprueba, nombreProcesoprueba,tiempoMaximo, tiempoMinimo, listaDetalleProceso);
-
-        empresa.crearActividad(usuario, proceso, nombreActividad, descripcionActividad, tipoCumplimiento,"final", null);
-
-        System.out.println("Actividad: " + empresa.getListaActividades());
 
         String nombreTarea = "Tarea 1";
         String descripcionTarea = "Descripcion 1";
         int tiempoTarea = 1;
         TipoEstado tipoEstado = TipoEstado.PENDIENTE;
         TipoCumplimiento cumplimiento = TipoCumplimiento.OBLIGATORIO;
+        Tarea tarea1 = new Tarea(nombreTarea, descripcionTarea, tiempoTarea, tipoEstado, cumplimiento);
+        empresa.getListaTareas().encolar(tarea1);
+        actividad1.getListaDetalleActividad().add(new DetalleActividad(tarea1));
 
-        String nombreActividadprueba = "Actividad 1";
-        String descripcionActividadprueba = "Descripcion 1";
-        int tiempoMaximoprueba = 1;
-        int tiempoMinimoprueba = 1;
-        TipoCumplimiento tipoCumplimientoprueba = TipoCumplimiento.OBLIGATORIO;
-        ArrayList<DetalleActividad> listaDetalleActividadprueba = new ArrayList<>();
-        Actividad actividad = new Actividad(nombreActividadprueba, descripcionActividadprueba, tiempoMaximoprueba, tiempoMinimoprueba, tipoCumplimientoprueba, listaDetalleActividadprueba);
+        //empresa.calcularTiemposUsuario(usuario);
+        empresa.calcularTiempos();
 
-
-        empresa.crearTarea(usuario, proceso, actividad, nombreTarea, descripcionTarea, tiempoTarea, tipoEstado, cumplimiento, "final", null);
-
+        System.out.println("Usuario: " + empresa.getListaUsuarios()+"\n");
+        System.out.println("Proceso: " + empresa.getListaProcesos()+"\n");
+        System.out.println("Actividad: " + empresa.getListaActividades()+"\n");
         System.out.println("Tarea: " + empresa.getListaTareas());
+
+
+
     }
+
+
+
 }

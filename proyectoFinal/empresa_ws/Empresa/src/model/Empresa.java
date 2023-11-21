@@ -230,6 +230,9 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
                 aux.getProcesos().add(proceso);
             }
         }
+        calcularTiempos();
+        calcularTiemposUsuario(usuario);
+
 
     }
 
@@ -357,6 +360,9 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
             }
         }
 
+        calcularTiempos();
+        calcularTiemposUsuario(usuario);
+
 
 
     }
@@ -373,6 +379,8 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
             }
         }
         return null;
+
+
 
     }
 
@@ -398,6 +406,7 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         }
 
         this.listaActividades.eliminar(actividad);
+
     }
 
     @Override
@@ -435,6 +444,8 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
                 }
             }
         }
+        calcularTiempos();
+        calcularTiemposUsuario(usuario);
 
     }
 
@@ -469,8 +480,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
             throw new NuloVacioException("Alguno de los parámetros indicados es está vacío");
 
         Tarea tareaNueva = new Tarea(nombre, descripcion, tiempo, estado, cumplimiento);
-
-
 
         if (posicion.equals("despues")){
             if (tareaAntigua ==null){
@@ -517,7 +526,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
 
         calcularTiempos();
         calcularTiemposUsuario(usuario);
-        calcularTiemposActividad(actividad);
 
 
     }
@@ -600,7 +608,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
 
         calcularTiempos();
         calcularTiemposUsuario(usuario);
-        calcularTiemposActividad(actividad);
 
     }
 
@@ -689,7 +696,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
 
         calcularTiempos();
         calcularTiemposUsuario(usuario);
-        calcularTiemposActividad(actividad);
 
     }
 
@@ -762,6 +768,11 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         return "No hay tareas pendientes";
     }
 
+    //----------------------------------------------------------------------------
+    //--------------------METODOS ADICIONALES-------------------------------------------------
+    //----------------------------------------------------------------------------
+
+
     public void calcularTiempos() {
         for (Proceso aux : listaProcesos) {
             for (DetalleProceso detalleProceso : aux.getListaDetalleProceso()) {
@@ -782,12 +793,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         }
     }
 
-    public void calcularTiemposActividad(Actividad actividad) {
-        for (DetalleActividad detalleActividad : actividad.getListaDetalleActividad()) {
-            actividad.setTiempoMaximo(actividad.getTiempoMaximo() + detalleActividad.calcularTiempoMaximo());
-            actividad.setTiempoMinimo(actividad.getTiempoMinimo() + detalleActividad.calcularTiempoMinimo());
-        }
-    }
 
     public void intercambiarActividades(Actividad actividad1, Actividad actividad2) {
         int pos1 = listaActividades.obtenerPosicionNodo(actividad1);
