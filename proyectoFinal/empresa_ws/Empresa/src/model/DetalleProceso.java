@@ -52,4 +52,12 @@ public class DetalleProceso {
                 "actividad=" + actividad +
                 '}';
     }
+
+    public int calcularTiempoMaximo() {
+        return actividad.calcularTiempoMaximo();
+    }
+
+    public int calcularTiempoMinimo() {
+        return actividad.calcularTiempoMinimo();
+    }
 }

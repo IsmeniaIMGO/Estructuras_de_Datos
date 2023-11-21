@@ -108,4 +108,18 @@ public class Actividad {
                 ", listaDetalleActividad=" + listaDetalleActividad +
                 '}';
     }
+
+    public int calcularTiempoMaximo() {
+        for (DetalleActividad detalleActividad : listaDetalleActividad) {
+            tiempoMaximo += detalleActividad.calcularTiempoMaximo();
+        }
+        return tiempoMaximo;
+    }
+
+    public int calcularTiempoMinimo() {
+        for (DetalleActividad detalleActividad : listaDetalleActividad) {
+            tiempoMinimo += detalleActividad.calcularTiempoMinimo();
+        }
+        return tiempoMinimo;
+    }
 }

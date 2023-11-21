@@ -47,4 +47,15 @@ public class DetalleActividad {
                 "tarea=" + tarea +
                 '}';
     }
+
+    public int calcularTiempoMaximo() {
+        return tarea.getTiempo();
+    }
+
+    public int calcularTiempoMinimo() {
+        if (tarea.getCumplimiento().equals(TipoCumplimiento.OBLIGATORIO)) {
+            return tarea.getTiempo();
+        }
+        return 0;
+    }
 }

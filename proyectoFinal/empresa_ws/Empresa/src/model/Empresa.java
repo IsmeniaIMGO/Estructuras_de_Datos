@@ -515,6 +515,9 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
             }
         }
 
+        calcularTiempos();
+        calcularTiemposUsuario(usuario);
+        calcularTiemposActividad(actividad);
 
 
     }
@@ -535,7 +538,7 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
     }
 
     @Override
-    public void eliminarTarea(Tarea tarea) throws Exception {
+    public void eliminarTarea(Proceso proceso, Actividad actividad, Usuario usuario,Tarea tarea) throws Exception {
 
         Cola<Tarea> colaAuxiliar = new Cola<>(); // cola auxiliar para no perder tareas
         boolean tareaEncontrada = false;
@@ -558,29 +561,46 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         }
 
         for (Proceso aux : listaProcesos) {
-            for (DetalleProceso detalleProceso : aux.getListaDetalleProceso()) {
-                for (DetalleActividad detalleActividad : detalleProceso.getActividad().getListaDetalleActividad()) {
-                    if (detalleActividad.getTarea().getNombre().equals(tarea.getNombre())) {
-                        detalleProceso.getActividad().getListaDetalleActividad().remove(detalleActividad);
-                        return;
-                    }
-                }
-            }
-        }
-
-        for(Usuario usuario: listaUsuarios){
-            for(Proceso aux: usuario.getProcesos()){
-                for(DetalleProceso detalleProceso: aux.getListaDetalleProceso()){
-                    for(DetalleActividad detalleActividad: detalleProceso.getActividad().getListaDetalleActividad()){
-                        if(detalleActividad.getTarea().getNombre().equals(nombre)){
+            if (aux.getId().equals(proceso.getId())) {
+                for (DetalleProceso detalleProceso : aux.getListaDetalleProceso()) {
+                    for (DetalleActividad detalleActividad : detalleProceso.getActividad().getListaDetalleActividad()) {
+                        if (detalleActividad.getTarea().getNombre().equals(tarea.getNombre())) {
                             detalleProceso.getActividad().getListaDetalleActividad().remove(detalleActividad);
-                            return;
                         }
                     }
                 }
             }
         }
 
+        for(Usuario aux: listaUsuarios) {
+            if (aux.getCedula().equals(usuario.getCedula())) {
+                for (Proceso aux2 : aux.getProcesos()) {
+                    if (aux2.getId().equals(proceso.getId())) {
+                        for (DetalleProceso detalleProceso : aux2.getListaDetalleProceso()) {
+                            for (DetalleActividad detalleActividad : detalleProceso.getActividad().getListaDetalleActividad()) {
+                                if (detalleActividad.getTarea().getNombre().equals(tarea.getNombre())) {
+                                    detalleProceso.getActividad().getListaDetalleActividad().remove(detalleActividad);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for(int i = 0; i < listaActividades.getSize(); i++){
+            Actividad aux = listaActividades.obtenerValorNodo(i);
+            if (aux.getNombre().equals(actividad.getNombre())) {
+                for(DetalleActividad detalleActividad: aux.getListaDetalleActividad()){
+                    if(detalleActividad.getTarea().getNombre().equals(tarea.getNombre())){
+                        aux.getListaDetalleActividad().remove(detalleActividad);
+                    }
+                }
+            }
+        }
+
+        calcularTiempos();
+        calcularTiemposUsuario(usuario);
+        calcularTiemposActividad(actividad);
 
     }
 
@@ -667,6 +687,9 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
             }
         }
 
+        calcularTiempos();
+        calcularTiemposUsuario(usuario);
+        calcularTiemposActividad(actividad);
 
     }
 
@@ -738,6 +761,34 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         }
         return "No hay tareas pendientes";
     }
+
+    public void calcularTiempos() {
+        for (Proceso aux : listaProcesos) {
+            for (DetalleProceso detalleProceso : aux.getListaDetalleProceso()) {
+                aux.setTiempoMaximo(aux.getTiempoMaximo() + detalleProceso.calcularTiempoMaximo());
+                aux.setTiempoMinimo(aux.getTiempoMinimo() + detalleProceso.calcularTiempoMinimo());
+            }
+
+        }
+    }
+
+    public void calcularTiemposUsuario(Usuario usuario) {
+        for (Proceso aux : usuario.getProcesos()) {
+            for (DetalleProceso detalleProceso : aux.getListaDetalleProceso()) {
+                aux.setTiempoMaximo(aux.getTiempoMaximo() + detalleProceso.calcularTiempoMaximo());
+                aux.setTiempoMinimo(aux.getTiempoMinimo() + detalleProceso.calcularTiempoMinimo());
+            }
+
+        }
+    }
+
+    public void calcularTiemposActividad(Actividad actividad) {
+        for (DetalleActividad detalleActividad : actividad.getListaDetalleActividad()) {
+            actividad.setTiempoMaximo(actividad.getTiempoMaximo() + detalleActividad.calcularTiempoMaximo());
+            actividad.setTiempoMinimo(actividad.getTiempoMinimo() + detalleActividad.calcularTiempoMinimo());
+        }
+    }
+
 
 
 }
