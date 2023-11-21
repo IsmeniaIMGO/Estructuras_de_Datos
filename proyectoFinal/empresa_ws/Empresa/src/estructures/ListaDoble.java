@@ -391,4 +391,20 @@ public class ListaDoble<Actividad> {
 
 		return -1;
 	}
+
+	public void intercambiar(int pos1, int pos2) {
+
+		if (pos1 >= 0 && pos1 < size && pos2 >= 0 && pos2 < size) {
+
+			NodoDoble<Actividad> nodo1 = obtenerNodo(pos1);
+			NodoDoble<Actividad> nodo2 = obtenerNodo(pos2);
+
+			Actividad aux = nodo1.getValorNodo();
+			nodo1.setValorNodo(nodo2.getValorNodo());
+			nodo2.setValorNodo(aux);
+
+		} else {
+			throw new RuntimeException("indice no valido");
+		}
+	}
 }

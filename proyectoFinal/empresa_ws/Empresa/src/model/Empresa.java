@@ -789,6 +789,13 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         }
     }
 
+    public void intercambiarActividades(Actividad actividad1, Actividad actividad2) {
+        int pos1 = listaActividades.obtenerPosicionNodo(actividad1);
+        int pos2 = listaActividades.obtenerPosicionNodo(actividad2);
+
+        listaActividades.intercambiar(pos1, pos2);
+    }
+
 
 
 }
