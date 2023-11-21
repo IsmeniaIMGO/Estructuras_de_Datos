@@ -129,4 +129,7 @@ public class Aplicacion extends Application {
             e.printStackTrace();
         }
     }
+
+    public void mostrarTareas(String ruta) {
+    }
 }

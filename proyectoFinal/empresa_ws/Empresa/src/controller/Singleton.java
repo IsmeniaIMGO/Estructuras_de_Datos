@@ -17,7 +17,6 @@ public class Singleton {
 
 
 
-
     private static class SingletonHolder{
         private final static Singleton eInstance = new Singleton();
     }
@@ -104,6 +103,11 @@ public class Singleton {
     public void mostrarActividades(String ruta) {
         aplicacion.mostrarActividades(ruta);
     }
+    public void mostrarTareas(String ruta) {
+        aplicacion.mostrarTareas(ruta);
+    }
+
+
 
 
 
