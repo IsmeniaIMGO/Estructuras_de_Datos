@@ -104,14 +104,12 @@ public class Actividad {
                 ", descripcion='" + descripcion + '\'' +
                 ", tiempoMaximo=" + tiempoMaximo +
                 ", tiempoMinimo=" + tiempoMinimo +
-                ", tipoCumplimiento=" + tipoCumplimiento +
-                ", listaDetalleActividad=" + listaDetalleActividad +
-                '}';
+                ", tipoCumplimiento=" + tipoCumplimiento;
     }
 
     public int calcularTiempoMaximo() {
         for (DetalleActividad detalleActividad : listaDetalleActividad) {
-            tiempoMaximo += detalleActividad.calcularTiempoMaximo();
+            tiempoMaximo = tiempoMaximo + detalleActividad.calcularTiempoMaximo();
         }
         return tiempoMaximo;
     }

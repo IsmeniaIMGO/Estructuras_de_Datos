@@ -60,6 +60,11 @@
                            </font>
                         </Label>
                         <ComboBox fx:id="cboxSeleccionarUsuario" layoutX="45.0" layoutY="127.0" prefHeight="29.0" prefWidth="261.0" />
+                        <Button fx:id="btnIntercambiar" layoutX="34.0" layoutY="606.0" mnemonicParsing="false" onAction="#intercambiarActividades" prefHeight="39.0" prefWidth="264.0" style="-fx-background-color: #153D79;" text="Intercambiar Actividades" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
               </content>

@@ -94,9 +94,7 @@ public class Proceso {
                 "id='" + id + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", tiempoMaximo=" + tiempoMaximo +
-                ", tiempoMinimo=" + tiempoMinimo +
-                ", listaDetalleProceso=" + listaDetalleProceso +
-                '}';
+                ", tiempoMinimo=" + tiempoMinimo ;
     }
 
 

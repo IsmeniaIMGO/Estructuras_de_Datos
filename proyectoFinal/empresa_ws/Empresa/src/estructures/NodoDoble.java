@@ -70,6 +70,6 @@ public class NodoDoble<T> {
 		return /*"NodoDoble{" +
 				"siguienteNodo=" + siguienteNodo +
 				", anteriorNodo=" + anteriorNodo +
-				*/", valorNodo=" + valorNodo + '}';
+				*/"valorNodo=" + valorNodo;
 	}
 }

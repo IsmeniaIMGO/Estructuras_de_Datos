@@ -225,15 +225,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         Proceso proceso = new Proceso(id, nombre, tiempoMaximo, tiempoMinimo, listaDetalleProceso);
         this.listaProcesos.add(proceso);
 
-        for (Usuario aux : listaUsuarios) {
-            if (aux.getCedula().equals(usuario.getCedula())) {
-                aux.getProcesos().add(proceso);
-            }
-        }
-        calcularTiempos();
-        calcularTiemposUsuario(usuario);
-
-
     }
 
     @Override
@@ -343,27 +334,12 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
             this.listaActividades.agregarFinal(actividadNueva);
 
 
-        for(Usuario aux: listaUsuarios){
-            if(aux.getCedula().equals(usuario.getCedula())){
-                for(Proceso aux2: aux.getProcesos()){
-                    if(aux2.getId().equals(proceso.getId())){
-                        aux2.getListaDetalleProceso().add(new DetalleProceso(actividadNueva));
-                    }
-                }
-            }
-        }
-
         for (int i = 0; i < listaProcesos.size(); i++) {
             Proceso aux = listaProcesos.get(i);
             if (aux.getId().equals(proceso.getId())) {
                 aux.getListaDetalleProceso().add(new DetalleProceso(actividadNueva));
             }
         }
-
-        calcularTiempos();
-        calcularTiemposUsuario(usuario);
-
-
 
     }
 
@@ -444,8 +420,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
                 }
             }
         }
-        calcularTiempos();
-        calcularTiemposUsuario(usuario);
 
     }
 
@@ -493,40 +467,12 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
             listaTareas.encolar(tareaNueva);
 
 
-        for(Proceso aux: listaProcesos){
-            if(aux.getId().equals(proceso.getId())){
-                for(DetalleProceso detalleProceso: aux.getListaDetalleProceso()){
-                    if(detalleProceso.getActividad().getNombre().equals(actividad.getNombre())){
-                        detalleProceso.getActividad().getListaDetalleActividad().add(new DetalleActividad(tareaNueva));
-                    }
-                }
-            }
-        }
-
-        for (Usuario aux : listaUsuarios) {
-            if (aux.getCedula().equals(usuario.getCedula())) {
-                for (Proceso aux2 : aux.getProcesos()) {
-                    if (aux2.getId().equals(proceso.getId())) {
-                        for (DetalleProceso detalleProceso : aux2.getListaDetalleProceso()) {
-                            if (detalleProceso.getActividad().getNombre().equals(actividad.getNombre())) {
-                                detalleProceso.getActividad().getListaDetalleActividad().add(new DetalleActividad(tareaNueva));
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         for(int i = 0; i < listaActividades.getSize(); i++){
             Actividad aux = listaActividades.obtenerValorNodo(i);
             if(aux.getNombre().equals(actividad.getNombre())){
                 aux.getListaDetalleActividad().add(new DetalleActividad(tareaNueva));
             }
         }
-
-        calcularTiempos();
-        calcularTiemposUsuario(usuario);
-
 
     }
 
@@ -605,10 +551,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
                 }
             }
         }
-
-        calcularTiempos();
-        calcularTiemposUsuario(usuario);
-
     }
 
     @Override
@@ -693,9 +635,6 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
                 }
             }
         }
-
-        calcularTiempos();
-        calcularTiemposUsuario(usuario);
 
     }
 

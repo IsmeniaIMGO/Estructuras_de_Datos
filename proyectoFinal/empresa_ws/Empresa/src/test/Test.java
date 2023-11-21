@@ -7,68 +7,47 @@ import java.util.ArrayList;
 
 public class Test {
     public static void main(String[] args) throws Exception {
+        Empresa empresa = new Empresa();
+        empresa.setNit("1");
+        empresa.setNombre("Software");
+
+        try {
+            empresa.crearUsuario("Marce", "123", "Marcela", "123", TipoUsuario.REGULAR);
+            empresa.crearUsuario("Juan", "123", "Juan", "456", TipoUsuario.PREMIUM);
+
+
+            Usuario usuario = empresa.buscarUsuario("123");
+            empresa.crearProceso(usuario, "1", "Hacer Desayuno");
+            empresa.crearProceso(usuario, "2", "Hacer Almuerzo");
 
 
 
-        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
-        ArrayList<Proceso> listaProcesos = new ArrayList<>();
-        ListaDoble<Actividad> listaActividades = new ListaDoble<>();
-        Cola<Tarea> listaTareas = new Cola<>();
-        ArrayList<Usuario> listaLogin = new ArrayList<>();
-
-        Empresa empresa = new Empresa("1", "soft", listaProcesos, listaUsuarios, listaActividades, listaTareas, listaLogin);
-
-        System.out.println("Empresa: " + empresa.getNombre());
-
-        String usser = "admin";
-        String password = "admin";
-        String nombre = "admin";
-        String cedula = "123";
-        TipoUsuario tipoUsuario = TipoUsuario.REGULAR;
+            Proceso proceso = empresa.buscarProceso("1");
+            empresa.crearActividad(usuario, proceso, "comprar", "comprar ingredientes para el desayuno", TipoCumplimiento.OBLIGATORIO, "final", null);
+            Actividad actividad1 = empresa.buscarActividad("comprar");
+            empresa.crearActividad(usuario, proceso, "preparar", "preparar ingredientes para el desayuno", TipoCumplimiento.OPCIONAL, "despues", actividad1);
 
 
-        ArrayList<Proceso>procesos = new ArrayList<>();
+            Actividad actividad2 = empresa.buscarActividad("preparar");
+            empresa.crearTarea(usuario, proceso, actividad2, "huevosCocinados", "cocinar Huevos", 2, TipoEstado.PENDIENTE, TipoCumplimiento.OPCIONAL, "final", null);
+            Tarea tarea = empresa.buscarTarea("huevosCocinados");
+            empresa.crearTarea(usuario, proceso, actividad2, "huevosFritos", "freir Huevos", 2, TipoEstado.PENDIENTE, TipoCumplimiento.OBLIGATORIO, "despues", tarea);
 
-        Usuario usuario = new Usuario("usser", "password", "nombre", "cedula", TipoUsuario.PREMIUM, procesos);
-        empresa.getListaUsuarios().add(usuario);
+            empresa.calcularTiempos();
 
+            System.out.println("Usuarios: " + empresa.getListaUsuarios()+"\n");
+            System.out.println("Procesos: " + empresa.getListaProcesos()+"\n");
+            System.out.println("Actividades: " + empresa.getListaActividades()+"\n");
+            System.out.println("Tareas: " + empresa.getListaTareas()+"\n");
 
-        String idProceso = "1";
-        String nombreProceso = "Proceso 1";
-        int tiempoMaximo = 0;
-        int tiempoMinimo = 0;
-        ArrayList<DetalleProceso> listaDetalleProceso = new ArrayList<>();
+            empresa.intercambiarActividades(actividad1, actividad2);
 
-        Proceso proceso1 = new Proceso(idProceso, nombreProceso, tiempoMaximo, tiempoMinimo, listaDetalleProceso);
-        empresa.getListaProcesos().add(proceso1);
-
-
-        String nombreActividad = "Actividad 1";
-        String descripcionActividad = "Descripcion 1";
-        TipoCumplimiento tipoCumplimiento = TipoCumplimiento.OBLIGATORIO;
-        ArrayList<DetalleActividad> listaDetalleActividad = new ArrayList<>();
-        Actividad actividad1 = new Actividad(nombreActividad, descripcionActividad, 0, 0, tipoCumplimiento, listaDetalleActividad);
-        empresa.getListaActividades().agregarInicio(actividad1);
-        proceso1.getListaDetalleProceso().add(new DetalleProceso(actividad1));
+            System.out.println("Actividades intercambiadas: " + empresa.getListaActividades()+"\n");
 
 
-        String nombreTarea = "Tarea 1";
-        String descripcionTarea = "Descripcion 1";
-        int tiempoTarea = 1;
-        TipoEstado tipoEstado = TipoEstado.PENDIENTE;
-        TipoCumplimiento cumplimiento = TipoCumplimiento.OBLIGATORIO;
-        Tarea tarea1 = new Tarea(nombreTarea, descripcionTarea, tiempoTarea, tipoEstado, cumplimiento);
-        empresa.getListaTareas().encolar(tarea1);
-        actividad1.getListaDetalleActividad().add(new DetalleActividad(tarea1));
-
-
-        //empresa.calcularTiemposUsuario(usuario);
-        empresa.calcularTiempos();
-
-        System.out.println("Usuario: " + empresa.getListaUsuarios()+"\n");
-        System.out.println("Proceso: " + empresa.getListaProcesos()+"\n");
-        System.out.println("Actividad: " + empresa.getListaActividades()+"\n");
-        System.out.println("Tarea: " + empresa.getListaTareas());
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
 
 

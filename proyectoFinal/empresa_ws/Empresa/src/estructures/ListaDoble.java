@@ -63,9 +63,7 @@ public class ListaDoble<Actividad> {
 	public String toString() {
 		return "ListaDoble{" +
 				"nodoPrimero=" + nodoPrimero +
-				", nodoUltimo=" + nodoUltimo +
-				", size=" + size +
-				'}';
+				", nodoUltimo=" + nodoUltimo;
 	}
 
 

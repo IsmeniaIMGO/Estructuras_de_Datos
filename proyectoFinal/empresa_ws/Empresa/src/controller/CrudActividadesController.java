@@ -27,6 +27,8 @@ public class CrudActividadesController {
         this.aplicacion = aplicacion;
         singleton.setAplicacion(aplicacion);
     }
+    @FXML
+    private Button btnIntercambiar;
 
     @FXML
     private Tab tabMisActividades;
@@ -143,6 +145,11 @@ public class CrudActividadesController {
 
     @FXML
     void crearActividad(ActionEvent event) {
+
+    }
+
+    @FXML
+    void intercambiarActividades(ActionEvent event) {
 
     }
 
