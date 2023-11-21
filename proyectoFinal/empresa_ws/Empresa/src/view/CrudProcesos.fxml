@@ -145,7 +145,7 @@
                               <Font name="Cambria Math" size="24.0" />
                            </font>
                         </Label>
-                        <ChoiceBox layoutX="33.0" layoutY="99.0" prefHeight="29.0" prefWidth="214.0" />
+                        <ChoiceBox fx:id="cbxUsuarioCrudProceso" layoutX="33.0" layoutY="99.0" prefHeight="29.0" prefWidth="214.0" />
                         <Label layoutX="36.0" layoutY="69.0" text="Verifique su usuario" textAlignment="CENTER">
                            <font>
                               <Font name="Cambria Math" size="24.0" />

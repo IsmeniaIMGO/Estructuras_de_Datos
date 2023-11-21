@@ -26,76 +26,80 @@ public class CrudProcesosController {
         singleton.setAplicacion(aplicacion);
     }
 
-    @FXML
-    private Button btnVerMisActividades;
+    @FXML // fx:id="btnVerMisActividades"
+    private Button btnVerMisActividades; // Value injected by FXMLLoader
 
-    @FXML
-    private Button btnNotificaciones;
+    @FXML // fx:id="btnNotificaciones"
+    private Button btnNotificaciones; // Value injected by FXMLLoader
 
-    @FXML
-    private TextField txtNombreProceso;
+    @FXML // fx:id="txtNombreProceso"
+    private TextField txtNombreProceso; // Value injected by FXMLLoader
 
-    @FXML
-    private TextField txtTiempoMaximoProceso;
+    @FXML // fx:id="txtTiempoMaximoProceso"
+    private TextField txtTiempoMaximoProceso; // Value injected by FXMLLoader
 
-    @FXML
-    private Button btnCerrarSesion;
+    @FXML // fx:id="cbxUsuarioCrudProceso"
+    private ChoiceBox<?> cbxUsuarioCrudProceso; // Value injected by FXMLLoader
 
-    @FXML
-    private Button btnEliminarProceso;
+    @FXML // fx:id="btnCerrarSesion"
+    private Button btnCerrarSesion; // Value injected by FXMLLoader
 
-    @FXML
-    private TableView<?> tblProcesos;
+    @FXML // fx:id="btnEliminarProceso"
+    private Button btnEliminarProceso; // Value injected by FXMLLoader
 
-    @FXML
-    private TextField txtCodigoProceso;
+    @FXML // fx:id="tblProcesos"
+    private TableView<?> tblProcesos; // Value injected by FXMLLoader
 
-    @FXML
-    private ChoiceBox<?> cbxUsuarioProceso;
+    @FXML // fx:id="txtCodigoProceso"
+    private TextField txtCodigoProceso; // Value injected by FXMLLoader
 
-    @FXML
-    private Tab tabMisProcesos;
+    @FXML // fx:id="cbxUsuarioProceso"
+    private ChoiceBox<?> cbxUsuarioProceso; // Value injected by FXMLLoader
 
-    @FXML
-    private Button btnCrearProceso;
+    @FXML // fx:id="tabMisProcesos"
+    private Tab tabMisProcesos; // Value injected by FXMLLoader
 
-    @FXML
-    private Button btnActualizarProceso;
+    @FXML // fx:id="btnCrearProceso"
+    private Button btnCrearProceso; // Value injected by FXMLLoader
 
-    @FXML
-    private TableColumn<?, ?> col_NombreProceso;
+    @FXML // fx:id="btnActualizarProceso"
+    private Button btnActualizarProceso; // Value injected by FXMLLoader
 
-    @FXML
-    private Tab tabCrearProcesos;
+    @FXML // fx:id="col_NombreProceso"
+    private TableColumn<?, ?> col_NombreProceso; // Value injected by FXMLLoader
 
-    @FXML
-    private TextField txtTiempoMinimoProceso;
+    @FXML // fx:id="tabCrearProcesos"
+    private Tab tabCrearProcesos; // Value injected by FXMLLoader
 
-    @FXML
-    private TableColumn<?, ?> col_IdProceso;
+    @FXML // fx:id="txtTiempoMinimoProceso"
+    private TextField txtTiempoMinimoProceso; // Value injected by FXMLLoader
 
-    @FXML
-    private TableColumn<?, ?> col_TiempoMinimo;
+    @FXML // fx:id="col_IdProceso"
+    private TableColumn<?, ?> col_IdProceso; // Value injected by FXMLLoader
 
-    @FXML
-    private TableColumn<?, ?> col_TiempoMaximo;
+    @FXML // fx:id="col_TiempoMinimo"
+    private TableColumn<?, ?> col_TiempoMinimo; // Value injected by FXMLLoader
 
-    @FXML
-    private Button btnBuscarProceso;
+    @FXML // fx:id="col_TiempoMaximo"
+    private TableColumn<?, ?> col_TiempoMaximo; // Value injected by FXMLLoader
+
+    @FXML // fx:id="btnBuscarProceso"
+    private Button btnBuscarProceso; // Value injected by FXMLLoader
 
     @FXML
     void cerrarSesion(ActionEvent event) {
-
+        singleton.mostrarLogin("/view/Login.fxml");
+        singleton.cerrarSesion();
     }
 
     @FXML
     void notificaciones(ActionEvent event) {
-
+        singleton.mostrarNotificaciones("/view/Notificaciones.fxml");
     }
 
     @FXML
     void verMisActividades(ActionEvent event) {
-
+        singleton.mostrarActividades("/view/CrudActividades.fxml");
     }
 
     @FXML
@@ -109,11 +113,6 @@ public class CrudProcesosController {
     }
 
     @FXML
-    void eeeeee(ActionEvent event) {
-
-    }
-
-    @FXML
     void verBuscarProceso(ActionEvent event) {
 
     }
@@ -123,5 +122,30 @@ public class CrudProcesosController {
 
     }
 
+    @FXML // This method is called by the FXMLLoader when initialization is complete
+    void initialize() {
+        assert btnVerMisActividades != null : "fx:id=\"btnVerMisActividades\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert btnNotificaciones != null : "fx:id=\"btnNotificaciones\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert txtNombreProceso != null : "fx:id=\"txtNombreProceso\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert txtTiempoMaximoProceso != null : "fx:id=\"txtTiempoMaximoProceso\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert cbxUsuarioCrudProceso != null : "fx:id=\"cbxUsuarioCrudProceso\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert btnCerrarSesion != null : "fx:id=\"btnCerrarSesion\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert btnEliminarProceso != null : "fx:id=\"btnEliminarProceso\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert tblProcesos != null : "fx:id=\"tblProcesos\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert txtCodigoProceso != null : "fx:id=\"txtCodigoProceso\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert cbxUsuarioProceso != null : "fx:id=\"cbxUsuarioProceso\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert tabMisProcesos != null : "fx:id=\"tabMisProcesos\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert btnCrearProceso != null : "fx:id=\"btnCrearProceso\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert btnActualizarProceso != null : "fx:id=\"btnActualizarProceso\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert col_NombreProceso != null : "fx:id=\"col_NombreProceso\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert tabCrearProcesos != null : "fx:id=\"tabCrearProcesos\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert txtTiempoMinimoProceso != null : "fx:id=\"txtTiempoMinimoProceso\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert col_IdProceso != null : "fx:id=\"col_IdProceso\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert col_TiempoMinimo != null : "fx:id=\"col_TiempoMinimo\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert col_TiempoMaximo != null : "fx:id=\"col_TiempoMaximo\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
+        assert btnBuscarProceso != null : "fx:id=\"btnBuscarProceso\" was not injected: check your FXML file 'CrudProcesos.fxml'.";
 
-}
+
+    }
+
+    }

@@ -17,6 +17,7 @@ public class Singleton {
 
 
 
+
     private static class SingletonHolder{
         private final static Singleton eInstance = new Singleton();
     }
@@ -96,6 +97,14 @@ public class Singleton {
        aplicacion.mostrarCrudProcesos(ruta);
     }
 
+    public void mostrarNotificaciones(String ruta) {
+        aplicacion.mostrarNotificaciones(ruta);
+    }
+
+    public void mostrarActividades(String ruta) {
+        aplicacion.mostrarActividades(ruta);
+    }
+
 
 
     //-------------------------------------------------------------------
@@ -121,6 +130,9 @@ public class Singleton {
         return empresa.verificarPremium(usser, password);
     }
 
+    public void cerrarSesion() {
+        empresa.cerrarSesion();
+    }
     //---------------------------Metodos de usuario--------------//
 
     /**
