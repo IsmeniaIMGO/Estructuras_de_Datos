@@ -100,8 +100,6 @@ public class CrudUsuarioController {
     @FXML
     void buscarUsuario(ActionEvent event) {
         buscarUsuario();
-
-
     }
 
     @FXML
@@ -120,7 +118,7 @@ public class CrudUsuarioController {
 
     @FXML
     void abrirLogin(ActionEvent event) {
-        singleton.mostrarLogin("/Laboratorio2/View/Login.fxml");
+        singleton.mostrarLogin("/view/Login.fxml");
 
     }
 

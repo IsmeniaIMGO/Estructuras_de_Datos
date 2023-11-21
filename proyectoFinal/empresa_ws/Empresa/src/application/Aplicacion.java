@@ -71,4 +71,23 @@ public class Aplicacion extends Application {
         }
 
     }
+
+    public void mostrarCrudProcesos(String ruta) {
+        try {
+            FXMLLoader ventana = new FXMLLoader();
+            ventana.setLocation(Aplicacion.class.getResource(ruta));
+
+            ventana.setRoot(new AnchorPane());
+
+            AnchorPane diseño = (AnchorPane) ventana.load();
+            CrudProcesosController crudProcesosController = ventana.getController();
+            crudProcesosController.setAplicacion(this);
+
+            Scene lugar = new Scene(diseño);
+            Escena.setScene(lugar);
+            Escena.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

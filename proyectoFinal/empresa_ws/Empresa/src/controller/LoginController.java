@@ -38,7 +38,6 @@ public class LoginController {
 
     @FXML
     void ingresarUsuario(ActionEvent event) throws NuloVacioException {
-        //singleton.mostrarCrudLibroBibliotecaE("/Laboratorio2/View/CrudLibroBiblioteca.fxml");
         verificarInicioSesion();
     }
 
@@ -69,11 +68,11 @@ public class LoginController {
         if (!usser.equals("") && !password.equals("")){
             //si el tipo de usuario es estudiante entonces me abre una ventana especial para estudiantes
             if (singleton.verificarRegular(usser, password)) {
-                singleton.mostrarCrudProcesos("/View/CrudProcesos.fxml");
+                singleton.mostrarCrudProcesos("/view/CrudProcesos.fxml");
 
                 //si el tipo de usuario es comprador entonces me abre una ventana especial para anunciantes
             }else if (singleton.verificarPremium(usser, password)) {
-                singleton.mostrarCrudProcesos("/View/CrudProcesos.fxml");
+                singleton.mostrarCrudProcesos("/view/CrudProcesos.fxml");
 
             }else {
                 //si no cumple las anteriores opciones entonces ingreso algo mal

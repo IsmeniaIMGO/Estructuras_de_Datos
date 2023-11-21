@@ -93,7 +93,7 @@ public class Singleton {
      * @param ruta
      */
     public void mostrarCrudProcesos(String ruta) {
-       // aplicacion.mostrarCrudProcesos(ruta);
+       aplicacion.mostrarCrudProcesos(ruta);
     }
 
 
