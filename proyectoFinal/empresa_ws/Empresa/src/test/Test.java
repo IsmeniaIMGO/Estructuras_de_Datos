@@ -1,13 +1,10 @@
 package test;
 
-import estructures.*;
 import model.*;
-
-import java.util.ArrayList;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        Empresa empresa = new Empresa();
+        /*Empresa empresa = new Empresa();
         empresa.setNit("1");
         empresa.setNombre("Software");
 
@@ -22,8 +19,9 @@ public class Test {
 
 
 
-            Proceso proceso = empresa.buscarProceso("1");
+            Proceso proceso = empresa.buscarProceso(usuario,"1");
             empresa.crearActividad(usuario, proceso, "comprar", "comprar ingredientes para el desayuno", TipoCumplimiento.OBLIGATORIO, "final", null);
+
             Actividad actividad1 = empresa.buscarActividad("comprar");
             empresa.crearActividad(usuario, proceso, "preparar", "preparar ingredientes para el desayuno", TipoCumplimiento.OPCIONAL, "despues", actividad1);
 
@@ -31,7 +29,7 @@ public class Test {
             Actividad actividad2 = empresa.buscarActividad("preparar");
             empresa.crearTarea(usuario, proceso, actividad2, "huevosCocinados", "cocinar Huevos", 2, TipoEstado.PENDIENTE, TipoCumplimiento.OPCIONAL, "final", null);
             Tarea tarea = empresa.buscarTarea("huevosCocinados");
-            empresa.crearTarea(usuario, proceso, actividad2, "huevosFritos", "freir Huevos", 2, TipoEstado.PENDIENTE, TipoCumplimiento.OBLIGATORIO, "despues", tarea);
+            empresa.crearTarea(usuario, proceso, actividad2, "huevosFritos", "freir Huevos", 2, TipoEstado.PENDIENTE, TipoCumplimiento.OBLIGATORIO, "final", null);
 
             empresa.calcularTiempos();
 
@@ -44,12 +42,12 @@ public class Test {
 
             System.out.println("Actividades intercambiadas: " + empresa.getListaActividades()+"\n");
 
-
+            System.out.println(empresa.notificarTareaPendiente());
         }catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
-
+*/
 
     }
 

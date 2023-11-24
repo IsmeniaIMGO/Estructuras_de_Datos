@@ -7,9 +7,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="949.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrudProcesosController">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="569.0" prefWidth="949.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrudProcesosController">
    <children>
-      <TabPane layoutX="-2.0" layoutY="-8.0" pickOnBounds="false" prefHeight="680.0" prefWidth="959.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="-2.0" layoutY="-8.0" pickOnBounds="false" prefHeight="583.0" prefWidth="959.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab fx:id="tabMisProcesos" text="Mis Procesos">
               <content>
@@ -20,7 +20,7 @@
                               <Image url="@Imagenes/fondoP.png" />
                            </image>
                         </ImageView>
-                        <TableView fx:id="tblProcesos" layoutX="35.0" layoutY="186.0" prefHeight="367.0" prefWidth="806.0">
+                        <TableView fx:id="tblProcesos" layoutX="35.0" layoutY="186.0" prefHeight="267.0" prefWidth="806.0">
                            <columns>
                               <TableColumn fx:id="col_IdProceso" prefWidth="75.0" text="Id" />
                               <TableColumn fx:id="col_NombreProceso" prefWidth="262.0" text="Nombre" />
@@ -36,7 +36,7 @@
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Button>
-                        <Button fx:id="btnVerMisActividades" layoutX="351.0" layoutY="574.0" mnemonicParsing="false" onAction="#verMisActividades" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Ver Mis Actividades" textFill="WHITE">
+                        <Button fx:id="btnVerMisActividades" layoutX="351.0" layoutY="473.0" mnemonicParsing="false" onAction="#verMisActividades" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Ver Mis Actividades" textFill="WHITE">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Button>
@@ -49,12 +49,12 @@
                            <font>
                               <Font name="Cambria Math" size="24.0" />
                            </font></Label>
-                        <ChoiceBox fx:id="cbxUsuarioProceso" layoutX="35.0" layoutY="127.0" prefHeight="29.0" prefWidth="301.0" />
                         <Label layoutX="35.0" layoutY="92.0" text="Verifique su usuario" textAlignment="CENTER">
                            <font>
                               <Font name="Cambria Math" size="24.0" />
                            </font>
                         </Label>
+                        <ComboBox fx:id="cboxVerificarUsuario1" layoutX="35.0" layoutY="134.0" onAction="#mostrarLista" prefHeight="29.0" prefWidth="203.0" />
                      </children>
                   </AnchorPane>
               </content>
@@ -96,11 +96,11 @@
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Label>
-                        <TextField fx:id="txtNombreProceso" layoutX="196.0" layoutY="165.0" prefHeight="39.0" prefWidth="368.0" text="Ingrese el nombre del proceso">
+                        <TextField fx:id="txtNombreProceso" layoutX="196.0" layoutY="165.0" prefHeight="39.0" prefWidth="368.0">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></TextField>
-                        <TextField fx:id="txtCodigoProceso" layoutX="196.0" layoutY="223.0" prefHeight="39.0" prefWidth="369.0" text="Ingrese el código del proceso">
+                        <TextField fx:id="txtCodigoProceso" layoutX="196.0" layoutY="223.0" prefHeight="39.0" prefWidth="369.0">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></TextField>
@@ -145,12 +145,12 @@
                               <Font name="Cambria Math" size="24.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="cbxUsuarioCrudProceso" layoutX="33.0" layoutY="99.0" prefHeight="29.0" prefWidth="214.0" />
                         <Label layoutX="36.0" layoutY="69.0" text="Verifique su usuario" textAlignment="CENTER">
                            <font>
                               <Font name="Cambria Math" size="24.0" />
                            </font>
                         </Label>
+                        <ComboBox fx:id="cboxVerificarUsuario2" layoutX="37.0" layoutY="104.0" prefHeight="29.0" prefWidth="205.0" />
                      </children>
                   </AnchorPane>
               </content>

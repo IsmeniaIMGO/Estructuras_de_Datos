@@ -100,5 +100,10 @@ public class Tarea {
     }
 
 
-
+    public int calcularTiempo() {
+        if(this.getCumplimiento()==TipoCumplimiento.OBLIGATORIO){
+            return this.getTiempo();
+        }
+        return 0;
+    }
 }

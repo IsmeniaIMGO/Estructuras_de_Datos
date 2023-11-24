@@ -1,4 +1,4 @@
-package estructures;
+package structures;
 
 
 /**

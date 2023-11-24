@@ -1,10 +1,7 @@
 package controller;
 
-import model.DetalleProceso;
-import model.Empresa;
+import model.*;
 import application.*;
-import model.TipoUsuario;
-import model.Usuario;
 
 import java.util.ArrayList;
 
@@ -15,6 +12,36 @@ public class Singleton {
     Empresa empresa;
     private Aplicacion aplicacion;
 
+    public ArrayList<Proceso> obtenerProcesosUsuario(Usuario usuario) {
+        for(Usuario aux: empresa.getListaUsuarios()){
+            if(aux.getCedula().equals(usuario.getCedula())){
+                return aux.getProcesos();
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<DetalleProceso> obtenerActividadesUsuario(Usuario usuario, Proceso proceso) {
+        for (Usuario aux: empresa.getListaUsuarios()){
+            if (aux.getCedula().equals(usuario.getCedula())){
+                for (Proceso aux2: aux.getProcesos()){
+                    if (aux2.getId().equals(proceso.getId())){
+                        return aux2.getListaDetalleProceso();
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public void crearActividad(Usuario usuario, Proceso proceso, String nombre, String descripcion, TipoCumplimiento tipoCumplimiento, String posicion, Actividad actividad) throws Exception {
+        empresa.crearActividad(usuario, proceso, nombre, descripcion,tipoCumplimiento,posicion, actividad);
+    }
+
+    public Actividad buscarActividad(Usuario usuario,Proceso proceso,String nombre) throws Exception {
+        empresa.buscarActividad(usuario, proceso, nombre);
+        return null;
+    }
 
 
     private static class SingletonHolder{
@@ -107,6 +134,10 @@ public class Singleton {
         aplicacion.mostrarTareas(ruta);
     }
 
+    public void mostrarIntercambios(String ruta) {
+        aplicacion.mostrarIntercambios(ruta);
+    }
+
 
 
 
@@ -182,6 +213,28 @@ public class Singleton {
         return empresa.buscarUsuario(cedula);
     }
 
+
+    //-------------------------------Crud Proceso-----------------
+
+    public void crearProceso(Usuario usuario, String codigo, String nombre) throws Exception {
+        empresa.crearProceso(usuario, codigo, nombre);
+    }
+
+    public void actualizarProceso(Usuario usuario, String codigo, String nuevoNombre) {
+        empresa.actualizarProceso(usuario, codigo, nuevoNombre);
+    }
+
+    public Proceso buscarProceso(Usuario usuario, String codigo) {
+        return empresa.buscarProceso(usuario, codigo);
+    }
+
+    public void eliminarProceso(Usuario usuario, String codigo) throws Exception {
+        empresa.eliminarProceso(usuario, codigo);
+    }
+
+
+    //-----------------------------------obtener listas--------------------------------
+    //-------------------------------------------------------------------------------
     /**
      * metodo que retorna la lista de usuarios
      * @return ArrayList<Usuario>
@@ -192,7 +245,18 @@ public class Singleton {
     }
 
 
+    public ArrayList<Proceso> listaProcesos(Usuario usuario) {
+        for (Usuario aux: empresa.getListaUsuarios())
+            if(aux.getCedula().equals(usuario.getCedula()))
+                return aux.getProcesos();
+        return null;
+    }
 
+
+
+    public ArrayList<Usuario> obtenerUsuarioLogin() {
+        return empresa.getListaLogin();
+    }
 
 
 }

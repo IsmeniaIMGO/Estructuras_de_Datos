@@ -58,6 +58,9 @@ public class DetalleProceso {
     }
 
     public int calcularTiempoMinimo() {
-        return actividad.calcularTiempoMinimo();
+        if (actividad.getTipoCumplimiento().equals(TipoCumplimiento.OBLIGATORIO)) {
+            return actividad.calcularTiempoMinimo();
+        }
+        return 0;
     }
 }

@@ -1,6 +1,6 @@
 package model;
 
-import estructures.*;
+import structures.*;
 import exceptions.*;
 import services.*;
 
@@ -154,6 +154,7 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         return null;
     }
 
+
     @Override
     public void eliminarUsuario(String cedula) throws Exception {
         if (cedula == null || cedula.equals(""))
@@ -225,22 +226,27 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
         Proceso proceso = new Proceso(id, nombre, tiempoMaximo, tiempoMinimo, listaDetalleProceso);
         this.listaProcesos.add(proceso);
 
+        for (Usuario aux: listaUsuarios){
+            if(aux.getCedula().equals(usuario.getCedula()))
+            aux.getProcesos().add(proceso);
+        }
     }
 
     @Override
-    public Proceso buscarProceso(String id) {
-        for (Proceso proceso: listaProcesos) {
-            if(proceso.getId().equals(id)){
-                return proceso;
-            }
-        }
+    public Proceso buscarProceso(Usuario usuario, String id) {
+        for(Usuario aux: listaUsuarios)
+            if (aux.getCedula().equals(usuario.getCedula()))
+                for(Proceso aux2: aux.getProcesos()){
+                    if (aux2.getId().equals(id)) {
+                        return aux2;
+                    }
+                }
         return null;
 
-
     }
 
     @Override
-    public void eliminarProceso(String id) throws Exception {
+    public void eliminarProceso(Usuario usuario, String id) throws Exception {
         if (id == null || id.equals(""))
             throw new NuloVacioException("el id del proceso es nulo o vacio");
 
@@ -255,14 +261,15 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
             }
         }
 
-        for ( Usuario usuario: listaUsuarios) {
-            Iterator<Proceso> iterator2 = usuario.getProcesos().iterator();
-            while (iterator2.hasNext()) {
-                Proceso proceso = iterator2.next();
-                if (proceso.getId().equals(id)) {
-                    iterator2.remove();
+        for ( Usuario aux: listaUsuarios) {
+            if (aux.getCedula().equals(usuario.getCedula())){
+                for (Proceso aux2:aux.getProcesos()){
+                    if (aux2.getId().equals(id)){
+                        aux.getProcesos().remove(aux2);
+                    }
                 }
             }
+
         }
 
     }
@@ -330,21 +337,32 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
             }
         }
 
-        if (posicion.equals("final"))
+        if (posicion.equals("final")){
             this.listaActividades.agregarFinal(actividadNueva);
+        }
 
 
-        for (int i = 0; i < listaProcesos.size(); i++) {
+        for (Usuario aux: listaUsuarios){
+            if(aux.getCedula().equals(usuario.getCedula())){
+                for (Proceso aux2: aux.getProcesos()){
+                    if(aux2.getId().equals(proceso.getId())){
+                        aux2.getListaDetalleProceso().add(new DetalleProceso(actividadNueva));
+                    }
+                }
+            }
+
+        }
+        /*for (int i = 0; i < listaProcesos.size(); i++) {
             Proceso aux = listaProcesos.get(i);
             if (aux.getId().equals(proceso.getId())) {
                 aux.getListaDetalleProceso().add(new DetalleProceso(actividadNueva));
             }
-        }
+        }*/
 
     }
 
     @Override
-    public Actividad buscarActividad(String nombreActividad) throws Exception{
+    public Actividad buscarActividad(Usuario usuario,Proceso proceso, String nombreActividad) throws Exception{
         if (nombreActividad == null || nombreActividad.equals(""))
             throw new NuloVacioException("el nombre de la actividad es nulo o vacio");
 
@@ -388,7 +406,7 @@ public class Empresa implements ICrudUsuario, ICrudProceso, ICrudActividad, ICru
     @Override
     public void actualizarActividad(Usuario usuario, Proceso proceso, String nombre, String nuevoNombre, String nuevaDescripcion, TipoCumplimiento nuevoTipoCumplimiento) throws Exception {
 
-        Actividad actividadExistente = buscarActividad(nombre);
+        Actividad actividadExistente = buscarActividad(usuario, proceso, nombre);
 
         ArrayList<DetalleActividad> listaDetalleActividad = actividadExistente.getListaDetalleActividad();
         int tiempoMaximo = actividadExistente.getTiempoMaximo();

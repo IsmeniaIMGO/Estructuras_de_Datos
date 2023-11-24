@@ -148,4 +148,24 @@ public class Aplicacion extends Application {
             e.printStackTrace();
         }
     }
+
+    public void mostrarIntercambios(String ruta) {
+        try {
+            FXMLLoader ventana = new FXMLLoader();
+            ventana.setLocation(Aplicacion.class.getResource(ruta));
+
+            ventana.setRoot(new AnchorPane());
+
+            AnchorPane diseño = (AnchorPane) ventana.load();
+            IntercambioController intercambioController = ventana.getController();
+            intercambioController.setAplicacion(this);
+
+            Scene lugar = new Scene(diseño);
+            Escena.setScene(lugar);
+            Escena.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

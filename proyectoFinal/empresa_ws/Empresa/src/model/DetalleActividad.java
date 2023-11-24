@@ -53,9 +53,10 @@ public class DetalleActividad {
     }
 
     public int calcularTiempoMinimo() {
-        if (tarea.getCumplimiento().equals(TipoCumplimiento.OBLIGATORIO)) {
+        return tarea.calcularTiempo();
+       /* if (tarea.getCumplimiento().equals(TipoCumplimiento.OBLIGATORIO)) {
             return tarea.getTiempo();
         }
-        return 0;
+        return 0;*/
     }
 }

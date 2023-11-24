@@ -1,4 +1,4 @@
-package estructures;
+package structures;
 
 /**
  *
@@ -28,17 +28,17 @@ public class Cola<Tarea> {
 		
 		tamanio++;
 	}
-	public void agregarDespuesDe(Tarea tareaExistente, Tarea nuevaTarea) {
-		if (tareaExistente == null || nuevaTarea == null) {
+	public void agregarDespuesDe(Tarea tareaNueva, Tarea tareaAntigua) {
+		if (tareaNueva == null || tareaAntigua == null) {
 			throw new IllegalArgumentException("Las tareas no pueden ser nulas");
 		}
 
 		// Encuentra el nodo de la tarea existente
-		NodoDoble<Tarea> nodoExistente = encontrarNodo(tareaExistente);
+		NodoDoble<Tarea> nodoExistente = encontrarNodo(tareaNueva);
 
 		if (nodoExistente != null) {
 			// Crea un nuevo nodo para la nueva tarea
-			NodoDoble<Tarea> nuevoNodo = new NodoDoble<>(nuevaTarea);
+			NodoDoble<Tarea> nuevoNodo = new NodoDoble<>(tareaAntigua);
 
 			// Actualiza los enlaces para insertar el nuevo nodo después del nodo existente
 			nuevoNodo.setSiguienteNodo(nodoExistente.getSiguienteNodo());

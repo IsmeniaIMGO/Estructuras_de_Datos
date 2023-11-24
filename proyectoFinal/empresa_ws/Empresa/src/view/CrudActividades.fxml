@@ -6,9 +6,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="715.0" prefWidth="1027.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrudActividadesController">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="1027.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrudActividadesController">
    <children>
-      <TabPane layoutX="-2.0" layoutY="-8.0" prefHeight="720.0" prefWidth="1031.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="-2.0" layoutY="-8.0" prefHeight="661.0" prefWidth="1031.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab fx:id="tabMisActividades" text="Mis Actividades">
               <content>
@@ -23,13 +23,9 @@
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Label>
-                        <TableView fx:id="tblActividades" layoutX="35.0" layoutY="288.0" prefHeight="275.0" prefWidth="806.0">
+                        <TableView fx:id="tblActividades" layoutX="35.0" layoutY="288.0" prefHeight="202.0" prefWidth="806.0">
                            <columns>
-                              <TableColumn fx:id="col_NombreActividad" prefWidth="131.0" text="Nombre" />
-                              <TableColumn fx:id="col_DescripcionActividad" minWidth="0.0" prefWidth="172.0" text="Descripcion" />
-                              <TableColumn fx:id="col_TiempoMaximoActividad" prefWidth="144.0" text="Tiempo Maximo" />
-                              <TableColumn fx:id="col_TiempoMinimoActividad" prefWidth="180.0" text="Tiempo Minimo" />
-                              <TableColumn prefWidth="178.0" text="Estado" />
+                              <TableColumn fx:id="col_NombreActividad" prefWidth="805.0" text="Actividades" />
                            </columns>
                         </TableView>
                         <Button fx:id="btnCerrarSesion" layoutX="35.0" layoutY="26.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #153D79;" text="Cerrar Sesión" textFill="WHITE">
@@ -40,11 +36,11 @@
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Button>
-                        <Button fx:id="btnVerMisTareas" layoutX="393.0" layoutY="606.0" mnemonicParsing="false" onAction="#verMisTareas" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Ver Mis Tareas" textFill="WHITE">
+                        <Button fx:id="btnVerMisTareas" layoutX="399.0" layoutY="541.0" mnemonicParsing="false" onAction="#verMisTareas" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Ver Mis Tareas" textFill="WHITE">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Button>
-                        <ComboBox fx:id="cboxSeleccionarProceso" layoutX="47.0" layoutY="205.0" prefHeight="39.0" prefWidth="257.0" />
+                        <ComboBox fx:id="cboxSeleccionarProceso" layoutX="47.0" layoutY="205.0" onAction="#cargarActividades" prefHeight="39.0" prefWidth="257.0" />
                         <ImageView fitHeight="36.0" fitWidth="200.0" layoutX="475.0" layoutY="30.0">
                            <image>
                               <Image url="@Imagenes/Solid_white.png" />
@@ -59,8 +55,8 @@
                               <Font name="Cambria Math" size="18.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="cboxSeleccionarUsuario" layoutX="45.0" layoutY="127.0" prefHeight="29.0" prefWidth="261.0" />
-                        <Button fx:id="btnIntercambiar" layoutX="34.0" layoutY="606.0" mnemonicParsing="false" onAction="#intercambiarActividades" prefHeight="39.0" prefWidth="264.0" style="-fx-background-color: #153D79;" text="Intercambiar Actividades" textFill="WHITE">
+                        <ComboBox fx:id="cboxSeleccionarUsuario" layoutX="45.0" layoutY="127.0" onAction="#cargarProcesos1" prefHeight="29.0" prefWidth="261.0" />
+                        <Button fx:id="btnIntercambiar" layoutX="34.0" layoutY="541.0" mnemonicParsing="false" onAction="#intercambiarActividades" prefHeight="39.0" prefWidth="264.0" style="-fx-background-color: #153D79;" text="Intercambiar Actividades" textFill="WHITE">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font>
@@ -73,56 +69,49 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="503.0" prefWidth="1150.0" style="-fx-background-color: EDF4FF;">
                      <children>
-                        <ImageView fx:id="cbkDespues" fitHeight="610.0" fitWidth="1078.0" layoutX="35.0" layoutY="26.0">
+                        <ImageView fitHeight="610.0" fitWidth="1078.0" layoutX="35.0" layoutY="26.0">
                            <image>
                               <Image url="@Imagenes/fondoP.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="36.0" layoutY="282.0" text="Nombre:">
+                        <Label layoutX="36.0" layoutY="229.0" text="Nombre:">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Label>
-                        <Label layoutX="35.0" layoutY="344.0" text="Descripción:">
+                        <Label layoutX="37.0" layoutY="284.0" text="Descripción:">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Label>
-                        <TextField fx:id="txtNombreActividad" layoutX="185.0" layoutY="272.0" prefHeight="39.0" prefWidth="380.0" text="Ingrese el nombre de la actividad">
+                        <TextField fx:id="txtNombreActividad" layoutX="186.0" layoutY="230.0" prefHeight="39.0" prefWidth="380.0">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></TextField>
-                        <TextField fx:id="txtDescripcionActividad" layoutX="186.0" layoutY="328.0" prefHeight="39.0" prefWidth="379.0" text="Ingrese la descripción de la actividad">
+                        <TextField fx:id="txtDescripcionActividad" layoutX="187.0" layoutY="285.0" prefHeight="39.0" prefWidth="379.0">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></TextField>
-                        <Label layoutX="35.0" layoutY="396.0" text="Tiempo máximo:">
+                        <Label layoutX="35.0" layoutY="352.0" text="Tiempo máximo:">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Label>
-                        <TextField fx:id="txtTiempoMaximoActividad" layoutX="188.0" layoutY="386.0" prefHeight="39.0" prefWidth="376.0">
+                        <TextField fx:id="txtTiempoMaximoActividad" layoutX="189.0" layoutY="343.0" prefHeight="39.0" prefWidth="376.0">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></TextField>
-                        <Label layoutX="36.0" layoutY="453.0" text="Tiempo mínimo:">
+                        <Label layoutX="35.0" layoutY="413.0" text="Tiempo mínimo:">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Label>
-                        <TextField fx:id="txtTiempoMinimoActividad" layoutX="188.0" layoutY="443.0" prefHeight="39.0" prefWidth="376.0">
+                        <TextField fx:id="txtTiempoMinimoActividad" layoutX="188.0" layoutY="403.0" prefHeight="39.0" prefWidth="376.0">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></TextField>
-                        <Label layoutX="41.0" layoutY="513.0" text="Estado:">
+                        <Label layoutX="31.0" layoutY="492.0" text="Cumplimiento">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
                            </font></Label>
-                        <CheckBox fx:id="cbkObligatorio" layoutX="133.0" layoutY="510.0" mnemonicParsing="false" text="Obligatorio">
-                           <font>
-                              <Font name="Cambria Math" size="18.0" />
-                           </font></CheckBox>
-                        <CheckBox fx:id="cbkOpcional" layoutX="321.0" layoutY="510.0" mnemonicParsing="false" text="Opcional">
-                           <font>
-                              <Font name="Cambria Math" size="18.0" />
-                           </font>
-                        </CheckBox>
+                        <CheckBox fx:id="cbkObligatorio" layoutX="199.0" layoutY="492.0" mnemonicParsing="false" text="Obligatorio" />
+                        <CheckBox fx:id="cbkOpcional" layoutX="363.0" layoutY="492.0" mnemonicParsing="false" text="Opcional" />
                         <Button fx:id="btnBuscarActividad" layoutX="664.0" layoutY="323.0" mnemonicParsing="false" onAction="#buscarActividad" prefHeight="39.0" prefWidth="202.0" style="-fx-background-color: #153D79;" text="Buscar" textFill="WHITE">
                            <font>
                               <Font name="Cambria Math" size="18.0" />
@@ -143,41 +132,36 @@
                               <Font name="Cambria Math" size="18.0" />
                            </font>
                         </Button>
-                        <Label layoutX="504.0" layoutY="42.0" text="Mis Actividades">
-                           <font>
-                              <Font name="Cambria Math" size="24.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="36.0" fitWidth="200.0" layoutX="485.0" layoutY="40.0">
+                        <ImageView fitHeight="36.0" fitWidth="200.0" layoutX="485.0" layoutY="24.0">
                            <image>
                               <Image url="@Imagenes/Solid_white.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="504.0" layoutY="42.0" text="Crear Actividad">
+                        <Label layoutX="505.0" layoutY="28.0" text="Crear Actividad">
                            <font>
                               <Font name="Cambria Math" size="24.0" />
                            </font>
                         </Label>
-                        <Label layoutX="36.0" layoutY="85.0" text="Verifique su Usuario">
+                        <Label layoutX="34.0" layoutY="56.0" text="Verifique su Usuario">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="35.0" layoutY="139.0" text="Elija el proceso donde va crear la actividad">
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cboxVerificarProceso" layoutX="37.0" layoutY="176.0" onAction="#cargarActividadesCrud" prefWidth="150.0" />
+                        <ComboBox fx:id="cboxVerificarUsuario" layoutX="37.0" layoutY="89.0" onAction="#cargarProcesos2" prefWidth="150.0" />
+                        <Label layoutX="35.0" layoutY="541.0" text="Seleccione una posicion">
                            <font>
                               <Font name="Cambria Math" size="24.0" />
                            </font>
                         </Label>
-                        <Label layoutX="36.0" layoutY="176.0" text="Elija el proceso donde va crear la actividad">
-                           <font>
-                              <Font name="Cambria Math" size="24.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="cboxVerificarProceso" layoutX="37.0" layoutY="224.0" prefWidth="150.0" />
-                        <ComboBox fx:id="cboxVerificarUsuario" layoutX="37.0" layoutY="125.0" prefWidth="150.0" />
-                        <Label layoutX="41.0" layoutY="568.0" text="Seleccione una posicion">
-                           <font>
-                              <Font name="Cambria Math" size="24.0" />
-                           </font>
-                        </Label>
-                        <CheckBox fx:id="cbkFinal" layoutX="44.0" layoutY="610.0" mnemonicParsing="false" text="Al final" />
-                        <CheckBox layoutX="193.0" layoutY="610.0" mnemonicParsing="false" text="Despues de:" />
-                        <ComboBox fx:id="cboxSeleccionarActividad" layoutX="307.0" layoutY="605.0" prefWidth="150.0" />
+                        <CheckBox fx:id="cbkFinal" layoutX="38.0" layoutY="584.0" mnemonicParsing="false" text="Al final" />
+                        <CheckBox fx:id="cbkDespues" layoutX="163.0" layoutY="584.0" mnemonicParsing="false" text="Despues de:" />
+                        <ComboBox fx:id="cboxSeleccionarActividad" layoutX="288.0" layoutY="579.0" prefWidth="150.0" />
                      </children>
                   </AnchorPane>
               </content>

@@ -116,7 +116,7 @@ public class Actividad {
 
     public int calcularTiempoMinimo() {
         for (DetalleActividad detalleActividad : listaDetalleActividad) {
-            tiempoMinimo += detalleActividad.calcularTiempoMinimo();
+            tiempoMinimo = tiempoMinimo + detalleActividad.calcularTiempoMinimo();
         }
         return tiempoMinimo;
     }
